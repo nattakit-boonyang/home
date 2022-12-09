@@ -27,9 +27,15 @@ source $ZSH/oh-my-zsh.sh
 # alias home git
 alias home='git --work-tree=$HOME --git-dir=$HOME/.home.git'
 alias h='home'
-alias ha='h add'
-alias hc='h commit'
-alias hs='h status'
+alias ha='h a'
+alias hc='h c'
+alias hs='h s'
+alias hsu='h s -uno'
+alias hd='h d'
+alias hds='h d --staged'
+alias hl='h lp'
+alias hps='h ps'
+alias hpl='h pl'
 
 # alias git
 alias gitw='git -c core.sshCommand="ssh -i ~/.ssh/id_rsa_work"'
