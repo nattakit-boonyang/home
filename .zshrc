@@ -24,6 +24,21 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+prompt_context() {
+	prompt_segment yellow default '🐾'
+}
+build_prompt() {
+	RETVAL=$?
+	prompt_status
+	prompt_virtualenv
+	prompt_context
+	prompt_dir
+	prompt_git
+	prompt_hg
+	prompt_end
+}
+PROMPT='%{%f%b%k%}$(build_prompt) '
+
 # alias home git
 alias home='git --work-tree=$HOME --git-dir=$HOME/.home.git'
 alias h='home'
@@ -36,6 +51,7 @@ alias hds='h d --staged'
 alias hl='h lp'
 alias hps='h ps'
 alias hpl='h pl'
+alias ham="ha \$(hsu -s | awk '{print \$2}')"
 
 # alias git
 alias gitw='git -c core.sshCommand="ssh -i ~/.ssh/id_rsa_work"'
@@ -44,6 +60,7 @@ alias gitw='git -c core.sshCommand="ssh -i ~/.ssh/id_rsa_work"'
 alias ll='ls -lha'
 
 # alias common
+alias v='vim'
 alias e='exit'
 alias c='clear'
 
