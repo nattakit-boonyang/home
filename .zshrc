@@ -43,6 +43,10 @@ alias gitw='git -c core.sshCommand="ssh -i ~/.ssh/id_rsa_work"'
 # alias ls
 alias ll='ls -lha'
 
+# alias common
+alias e='exit'
+alias c='clear'
+
 # export environment
 export LANG=en_US.UTF-8
 export PATH="/usr/local/opt/php@7.4/bin:/usr/local/opt/php@7.4/sbin:$PATH"

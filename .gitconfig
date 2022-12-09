@@ -5,6 +5,7 @@
 	editor = vim
 	ignorecase = false
 	autocrlf = input
+	pager = cat
 [init]
 	defaultBranch = main
 [push]
@@ -13,9 +14,13 @@
 	ps = push
 	pl = pull
 	plr = pull --rebase
-	d = diff
+	d = icdiff
 	c = commit
 	s = status
 	a = add
 	l = log
 	lp = l --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+[icdiff]
+	options = --highlight --line-numbers
+[diff]
+	external = icdiff
