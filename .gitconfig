@@ -1,0 +1,21 @@
+[user]
+	email = nattakit.boonyang@gmail.com
+	name = Nattakit Boonyang
+[core]
+	editor = vim
+	ignorecase = false
+	autocrlf = input
+[init]
+	defaultBranch = main
+[push]
+	autoSetupRemote = true
+[alias]
+	ps = push
+	pl = pull
+	plr = pull --rebase
+	d = diff
+	c = commit
+	s = status
+	a = add
+	l = log
+	lp = l --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
