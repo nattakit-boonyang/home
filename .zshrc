@@ -25,7 +25,7 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 prompt_context() {
-	prompt_segment white default "🐾 $USER"
+	prompt_segment white black "🐾 $USER"
 }
 build_prompt() {
 	RETVAL=$?
