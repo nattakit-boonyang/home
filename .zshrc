@@ -60,6 +60,8 @@ alias gitw='git -c core.sshCommand="ssh -i ~/.ssh/id_rsa_work"'
 alias ll='ls -lha'
 
 # alias common
+alias jl='jobs -l'
+alias tm='tmux'
 alias v='vim'
 alias e='exit'
 alias c='clear'
