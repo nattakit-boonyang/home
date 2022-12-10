@@ -25,7 +25,7 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 prompt_context() {
-	prompt_segment yellow default '🐾'
+	prompt_segment white default "🐾 $USER"
 }
 build_prompt() {
 	RETVAL=$?
@@ -37,7 +37,8 @@ build_prompt() {
 	prompt_hg
 	prompt_end
 }
-PROMPT='%{%f%b%k%}$(build_prompt) '
+PROMPT='%{%f%b%k%}$(build_prompt)
+%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )'
 
 # alias home git
 alias home='git --work-tree=$HOME --git-dir=$HOME/.home.git'
