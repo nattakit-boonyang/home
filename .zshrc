@@ -60,23 +60,26 @@ alias gitw='git -c core.sshCommand="ssh -i ~/.ssh/id_rsa_work"'
 # alias ls
 alias ll='ls -lha'
 
+# alias tmux
+alias td='tmux detach'
+
 # alias common
 alias jl='jobs -l'
-alias tm='tmux'
 alias v='vim'
 alias e='exit'
 alias c='clear'
 
 # export environment
 export LANG=en_US.UTF-8
-export PATH="/usr/local/opt/php@7.4/bin:/usr/local/opt/php@7.4/sbin:$PATH"
 export PATH="$HOME/go/bin:$PATH"
+export PATH="/usr/local/opt/php@7.4/bin:/usr/local/opt/php@7.4/sbin:$PATH"
 export PATH="/usr/local/opt/openjdk/bin:$PATH"
 export PATH="/usr/local/opt/mysql-client/bin:$PATH"
+export PATH="/usr/local/opt/whois/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
+# must set last
+export PATH="/usr/local/bin:$PATH"
 
 # enable autojump
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
-# enable iterm2 shell integration feature
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh" || true
