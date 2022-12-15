@@ -43,7 +43,6 @@ set background=dark
 set iskeyword+=-
 
 " map custom keys
-nmap <C-a> gg<S-v>G
 nnoremap x "_x
 nnoremap dw vb"_d
 
