@@ -11,15 +11,7 @@
 [push]
 	autoSetupRemote = true
 [alias]
-	ps = push
-	pl = pull
-	plr = pull --rebase
-	d = icdiff
-	c = commit
-	s = status
-	a = add
-	l = log
-	lp = l --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	lp = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 [icdiff]
 	options = --highlight --line-numbers
 [diff]

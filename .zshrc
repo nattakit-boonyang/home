@@ -43,15 +43,15 @@ PROMPT='%{%f%b%k%}$(build_prompt)
 # alias home git
 alias home='git --work-tree=$HOME --git-dir=$HOME/.home.git'
 alias h='home'
-alias ha='h a'
-alias hc='h c'
-alias hs='h s'
-alias hsu='h s -uno'
-alias hd='h d'
-alias hds='h d --staged'
+alias ha='h add'
+alias hc='h commit'
+alias hs='h status'
+alias hsu='h status -uno'
+alias hd='h diff'
+alias hds='h diff --staged'
 alias hl='h lp'
-alias hps='h ps'
-alias hpl='h pl'
+alias hps='h push'
+alias hpl='h pull'
 alias ham="ha \$(hsu -s | awk '{print \$2}')"
 
 # alias git
