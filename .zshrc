@@ -55,10 +55,13 @@ alias hpl='h pull'
 alias ham="ha \$(hsu -s | awk '{print \$2}')"
 
 # alias git
-alias gitw='git -c core.sshCommand="ssh -i ~/.ssh/id_rsa_work"'
+alias gw='git -c core.sshCommand="ssh -i ~/.ssh/id_rsa_work"'
+alias gicd='git icdiff'
+alias gicds='git icdiff --staged'
 
 # alias ls
 alias ll='ls -lha'
+alias l='ll'
 
 # alias tmux
 alias td='tmux detach'
@@ -68,6 +71,11 @@ alias jl='jobs -l'
 alias v='vim'
 alias e='exit'
 alias c='clear'
+
+# alias directory
+alias nvc='~/.config/nvim'
+alias pg='~/Documents/playground'
+alias wk='~/Documents/work'
 
 # export environment
 export LANG=en_US.UTF-8
@@ -85,4 +93,3 @@ export PATH="/usr/local/bin:$PATH"
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-

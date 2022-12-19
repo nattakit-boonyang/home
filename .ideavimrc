@@ -1,50 +1,31 @@
-" Plugin
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-surround'
-
-" set color
-colorscheme slate
-
-" hidden mode
-set hidden
+" enable plugins
+set commentary
+set surround
+set NERDTree
+set ideajoin
 
 " line number
 set number
 set relativenumber
 
-" indentation and tabs
-set tabstop=4
-set shiftwidth=4
-set expandtab
-set autoindent
-
-" set encoding
-set encoding=utf8
-set fileencoding=utf8
-
-set title
 set hlsearch
 set showcmd
-set laststatus=2
-set t_Co=256
-set backspace=indent,eol,start
-set nowrap
-set breakindent
-syntax enable
-
-" set shell
-set shell=/usr/bin/zsh
+set showmode
 
 " search text
 set ignorecase
 set smartcase
-
-" cursor line
-set cursorline
-set termguicolors
-set wildoptions=pum
-set background=dark
 set iskeyword+=-
+
+" display
+set visualbell
+set wrapscan
+set clipboard=ideaput
+
+" set handler
+sethandler n:vim
+sethandler <C-I> i:ide
+sethandler <C-R> i:ide
 
 " map custom keys
 nnoremap x "_x
@@ -67,4 +48,3 @@ vnoremap <Down> <Nop>
 vnoremap <Left> <Nop>
 vnoremap <Right> <Nop>
 vnoremap <Up> <Nop>
-
