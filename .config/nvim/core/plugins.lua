@@ -1,14 +1,11 @@
-local api = vim.api
-local fn = vim.fn
-
 local ensure_packer = function()
-  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-  if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-    vim.cmd [[packadd packer.nvim]]
-    return true
-  end
-  return false
+	local install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+	if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+		vim.fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
+		vim.cmd [[packadd packer.nvim]]
+		return true
+	end
+	return false
 end
 
 local packer_bootstrap = ensure_packer()
@@ -29,11 +26,15 @@ packer.startup(function(use)
 	-- Built-in LSP client
 	use 'neovim/nvim-lspconfig'
 
+	-- LSP server management
+	use 'williamboman/mason.nvim'
+	use 'williamboman/mason-lspconfig.nvim'
+
 	-- Search and diagnostic navigator
-	use({
+	use {
 		'glepnir/lspsaga.nvim',
 		branch = 'main',
-	})
+	}
 
 	-- Autocompletion
 	use 'hrsh7th/nvim-cmp'
@@ -81,16 +82,27 @@ packer.startup(function(use)
 	}
 
 	-- Bracket Pairs
-	use { 'windwp/nvim-autopairs' }
-	use { 'windwp/nvim-ts-autotag' }
+	use 'windwp/nvim-autopairs'
+	use 'windwp/nvim-ts-autotag'
+
+	-- DAP
+	use 'mfussenegger/nvim-dap'
+
+	-- Fuzzy Finder
+	use 'nvim-lua/plenary.nvim'
+	use {
+		'nvim-telescope/telescope.nvim',
+		tag = '0.1.0',
+	}
+	-- Diagnostic integrate with Telescope
+	use 'folke/trouble.nvim'
 end)
 
 if packer_bootstrap then
 	packer.sync()
 else
-	local status, _ = pcall(require, 'plugin/packer_compiled')
-	if not status then
+	local status_pc = pcall(require, 'plugin/packer_compiled')
+	if not status_pc then
 		notify.error('File packer_compiled.lua not found: run PackerSync to fix!')
 	end
 end
-

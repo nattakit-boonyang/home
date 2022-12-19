@@ -1,7 +1,7 @@
 local M = {}
 
 local empty_module = {
-	setup = function() end
+	setup = function(cfg) end
 }
 
 function M.load_plugin(name)

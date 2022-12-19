@@ -1,8 +1,17 @@
 -- Enable language servers
 local servers = {
-	'bashls',
 	'sumneko_lua',
+	'bashls',
+	'yamlls',
+	'vimls',
+	'jsonls',
 }
+
+-- Ensure to enable mason before lspconfig
+g.loader.load_plugin('mason').setup()
+g.loader.load_plugin('mason-lspconfig').setup({
+	ensure_installed = servers,
+})
 
 local lspconfig = g.loader.load_plugin('lspconfig')
 local cmplsp = g.loader.load_plugin('cmp_nvim_lsp')
@@ -15,18 +24,19 @@ local capabilities = cmplsp.default_capabilities()
 local on_attach = function(client, bufnr)
 	-- Formatting
 	if client.server_capabilities.documentFormattingProvider then
+		local format = function()
+			vim.lsp.buf.format({ bufnr = bufnr, async = true })
+		end
+
 		-- Auto formatting
 		vim.api.nvim_create_autocmd('BufWritePre', {
-			pattern = '*',
-			group = vim.api.nvim_create_augroup('Formats', { clear = true }),
-			callback = function()
-				vim.lsp.buf.format({ async = true })
-			end,
+			group = vim.api.nvim_create_augroup('LspFormatting', { clear = true }),
+			buffer = bufnr,
+			callback = format,
 		})
 
 		-- Key mappings
-		local bufopts = { noremap = true, silent = true, buffer = bufnr }
-		vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format({ async = true }) end, bufopts)
+		vim.keymap.set('n', '<leader>fo', format, { noremap = true, silent = true })
 	end
 end
 

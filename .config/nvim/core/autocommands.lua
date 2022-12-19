@@ -15,7 +15,7 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 vim.api.nvim_create_autocmd('BufWritePost', {
 	pattern = '*',
 	group = editors,
-	callback = function(ctx)
+	callback = function()
 		g.buffer.run_cmd_curr_cursor(0, [[%s#\($\n\s*\)\+\%$##]])
 	end,
 })
