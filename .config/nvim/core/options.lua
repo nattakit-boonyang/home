@@ -1,28 +1,28 @@
-vim.cmd('autocmd!') -- Executed automatically when rw a file
-
--- line number
+-- Line Number
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.numberwidth = 4
 vim.opt.signcolumn = 'yes'
 vim.wo.number = true
 
--- file encoding
+-- File Encoding
 vim.scriptencoding = 'utf-8'
 vim.opt.encoding = 'utf-8'
 vim.opt.fileencoding = 'utf-8'
 
--- search
+-- Search
 vim.opt.hlsearch = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.inccommand = 'split'
 vim.scrolloff = 10
-vim.opt.path:append { '**' } -- Search file down into sub directories
+-- Search file down into sub directories
+vim.opt.path:append { '**' }
 vim.opt.wildignore:append {}
+-- Add dash to word matching
 vim.opt.iskeyword:append('-')
 
--- indentation
+-- Indentation
 vim.expandtab = true
 vim.opt.smarttab = true
 vim.opt.breakindent = true
@@ -32,16 +32,17 @@ vim.opt.autoindent = true
 vim.opt.smartindent = true
 vim.opt.backspace = 'start,eol,indent'
 
--- command
+-- Command
 vim.opt.shell = 'zsh'
 vim.opt.hidden = true
 vim.opt.showcmd = true
 vim.opt.cmdheight = 1
 vim.opt.backup = false
 vim.opt.backupskip = '/tmp/*,/private/tmp/*'
+vim.opt.swapfile = false
 
--- windows
-vim.opt.title = true
+-- Windows
+vim.opt.title = false
 vim.opt.laststatus = 2
 vim.opt.clipboard:append { 'unnamedplus' }
 vim.opt.wrap = false
@@ -55,7 +56,7 @@ vim.opt.listchars = {
 	extends = '>',
 }
 
--- highlights
+-- Highlights
 vim.opt.cursorline = true
 vim.opt.termguicolors = true
 vim.opt.winblend = 0

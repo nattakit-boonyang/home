@@ -1,5 +1,5 @@
-local status, lualine = pcall(require, 'lualine')
-if not status then return end
+-- Plugin for display bottom status line
+local lualine = g.loader.load_plugin('lualine')
 
 lualine.setup({
 	options = {
