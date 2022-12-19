@@ -18,6 +18,7 @@ g = {
 	notify = require('utils.notify'), -- Print log
 	buffer = require('utils.buffer'), -- Buffer handler
 	loader = require('utils.loader'), -- Package loader
+	lsp = require('utils.lsp') -- LSP
 }
 
 for path, files in pairs(conf_files) do

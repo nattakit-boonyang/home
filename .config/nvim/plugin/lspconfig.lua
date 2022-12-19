@@ -3,8 +3,14 @@ local servers = {
 	'sumneko_lua',
 	'bashls',
 	'yamlls',
-	'vimls',
 	'jsonls',
+	'dockerls',
+	'golangci_lint_ls',
+	'graphql',
+	'html',
+	'marksman',
+	'sqlls',
+	'lemminx',
 }
 
 -- Ensure to enable mason before lspconfig
@@ -14,31 +20,6 @@ g.loader.load_plugin('mason-lspconfig').setup({
 })
 
 local lspconfig = g.loader.load_plugin('lspconfig')
-local cmplsp = g.loader.load_plugin('cmp_nvim_lsp')
-
--- Utilities
-local flags = {
-	debounce_text_changes = 150,
-}
-local capabilities = cmplsp.default_capabilities()
-local on_attach = function(client, bufnr)
-	-- Formatting
-	if client.server_capabilities.documentFormattingProvider then
-		local format = function()
-			vim.lsp.buf.format({ bufnr = bufnr, async = true })
-		end
-
-		-- Auto formatting
-		vim.api.nvim_create_autocmd('BufWritePre', {
-			group = vim.api.nvim_create_augroup('LspFormatting', { clear = true }),
-			buffer = bufnr,
-			callback = format,
-		})
-
-		-- Key mappings
-		vim.keymap.set('n', '<leader>fo', format, { noremap = true, silent = true })
-	end
-end
 
 for _, server in ipairs(servers) do
 	-- load settings
@@ -46,9 +27,21 @@ for _, server in ipairs(servers) do
 
 	-- load setup
 	lspconfig[server].setup({
-		capabilities = capabilities,
-		on_attach = on_attach,
+		capabilities = g.lsp.capabilities(),
+		on_attach = g.lsp.on_attach,
 		settings = settings,
-		flags = flags,
+		flags = g.lsp.flags,
 	})
 end
+
+-- Override diagnostic
+vim.fn.sign_define("DiagnosticSignError", { text = "✗", texthl = "DiagnosticSignError" })
+vim.fn.sign_define("DiagnosticSignWarn", { text = "!", texthl = "DiagnosticSignWarn" })
+vim.fn.sign_define("DiagnosticSignInformation", { text = "", texthl = "DiagnosticSignInfo" })
+vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
+vim.diagnostic.config {
+	underline = false,
+	virtual_text = false,
+	signs = true,
+	severity_sort = true,
+}

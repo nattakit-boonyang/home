@@ -30,12 +30,6 @@ packer.startup(function(use)
 	use 'williamboman/mason.nvim'
 	use 'williamboman/mason-lspconfig.nvim'
 
-	-- Search and diagnostic navigator
-	use {
-		'glepnir/lspsaga.nvim',
-		branch = 'main',
-	}
-
 	-- Autocompletion
 	use 'hrsh7th/nvim-cmp'
 	-- VSCode Pictograms
@@ -96,6 +90,20 @@ packer.startup(function(use)
 	}
 	-- Diagnostic integrate with Telescope
 	use 'folke/trouble.nvim'
+
+	-- Diagnostic/Code Actions Injector
+	use 'jose-elias-alvarez/null-ls.nvim'
+
+	-- Repeat surround by dot
+	use 'tpope/vim-repeat'
+
+	-- Support golang
+	use 'ray-x/go.nvim'
+	use 'ray-x/guihua.lua' -- recommanded if need floating window support
+
+	-- Git
+	use 'lewis6991/gitsigns.nvim'
+	use 'tpope/vim-fugitive'
 end)
 
 if packer_bootstrap then
