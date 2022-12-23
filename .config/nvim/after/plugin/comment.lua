@@ -1,5 +1,5 @@
 -- Plugin for comment keybinding
-local comment = g.loader.load_plugin('Comment')
+local comment = require('Comment')
 
 comment.setup({
 	padding = true,

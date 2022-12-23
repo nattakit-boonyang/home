@@ -1,5 +1,5 @@
 -- Plugin for syntax
-local treesitter = g.loader.load_plugin('nvim-treesitter.configs')
+local treesitter = require('nvim-treesitter.configs')
 
 treesitter.setup({
 	ensure_installed = 'all',
@@ -10,5 +10,12 @@ treesitter.setup({
 	indent = {
 		enable = true,
 		disable = {},
+	},
+	rainbow = {
+		enable = true,
+		extended_mode = true,
+	},
+	matchup = {
+		enable = true,
 	},
 })
