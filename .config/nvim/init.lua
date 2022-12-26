@@ -1,3 +1,6 @@
+-- Set package path
+package.path = string.format('%s;%s', vim.fn.expand('~/.config/nvim/?.lua'), package.path)
+
 -- Enable package caching
 require('impatient')
 

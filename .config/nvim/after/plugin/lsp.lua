@@ -51,22 +51,26 @@ lsp.configure('sumneko_lua', {
 })
 
 local api = vim.api
-local lsp_buf = vim.lsp.buf
-lsp.on_attach(function(client, bufnr)
-  api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-  if client.server_capabilities.documentFormattingProvider then
-    -- Auto formatting
-    vim.api.nvim_create_autocmd('BufWritePre', {
-      group = api.nvim_create_augroup('LspFormatting', { clear = true }),
-      buffer = bufnr,
-      callback = function()
-        lsp_buf.format({ async = true, bufnr = bufnr })
-      end,
-    })
-  end
+local on_attach = function(opts)
+  return function(client, bufnr)
+    api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+    if client.server_capabilities.documentFormattingProvider then
+      require('core.autocommands').lsp.auto_format(opts.fn_format, bufnr)
+    end
 
-  -- set mappings
-  require('core.mappings').lsp.register_mappings(client, bufnr)
-end)
+    -- set mappings
+    require('core.mappings').lsp.register_mappings(client, bufnr, opts)
+  end
+end
+
+lsp.on_attach(on_attach({
+  fn_format = function(bufnr)
+    vim.lsp.buf.format({ async = true, bufnr = bufnr })
+  end,
+}))
 
 lsp.setup()
+
+return {
+  on_attach = on_attach, -- Export for external lsp config
+}

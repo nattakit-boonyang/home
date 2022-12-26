@@ -12,12 +12,18 @@ local packer_bootstrap = ensure_packer()
 local packer = require('packer')
 
 packer.startup(function(use)
-  use 'wbthomason/packer.nvim'
-
+  -- Plugin Cache
   use 'lewis6991/impatient.nvim'
 
-  use 'Mofiqul/dracula.nvim'
+  -- Plugin Manager
+  use 'wbthomason/packer.nvim'
 
+  -- Colorscheme
+  use 'Mofiqul/dracula.nvim'
+  use 'shaunsingh/solarized.nvim'
+  use 'morhetz/gruvbox'
+
+  -- Builtin LSP Config
   use {
     'VonHeikemen/lsp-zero.nvim',
     requires = {
@@ -40,6 +46,7 @@ packer.startup(function(use)
     }
   }
 
+  -- Code Object
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate'
@@ -53,6 +60,8 @@ packer.startup(function(use)
     end
   }
   use 'p00f/nvim-ts-rainbow'
+  use 'nvim-treesitter/playground'
+  use 'JoosepAlviste/nvim-ts-context-commentstring'
 
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.0',
@@ -63,14 +72,20 @@ packer.startup(function(use)
     run = 'make',
   }
 
+  -- Status line
   use 'nvim-lualine/lualine.nvim'
+  use 'arkav/lualine-lsp-progress'
 
+  -- Toggle Comment
   use 'numToStr/Comment.nvim'
 
+  -- Match Pairs
   use 'tpope/vim-surround'
 
+  -- Mappings Guide
   use 'folke/which-key.nvim'
 
+  -- Todo Highlight
   use {
     'folke/todo-comments.nvim',
     requires = 'nvim-lua/plenary.nvim',
@@ -79,6 +94,7 @@ packer.startup(function(use)
     end,
   }
 
+  -- Diagnostic Navigator
   use {
     'folke/trouble.nvim',
     requires = 'kyazdani42/nvim-web-devicons',
@@ -87,20 +103,26 @@ packer.startup(function(use)
     end
   }
 
+  -- Notify GUI
   use 'rcarriga/nvim-notify'
 
+  -- Indent Highlight
   use 'lukas-reineke/indent-blankline.nvim'
 
+  -- Display Buffer
   use {
     'akinsho/bufferline.nvim',
     tag = 'v3.*',
   }
 
+  -- Git
   use 'lewis6991/gitsigns.nvim'
   use 'tpope/vim-fugitive'
 
+  -- Enable Repeat Dot for Surround
   use 'tpope/vim-repeat'
 
+  -- Auto Add Pairs
   use 'windwp/nvim-autopairs'
   use {
     'windwp/nvim-ts-autotag',
@@ -109,8 +131,10 @@ packer.startup(function(use)
     end,
   }
 
+  -- Undo Explorer
   use 'mbbill/undotree'
 
+  -- File Explorer
   use {
     'nvim-tree/nvim-tree.lua',
     requires = {
@@ -118,6 +142,25 @@ packer.startup(function(use)
     },
     tag = 'nightly',
   }
+
+  -- Move Line
+  use 'fedepujol/move.nvim'
+
+  -- Golang
+  use 'ray-x/go.nvim'
+  use 'ray-x/guihua.lua'
+
+  -- UI Improvement
+  use 'stevearc/dressing.nvim'
+
+  -- Terminal Management
+  use {
+    'akinsho/toggleterm.nvim',
+    tag = '*',
+  }
+
+  -- Tmux
+  use 'aserowy/tmux.nvim'
 end)
 
 if packer_bootstrap then

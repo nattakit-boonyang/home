@@ -52,7 +52,7 @@ opt.title = true
 opt.laststatus = 3
 opt.clipboard:append('unnamedplus')
 opt.wrap = false
-opt.list = true
+opt.list = false
 opt.listchars = {
   tab = '▸\\ ',
   lead = '␣',
@@ -69,3 +69,4 @@ opt.winblend = 0
 opt.wildoptions = 'pum'
 opt.pumblend = 5
 opt.background = 'dark'
+opt.background = 'light'

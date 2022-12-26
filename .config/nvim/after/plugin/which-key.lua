@@ -1,11 +1,10 @@
 local wk = require('which-key')
 
 wk.setup({
-	window = {
-		border = 'single',
-	},
+  window = {
+    border = 'single',
+  },
   layout = {
     align = 'center',
   }
 })
-
