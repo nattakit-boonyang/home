@@ -7,7 +7,7 @@ global_zsh_themes() {
   ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[yellow]%}✗"
   ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"
 
-  PROMPT="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )[$USER]"
+  PROMPT="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )$USER"
   PROMPT+=" %{$fg[cyan]%}%~%{$reset_color%} $(git_prompt_info)
 ♜ "
 }
@@ -134,9 +134,10 @@ execute_common() {
 # execute functions
 global_zsh_setup
 global_zsh_plugins
-global_zsh_themes
 
 source $ZSH/oh-my-zsh.sh
+
+global_zsh_themes
 
 alias_tmux
 alias_ssh
