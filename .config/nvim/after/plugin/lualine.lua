@@ -14,10 +14,11 @@ local filename = {
 
 lualine.setup({
   options = {
-    theme = require('core.colorschemes').color.lualine,
+    theme = require('colorschemes').color.lualine,
     disabled_filetypes = {
       statusline = {
         'NvimTree',
+        'undotree',
         'packer',
         'qf',
       },

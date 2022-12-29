@@ -13,4 +13,4 @@ go.setup({
 })
 
 -- Setup Autocommand
-require('core.autocommands').go.setup()
+require('autocommands').go.setup()

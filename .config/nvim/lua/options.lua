@@ -14,7 +14,7 @@ opt.signcolumn = 'yes'
 -- Folding
 opt.foldmethod = 'expr'
 opt.foldexpr = 'nvim_treesitter#foldexpr()'
-opt.foldlevel = 99
+opt.foldlevel = 999
 opt.foldenable = true
 
 -- Filetype
@@ -33,6 +33,8 @@ opt.backspace = 'start,eol,indent'
 
 -- Search
 opt.hlsearch = true
+opt.incsearch = true
+opt.showmatch = true
 opt.ignorecase = true
 opt.smartcase = true
 opt.iskeyword:append('-')
@@ -46,6 +48,8 @@ opt.backup = false
 opt.swapfile = false
 
 -- Window
+opt.splitbelow = true
+opt.splitright = true
 opt.visualbell = true
 opt.errorbells = true
 opt.title = true
@@ -69,4 +73,3 @@ opt.winblend = 0
 opt.wildoptions = 'pum'
 opt.pumblend = 5
 opt.background = 'dark'
-opt.background = 'light'

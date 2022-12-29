@@ -11,8 +11,8 @@ vim.notify = require('notify')
 vim.cmd [[autocmd!]]
 
 -- Require modules
-require('core.autocommands')
-require('core.options')
-require('core.mappings')
-require('core.colorschemes')
+require('autocommands')
+require('options')
+require('mappings')
+require('colorschemes')
 require('plugins')

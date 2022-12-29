@@ -55,11 +55,11 @@ local on_attach = function(opts)
   return function(client, bufnr)
     api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
     if client.server_capabilities.documentFormattingProvider then
-      require('core.autocommands').lsp.auto_format(opts.fn_format, bufnr)
+      require('autocommands').lsp.auto_format(opts.fn_format, bufnr)
     end
 
     -- set mappings
-    require('core.mappings').lsp.register_mappings(client, bufnr, opts)
+    require('mappings').lsp.register_mappings(client, bufnr, opts)
   end
 end
 

@@ -71,6 +71,13 @@ packer.startup(function(use)
     'nvim-telescope/telescope-fzf-native.nvim',
     run = 'make',
   }
+  use {
+    'LukasPietzschmann/telescope-tabs',
+    requires = { 'nvim-telescope/telescope.nvim' },
+    config = function()
+      require 'telescope-tabs'.setup({})
+    end
+  }
 
   -- Status line
   use 'nvim-lualine/lualine.nvim'
@@ -161,6 +168,13 @@ packer.startup(function(use)
 
   -- Tmux
   use 'aserowy/tmux.nvim'
+  use 'tmux-plugins/vim-tmux'
+
+  -- Camel and Snake Case
+  use 'bkad/CamelCaseMotion'
+
+  -- Editconfig
+  use 'editorconfig/editorconfig-vim'
 end)
 
 if packer_bootstrap then

@@ -45,11 +45,11 @@ local lsp_module = {
 -- Terminal Autocommand
 local term_module = {
   setup = function()
-    api.nvim_create_autocmd('TermOpen', {
+    api.nvim_create_autocmd('TermEnter', {
       pattern = 'term://*',
       group = api.nvim_create_augroup('TerminalSetup', { clear = true }),
       callback = function()
-        require('core.mappings').term.register_mappings()
+        require('mappings').term.register_mappings()
       end,
     })
   end,
@@ -62,7 +62,7 @@ local go_module = {
       pattern = { '*.go', '*.mod' },
       group = api.nvim_create_augroup('GoSetup', { clear = true }),
       callback = function()
-        require('core.mappings').go.register_mappings()
+        require('mappings').go.register_mappings()
       end,
     })
   end,
