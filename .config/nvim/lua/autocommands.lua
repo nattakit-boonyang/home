@@ -1,5 +1,4 @@
 local api = vim.api
-local editors = api.nvim_create_augroup('Editor', { clear = true })
 local exec_cmd_buf_cursor = function(bufnr, cmd)
   -- Save last cursor
   local linenr = api.nvim_win_get_cursor(bufnr)
@@ -18,14 +17,23 @@ local exec_cmd_buf_cursor = function(bufnr, cmd)
   api.nvim_win_set_cursor(bufnr, linenr)
 end
 
+-- Trim file
 api.nvim_create_autocmd('BufWritePre', {
   pattern = '*',
-  group = editors,
+  group = api.nvim_create_augroup('Editor', { clear = true }),
   callback = function()
     -- Trim trailing whitespace
     exec_cmd_buf_cursor(0, [[%s/\s\+$//e]])
     -- Trim end-of-file line
     exec_cmd_buf_cursor(0, [[%s#\($\n\s*\)\+\%$##]])
+  end,
+})
+
+api.nvim_create_autocmd('TextYankPost', {
+  pattern = '*',
+  group = vim.api.nvim_create_augroup('YankHighlight', { clear = true }),
+  callback = function()
+    vim.highlight.on_yank()
   end,
 })
 

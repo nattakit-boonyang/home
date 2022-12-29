@@ -2,8 +2,7 @@ local bufferline = require('bufferline')
 
 bufferline.setup({
   options = {
-    -- mode = 'buffers',
-    mode = 'tabs',
+    mode = 'buffers',
     numbers = function(opts)
       return string.format('%s.%s', opts.id, opts.lower(opts.ordinal))
     end,
@@ -18,6 +17,12 @@ bufferline.setup({
       {
         filetype = 'NvimTree',
         text = 'File Explorer',
+        text_align = 'center',
+        separator = true,
+      },
+      {
+        filetype = 'undotree',
+        text = 'Undotree',
         text_align = 'center',
         separator = true,
       }

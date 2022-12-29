@@ -36,8 +36,8 @@ lsp.configure('sumneko_lua', {
         library = {
           vim.api.nvim_get_runtime_file('', true),
           vim.fn.expand('$VIMRUNTIME/lua'),
+          vim.fn.expand('$MYVIMRC'),
           vim.fn.stdpath('config'),
-          vim.fn.stdpath('config') .. '/init.lua',
           vim.fn.stdpath('config') .. '/lua',
         },
         maxPreload = 2000,
@@ -70,6 +70,9 @@ lsp.on_attach(on_attach({
 }))
 
 lsp.setup()
+
+-- Turn on lsp status information
+require('fidget').setup()
 
 return {
   on_attach = on_attach, -- Export for external lsp config

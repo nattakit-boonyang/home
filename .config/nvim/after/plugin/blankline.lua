@@ -17,7 +17,22 @@ for i, color in ipairs(colors) do
   vim.cmd(string.format('highlight %s guifg=%s gui=nocombine', name, color))
 end
 
+vim.g.indent_blankline_filetype_exclude = {
+  'lspinfo',
+  'packer',
+  'checkhealth',
+  'help',
+  'man',
+  'undotree',
+  'NvimTree',
+  'qf',
+  'Telescope',
+  'dashboard',
+}
+
 indent.setup({
+  char = '┊',
+  show_trailing_blankline_indent = false,
   show_current_context = true,
   show_current_context_start = true,
   char_highlight_list = char_highlight_list,

@@ -2,9 +2,10 @@ local g = vim.g
 local opt = vim.opt
 
 -- Editor
-g.loaded_netrw = 1
-g.loaded_netrwPlugin = 1
 g.mapleader = ' '
+g.maplocalleader = ' '
+g.loaded_netrw = 0
+g.loaded_netrwPlugin = 0
 opt.timeoutlen = 0
 opt.number = true
 opt.relativenumber = true

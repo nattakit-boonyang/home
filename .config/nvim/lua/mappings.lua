@@ -39,11 +39,45 @@ local mode_opts = {
   end,
 }
 
+-- TODO: design it!
+local quit = function()
+  -- Delete Windows
+  if vim.tbl_count(vim.api.nvim_tabpage_list_wins(0)) > 0 then
+    local status, _ = pcall(vim.api.nvim_win_close, 0, true)
+    if status then return end
+  end
+
+  -- Delete Buffers
+  local status, _ = pcall(vim.api.nvim_buf_delete, 0, { force = true })
+  if status then return end
+
+  -- Delete
+  local buf_line_count = vim.api.nvim_buf_line_count(0)
+  local buf_name = vim.api.nvim_buf_get_name(0)
+  if (buf_line_count == 0) and (buf_name == '') then
+  end
+
+  -- local is_valid = function(buff)
+  --   vim.pretty_print(buff)
+  --   return vim.api.nvim_buf_is_valid(buff) and vim.api.nvim_buf_is_valid(buff)
+  -- end
+  -- local buffers = vim.tbl_filter(is_valid, vim.api.nvim_list_bufs())
+  -- local cmd = '<cmd>bd!<cr>'
+  -- vim.pretty_print(buffers)
+  -- vim.pretty_print(vim.api.nvim_buf_is_loaded(27))
+  -- vim.pretty_print(vim.api.nvim_buf_is_valid(27))
+  -- if buffers == 1 then
+  --   cmd = '<cmd>q!<cr>'
+  -- end
+  -- pcall(vim.cmd, cmd)
+end
+
 wk.register({
   ['g?'] = { '<cmd>WhichKey<cr>', 'WK All Mappings' },
   x = { '"_x', 'Delete Char' },
   dw = { 'vb"_d', 'Delete Word Backward' },
-  q = { '<cmd>bw!<cr>', 'Buffer Wipeout' },
+  -- q = { quit, 'Quit Buffer' },
+  q = { '<cmd>bd!<cr>', 'Quit' },
   Q = { '<cmd>q!<cr>', 'Quit' },
 }, mode_opts.n)
 
@@ -108,23 +142,21 @@ wk.register({
 }, mode_opts.n_leader)
 
 -- Telescope
-local builtin = require('telescope.builtin')
+local telescope_builtin = require('telescope.builtin')
 local new_telescope_preview_off = function(fn)
   return string.format([[<cmd>lua require('telescope.builtin').%s({previewer=false})<cr>]], fn)
 end
 wk.register({
   f = {
     name = 'Telescope',
-    a = { new_telescope_preview_off('builtin'), 'All Pickers' },
-    f = { builtin.find_files, 'Find File' },
-    F = { new_telescope_preview_off('find_files'), 'Find File (No Preview)' },
-    g = { builtin.live_grep, 'Live Grep' },
-    G = { new_telescope_preview_off('live_grep'), 'Live Grep (No Preview)' },
-    b = { builtin.buffers, 'Buffer' },
-    B = { new_telescope_preview_off('buffers'), 'Buffer (No Preview)' },
-    t = { '<cmd>Telescope telescope-tabs list_tabs<cr>', 'Tabs', },
-    o = { '<cmd>TodoTelescope<cr>', 'Todo' },
-    r = { '<cmd>Telescope oldfiles<cr>', 'Recent File' },
+    a = { new_telescope_preview_off('builtin'), '[A]ll Pickers' },
+    f = { telescope_builtin.find_files, '[F]ind [F]ile' },
+    g = { telescope_builtin.live_grep, 'Live [G]rep' },
+    b = { telescope_builtin.buffers, '[B]uffer' },
+    t = { '<cmd>Telescope telescope-tabs list_tabs<cr>', '[T]abs', },
+    o = { '<cmd>TodoTelescope<cr>', 'T[o]do' },
+    r = { '<cmd>Telescope oldfiles<cr>', '[R]ecent File' },
+    B = { '<cmd>Telescope file_browser<cr>', 'File [B]rowser' },
   },
 }, mode_opts.n_leader)
 
@@ -179,21 +211,20 @@ wk.register({
 local lsp_buf = vim.lsp.buf
 local lsp_module = {
   register_mappings = function(client, bufnr, opts)
-    local buf_opts = mode_opts.set_buf(mode_opts.n_leader, bufnr)
+    local buf_opts = mode_opts.set_buf(mode_opts.n, bufnr)
     local new_lsp_mapping = function(opts)
       -- set values
       opts.mapping = opts.mapping or ''
-      opts.mapping = string.format('c%s', opts.mapping) -- Add 'c' prefix
 
       if not opts.sign then
         if not (opts.state == nil) then
-          opts.sign = '[✓]'
+          opts.sign = '+'
         else
           -- For label only
           opts.fn = function()
             vim.notify('Server not implement!', vim.log.levels.ERROR, { title = 'LSP Client' })
           end
-          opts.sign = '[✗]'
+          opts.sign = '-'
         end
       end
       opts.desc = string.format('%s%s', opts.sign, opts.desc)
@@ -201,92 +232,78 @@ local lsp_module = {
       -- register mapping
       wk.register({ [opts.mapping] = { opts.fn, opts.desc, buffer = bufnr } }, opts.opts)
     end
-    -- Set label name
     new_lsp_mapping({
-      opts = buf_opts,
-      desc = 'LSP',
-      sign = '[✓]',
-    })
-    new_lsp_mapping({
-      mapping = 'f',
+      mapping = 'ff',
       opts = buf_opts,
       fn = function() opts.fn_format(bufnr) end,
-      desc = 'Format Code',
+      desc = '[F]ormat [F]ile',
       state = client.server_capabilities.documentFormattingProvider,
     })
     new_lsp_mapping({
-      mapping = 'h',
+      mapping = 'K',
       opts = buf_opts,
       fn = lsp_buf.hover,
       desc = 'Hover',
       state = client.server_capabilities.hoverProvider,
     })
     new_lsp_mapping({
-      mapping = 'n',
+      mapping = 'cn',
       opts = buf_opts,
       fn = lsp_buf.rename,
-      desc = 'Rename',
+      desc = '[C]hange [N]ame',
       state = client.server_capabilities.renameProvider,
     })
     new_lsp_mapping({
-      mapping = 'r',
+      mapping = 'gR',
       opts = buf_opts,
-      fn = lsp_buf.references,
-      desc = 'References',
+      fn = telescope_builtin.lsp_references,
+      desc = '[G]oto [R]eferences',
       state = client.server_capabilities.referencesProvider,
     })
     new_lsp_mapping({
-      mapping = 'a',
+      mapping = 'gca',
       opts = buf_opts,
       fn = lsp_buf.code_action,
-      desc = 'Code Action',
+      desc = '[G]oto [C]ode [A]ction',
       state = client.server_capabilities.codeActionProvider,
     })
     new_lsp_mapping({
-      mapping = 'd',
+      mapping = 'gd',
       opts = buf_opts,
-      fn = lsp_buf.definition,
-      desc = 'Definition',
+      fn = telescope_builtin.lsp_definitions,
+      desc = '[G]oto [D]efinition',
       state = client.server_capabilities.definitionProvider,
     })
     new_lsp_mapping({
-      mapping = 'D',
+      mapping = 'gD',
       opts = buf_opts,
-      fn = lsp_buf.declaration,
-      desc = 'Declaration',
-      state = client.server_capabilities.declarationProvider,
+      fn = telescope_builtin.lsp_type_definitions,
+      desc = '[G]oto Type [D]efinition',
+      state = client.server_capabilities.typeDefinitionProvider,
     })
     new_lsp_mapping({
-      mapping = 'g',
+      mapping = 'gh',
       opts = buf_opts,
       fn = lsp_buf.signature_help,
-      desc = 'Signature Help',
+      desc = '[G]oto Signature [H]elp',
       state = client.server_capabilities.signatureHelpProvider,
     })
     new_lsp_mapping({
-      mapping = 'i',
+      mapping = 'gI',
       opts = buf_opts,
-      fn = lsp_buf.implementation,
-      desc = 'Implementation',
+      fn = telescope_builtin.lsp_implementations,
+      desc = '[G]oto [I]mplementation',
       state = client.server_capabilities.implementationProvider,
     })
     new_lsp_mapping({
-      mapping = 's',
+      mapping = 'gs',
       opts = buf_opts,
-      fn = lsp_buf.document_symbol,
-      desc = 'Document Symbol',
+      fn = telescope_builtin.lsp_document_symbols,
+      desc = '[G]oto [S]ymbol',
       state = client.server_capabilities.documentSymbolProvider,
-    })
-    new_lsp_mapping({
-      mapping = 't',
-      opts = buf_opts,
-      fn = lsp_buf.type_definition,
-      desc = 'Type Definition',
-      state = client.server_capabilities.typeDefinitionProvider,
     })
   end,
 }
-wk.register({ c = '[✗]LSP' }, mode_opts.n_leader)
 
 -- Controller (Tabs, Buffers, Windows)
 local tmux = require('tmux')
@@ -301,21 +318,21 @@ wk.register({
     name = 'Window',
     ['\\'] = { '<cmd>wincmd v<cr>', 'New VW' },
     ['-'] = { '<cmd>wincmd s<cr>', 'New HW' },
-    q = { '<cmd>wincmd q<cr>', 'Close W' },
+    q = { '<cmd>wincmd q<cr>', '[Q]uit W' },
   },
   t = {
     name = 'Tabs',
-    e = { '<cmd>tabnew<cr>', 'New T' },
-    l = { '<cmd>tabnext<cr>', 'Next T' },
-    h = { '<cmd>tabprevious<cr>', 'Next T' },
-    q = { '<cmd>tabclose<cr>', 'Close T' },
+    e = { '<cmd>tabnew<cr>', '[E]dit T' },
+    l = { '<cmd>tabnext<cr>', '[N]ext T' },
+    h = { '<cmd>tabprevious<cr>', '[P]rev T' },
+    q = { '<cmd>tabclose<cr>', '[Q]uit T' },
   },
   b = {
     name = 'Buffer',
-    e = { '<cmd>enew<cr>', 'New B' },
-    d = { '<cmd>bd!<cr><cmd>blast<cr>', 'Delete B' },
-    l = { '<cmd>bnext<cr>', 'Next B' },
-    h = { '<cmd>bprevious<cr>', 'Prev B' },
+    e = { '<cmd>enew<cr>', '[E]dit B' },
+    d = { '<cmd>bd!<cr><cmd>blast<cr>', '[D]elete B' },
+    l = { '<cmd>bnext<cr>', '[N]ext B' },
+    h = { '<cmd>bprevious<cr>', '[P]rev B' },
   },
 }, mode_opts.n_leader)
 
@@ -340,6 +357,7 @@ local term_module = {
 local term = require('after.plugin.toggleterm')
 wk.register({
   [','] = {
+    name = 'Terminal',
     l = { term.new_cmd('lazygit'), 'Lazygit' },
     s = { term.new_cmd('zsh'), 'Shell' },
   },
@@ -367,44 +385,44 @@ local add_test = function(fn, opts)
   end
 end
 local desc_format = function(text)
-  return string.format('[]%s', text)
+  return string.format('%s', text)
 end
 local go_module = {
   register_mappings = function(bufnr)
     local buf_opts = mode_opts.set_buf(mode_opts.n_leader, bufnr)
     wk.register({
       m = {
-        name = desc_format('Module'),
-        i = { input_run('mod'), desc_format('Initial') },
-        t = { require('go.gopls').tidy, desc_format('Tidy') },
-        g = { input_run('goget'), desc_format('Get Package') },
+        name = desc_format('[M]odule'),
+        i = { input_run('mod'), desc_format('[I]nitial') },
+        t = { require('go.gopls').tidy, desc_format('[T]idy') },
+        g = { input_run('goget'), desc_format('[G]et Package') },
       },
       g = {
-        name = desc_format('Generator'),
-        c = { require('go.comment').gen, desc_format('Function Comment') },
-        r = { require('go.lsp').hover_returns, desc_format('Variable Return') },
-        i = { input_run('impl'), desc_format('Interface') }
+        name = desc_format('[G]enerator'),
+        c = { require('go.comment').gen, desc_format('Function [C]omment') },
+        r = { require('go.lsp').hover_returns, desc_format('Variable [R]eturn') },
+        i = { input_run('impl'), desc_format('[I]nterface') }
       },
-      t = {
-        name = desc_format('Test'),
-        s = { run_test('test_func', { '-s' }), desc_format('Select') },
-        c = { run_test('test_func'), desc_format('Cursor') },
-        f = { run_test('test_file'), desc_format('File') },
-        p = { run_test('test_package'), desc_format('Package') },
+      r = {
+        name = desc_format('[T]est'),
+        s = { run_test('test_func', { '-s' }), desc_format('[S]elect') },
+        c = { run_test('test_func'), desc_format('[C]ursor') },
+        f = { run_test('test_file'), desc_format('[F]ile') },
+        p = { run_test('test_package'), desc_format('[P]ackage') },
         a = {
-          name = desc_format('All Mode'),
-          a = { add_test('all_test', { '-parallel' }), desc_format('Add All') },
-          c = { add_test('fun_test', { '-parallel' }), desc_format('Add Cursor') },
-          e = { add_test('exported_test', { '-parallel' }), desc_format('Add Public') },
+          name = desc_format('[A]ll Mode'),
+          a = { add_test('all_test', { '-parallel' }), desc_format('[A]dd All') },
+          c = { add_test('fun_test', { '-parallel' }), desc_format('[A]dd Cursor') },
+          e = { add_test('exported_test', { '-parallel' }), desc_format('[A]dd Public') },
         },
       },
       h = {
-        name = desc_format('Helper'),
-        c = { input_run('godoc'), desc_format('Documentation') },
-        d = { input_run('chtsh'), desc_format('Cheat') },
-        t = { require('go.inlay').toggle_inlay_hints, desc_format('Toggle Inlay Hints') },
-        o = { require('go.package').outline, desc_format('Toggle Package Outline') },
-        l = { '<cmd>GoLint<cr>', desc_format('Go Lint') },
+        name = desc_format('[H]elper'),
+        d = { input_run('godoc'), desc_format('[D]ocumentation') },
+        c = { input_run('chtsh'), desc_format('[C]heat') },
+        i = { require('go.inlay').toggle_inlay_hints, desc_format('Toggle [I]nlay Hints') },
+        o = { require('go.package').outline, desc_format('Toggle Package [O]utline') },
+        l = { '<cmd>GoLint<cr>', desc_format('Go [L]int') },
       },
     }, buf_opts)
   end,

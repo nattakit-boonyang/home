@@ -31,6 +31,7 @@ packer.startup(function(use)
       { 'neovim/nvim-lspconfig' },
       { 'williamboman/mason.nvim' },
       { 'williamboman/mason-lspconfig.nvim' },
+      { 'j-hui/fidget.nvim' },
 
       -- Autocompletion
       { 'hrsh7th/nvim-cmp' },
@@ -78,6 +79,7 @@ packer.startup(function(use)
       require 'telescope-tabs'.setup({})
     end
   }
+  use 'nvim-telescope/telescope-file-browser.nvim'
 
   -- Status line
   use 'nvim-lualine/lualine.nvim'
@@ -175,6 +177,9 @@ packer.startup(function(use)
 
   -- Editconfig
   use 'editorconfig/editorconfig-vim'
+
+  -- Dashboard
+  use 'glepnir/dashboard-nvim'
 end)
 
 if packer_bootstrap then
