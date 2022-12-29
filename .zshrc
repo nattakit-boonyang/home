@@ -23,18 +23,17 @@ global_zsh_plugins() {
     git
     zsh-autosuggestions
     zsh-syntax-highlighting
-    docker
-    docker-compose
     fzf
     fancy-ctrl-z
     gitignore
     golang
-    kubectl
-    nmap
     tmux
   )
   if [[ $OSTYPE == 'darwin'* ]]; then
     plugins+=(
+      docker
+      docker-compose
+      kubectl
       macos
       brew
     )
@@ -104,6 +103,19 @@ alias_dir() {
   fi
 }
 
+alias_firefox() {
+  if [[ $OSTYPE == 'darwin'* ]]; then
+    alias ff_work='open -a Firefox.app -n --args -P Work'
+  fi
+}
+
+alias_k8s() {
+  if [[ $OSTYPE == 'darwin'* ]]; then
+    alias kgvs='kubectl get virtualservice'
+    alias kgvsa='kubectl get virtualservice --all-namespaces'
+  fi
+}
+
 export_env() {
   export LANG=en_US.UTF-8
   export PATH="$HOME/go/bin:$PATH"
@@ -139,6 +151,8 @@ source $ZSH/oh-my-zsh.sh
 
 global_zsh_themes
 
+alias_firefox
+alias_k8s
 alias_tmux
 alias_ssh
 alias_ls
