@@ -2,7 +2,7 @@ local bufferline = require('bufferline')
 
 bufferline.setup({
   options = {
-    mode = 'buffers',
+    mode = 'tabs',
     numbers = function(opts)
       return string.format('%s.%s', opts.id, opts.lower(opts.ordinal))
     end,

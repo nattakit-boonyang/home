@@ -145,11 +145,20 @@ packer.startup(function(use)
 
   -- File Explorer
   use {
-    'nvim-tree/nvim-tree.lua',
+    'nvim-neo-tree/neo-tree.nvim',
+    branch = 'v2.x',
     requires = {
+      'nvim-lua/plenary.nvim',
       'nvim-tree/nvim-web-devicons',
+      'MunifTanjim/nui.nvim',
+      {
+        's1n7ax/nvim-window-picker',
+        tag = 'v1.*',
+        config = function()
+          require 'window-picker'.setup({})
+        end,
+      },
     },
-    tag = 'nightly',
   }
 
   -- Move Line

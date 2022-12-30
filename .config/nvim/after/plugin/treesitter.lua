@@ -77,14 +77,5 @@ treesitter.setup({
         ['as'] = '@statement.outer',
       }
     },
-    lsp_interop = {
-      enable = true,
-      border = 'none',
-      floating_preview_opts = {},
-      peek_definition_code = {
-        ['<leader>cpf'] = '@function.outer',
-        ['<leader>cpF'] = '@class.outer',
-      },
-    },
   },
 })

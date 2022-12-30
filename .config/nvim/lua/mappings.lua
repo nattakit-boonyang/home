@@ -73,12 +73,11 @@ local quit = function()
 end
 
 wk.register({
-  ['g?'] = { '<cmd>WhichKey<cr>', 'WK All Mappings' },
-  x = { '"_x', 'Delete Char' },
-  dw = { 'vb"_d', 'Delete Word Backward' },
-  -- q = { quit, 'Quit Buffer' },
-  q = { '<cmd>bd!<cr>', 'Quit' },
-  Q = { '<cmd>q!<cr>', 'Quit' },
+  ['g?'] = { '<cmd>WhichKey<cr>', '[G]oto WhichKey Mappings[?]' },
+  x = { '"_x', '[D]elete Char' },
+  dw = { 'vb"_d', '[D]elete [W]ord Backward' },
+  q = { '<cmd>bd!<cr>', 'Delete Buffer' },
+  Q = { '<cmd>q!<cr>', '[Q]uit' },
 }, mode_opts.n)
 
 -- CamelCase Motion
@@ -86,27 +85,27 @@ for _, mode in ipairs({ mode_opts.o, mode_opts.x }) do
   wk.register({
     ['i,'] = {
       name = 'InnerCase',
-      w = { '<Plug>CamelCaseMotion_iw', 'Word Forward' },
-      b = { '<Plug>CamelCaseMotion_ib', 'Word Backward' },
-      e = { '<Plug>CamelCaseMotion_ie', 'End of Word' },
+      w = { '<Plug>CamelCaseMotion_iw', '[W]ord Forward' },
+      b = { '<Plug>CamelCaseMotion_ib', 'Word [B]ackward' },
+      e = { '<Plug>CamelCaseMotion_ie', '[E]nd of Word' },
     },
     [','] = {
       name = 'MoveCase',
-      w = { '<Plug>CamelCaseMotion_w', 'Word Forward' },
-      b = { '<Plug>CamelCaseMotion_b', 'Word Backward' },
-      e = { '<Plug>CamelCaseMotion_e', 'End of Word' },
+      w = { '<Plug>CamelCaseMotion_w', '[W]ord Forward' },
+      b = { '<Plug>CamelCaseMotion_b', 'Word [B]ackward' },
+      e = { '<Plug>CamelCaseMotion_e', '[E]nd of Word' },
     },
   }, mode)
 end
 
 for _, mode in ipairs({ 'n', 'v' }) do
   wk.register({
-    w = { '<Plug>CamelCaseMotion_w', 'Word Forward [Case]' },
-    b = { '<Plug>CamelCaseMotion_b', 'Word Backward [Case]' },
-    e = { '<Plug>CamelCaseMotion_e', 'End of Word [Case]' },
+    w = { '<Plug>CamelCaseMotion_w', '[W]ord Forward' },
+    b = { '<Plug>CamelCaseMotion_b', 'Word [B]ackwad' },
+    e = { '<Plug>CamelCaseMotion_e', '[E]nd of Word' },
   }, {
     mode = mode,
-    remap = true,
+    noremap = true,
     silent = true,
     prefix = ',',
   })
@@ -114,12 +113,12 @@ end
 
 -- Move Lines
 wk.register({
-  ['<m-[>'] = { ':MoveLine(1)<cr>', 'Move LDown' },
-  ['<m-]>'] = { ':MoveLine(-1)<cr>', 'Move LUp' },
+  ['<m-[>'] = { ':MoveLine(1)<cr>', '[Move LDown' },
+  ['<m-]>'] = { ':MoveLine(-1)<cr>', 'Move LUp]' },
 }, mode_opts.n)
 wk.register({
-  ['<m-[>'] = { ':MoveBlock(-1)<cr>', 'Move BUp' },
-  ['<m-]>'] = { ':MoveBlock(1)<cr>', 'Move BDown' },
+  ['<m-[>'] = { ':MoveBlock(-1)<cr>', '[Move BUp' },
+  ['<m-]>'] = { ':MoveBlock(1)<cr>', 'Move BDown]' },
 }, mode_opts.v)
 
 -- Options
@@ -134,10 +133,9 @@ end
 
 wk.register({
   o = {
-    name = 'Options',
-    l = { toggleOption('list'), 'List' },
-    h = { toggleOption('hlsearch'), 'Hightlight' },
-    a = { '<cmd>ASToggle<CR>', 'Autosave' },
+    name = '[O]ptions',
+    l = { toggleOption('list'), '[L]ist' },
+    h = { toggleOption('hlsearch'), '[H]ightlight' },
   }
 }, mode_opts.n_leader)
 
@@ -160,50 +158,28 @@ wk.register({
   },
 }, mode_opts.n_leader)
 
--- Trouble Diagnostic
-wk.register({
-  x = {
-    name = 'Trouble',
-    x = { '<cmd>TroubleToggle<cr>', 'Toggle' },
-    c = { '<cmd>TroubleClose<cr>', 'Close' },
-    R = { '<cmd>TroubleRefresh<cr>', 'Refresh' },
-    w = { '<cmd>TroubleToggle workspace_diagnostics<cr>', 'Workspace' },
-    d = { '<cmd>TroubleToggle document_diagnostics<cr>', 'Document' },
-    q = { '<cmd>TroubleToggle quickfix<cr>', 'Quickfix' },
-    r = { '<cmd>TroubleToggle lsp_references<cr>', 'References' },
-  },
-}, mode_opts.n_leader)
-
 -- Editors
 wk.register({
+  w = { '<cmd>w<cr>', '[W]rite' },
   e = {
-    name = 'Editor',
-    s = { '<cmd>source%<cr>', 'Source Current F' },
-    l = { '<cmd>LspInfo<cr>', 'LSP Info' },
-    u = { '<cmd>UndotreeToggle<cr>', 'UndoTree' },
-    e = { '<cmd>NvimTreeToggle<cr>', 'NvimTree' },
-    w = { '<cmd>w<cr>', 'Write' },
-    q = { '<cmd>q!<cr>', 'Quit!' },
-  },
-}, mode_opts.n_leader)
-
--- Search
-wk.register({
-  s = {
-    name = 'Search',
+    name = '[E]ditor',
+    s = { '<cmd>source%<cr>', '[S]ource Current F' },
+    l = { '<cmd>LspInfo<cr>', '[L]SP Info' },
+    u = { '<cmd>UndotreeToggle<cr>', '[U]ndoTree' },
+    e = { '<cmd>NeoTreeShowToggle<cr>', 'N[e]oTree' },
+    q = { '<cmd>q!<cr>', '[Q]uit!' },
   },
 }, mode_opts.n_leader)
 
 -- Plugin
-local plugin_path = vim.fn.stdpath('config') .. '/lua/plugins.lua'
 wk.register({
   p = {
-    name = 'Plugin',
-    c = { '<cmd>PackerCompile<cr>', 'PackerCompile' },
-    s = { '<cmd>PackerSync<cr>', 'PackerSync' },
-    i = { '<cmd>PackerInstall<cr>', 'PackerInstall' },
-    n = { '<cmd>PackerClean<cr>', 'PackerClean' },
-    e = { '<cmd>e ' .. plugin_path .. '<cr>', 'Edit Plugin' },
+    name = '[P]lugin',
+    c = { '<cmd>PackerCompile<cr>', 'Packer[C]ompile' },
+    s = { '<cmd>PackerSync<cr>', 'Packer[S]ync' },
+    i = { '<cmd>PackerInstall<cr>', 'Packer[I]nstall' },
+    C = { '<cmd>PackerClean<cr>', 'Packer[C]lean' },
+    e = { '<cmd>e ' .. vim.fn.stdpath('config') .. '/lua/plugins.lua' .. '<cr>', '[E]dit Plugin' },
   },
 }, mode_opts.n_leader)
 
@@ -314,25 +290,33 @@ wk.register({
   ['<m-l>'] = { tmux.resize_right, 'Resize WRight' },
 }, mode_opts.n)
 wk.register({
-  w = {
-    name = 'Window',
-    ['\\'] = { '<cmd>wincmd v<cr>', 'New VW' },
-    ['-'] = { '<cmd>wincmd s<cr>', 'New HW' },
-    q = { '<cmd>wincmd q<cr>', '[Q]uit W' },
+  ['['] = {
+    name = '[Prev',
+    t = { '<cmd>tabprevious<cr>', 'Previous [T]ab' },
+    b = { '<cmd>bprevious<cr>', 'Previous [B]uffer' },
   },
-  t = {
-    name = 'Tabs',
-    e = { '<cmd>tabnew<cr>', '[E]dit T' },
-    l = { '<cmd>tabnext<cr>', '[N]ext T' },
-    h = { '<cmd>tabprevious<cr>', '[P]rev T' },
-    q = { '<cmd>tabclose<cr>', '[Q]uit T' },
+  [']'] = {
+    name = 'Next]',
+    t = { '<cmd>tabnext<cr>', 'Next [T]ab' },
+    b = { '<cmd>bnext<cr>', 'Next [B]uffer' },
   },
-  b = {
-    name = 'Buffer',
-    e = { '<cmd>enew<cr>', '[E]dit B' },
-    d = { '<cmd>bd!<cr><cmd>blast<cr>', '[D]elete B' },
-    l = { '<cmd>bnext<cr>', '[N]ext B' },
-    h = { '<cmd>bprevious<cr>', '[P]rev B' },
+}, mode_opts.n)
+wk.register({
+  n = {
+    name = '[N]ew',
+    t = { '<cmd>tabnew<cr>', 'New [T]ab' },
+    b = { '<cmd>enew<cr>', 'New [B]uffer' },
+    w = {
+      name = '[W]indows',
+      ['\\'] = { '<cmd>wincmd v<cr>', 'New [V]ertical Window' },
+      ['-'] = { '<cmd>wincmd s<cr>', 'New [H]orizontal Window' },
+    },
+  },
+  q = {
+    name = '[Q]uit',
+    t = { '<cmd>tabclose<cr>', 'Quit [T]ab' },
+    b = { '<cmd>bd!<cr><cmd>blast<cr>', 'Delete [B]uffer' },
+    w = { '<cmd>wincmd q<cr>', 'Quit [W]indow' },
   },
 }, mode_opts.n_leader)
 
@@ -358,8 +342,8 @@ local term = require('after.plugin.toggleterm')
 wk.register({
   [','] = {
     name = 'Terminal',
-    l = { term.new_cmd('lazygit'), 'Lazygit' },
-    s = { term.new_cmd('zsh'), 'Shell' },
+    l = { term.new_cmd('lazygit'), '[L]azygit' },
+    s = { term.new_cmd('zsh'), '[S]hell' },
   },
 }, mode_opts.n_leader)
 
@@ -391,38 +375,41 @@ local go_module = {
   register_mappings = function(bufnr)
     local buf_opts = mode_opts.set_buf(mode_opts.n_leader, bufnr)
     wk.register({
-      m = {
-        name = desc_format('[M]odule'),
-        i = { input_run('mod'), desc_format('[I]nitial') },
-        t = { require('go.gopls').tidy, desc_format('[T]idy') },
-        g = { input_run('goget'), desc_format('[G]et Package') },
-      },
       g = {
-        name = desc_format('[G]enerator'),
-        c = { require('go.comment').gen, desc_format('Function [C]omment') },
-        r = { require('go.lsp').hover_returns, desc_format('Variable [R]eturn') },
-        i = { input_run('impl'), desc_format('[I]nterface') }
-      },
-      r = {
-        name = desc_format('[T]est'),
-        s = { run_test('test_func', { '-s' }), desc_format('[S]elect') },
-        c = { run_test('test_func'), desc_format('[C]ursor') },
-        f = { run_test('test_file'), desc_format('[F]ile') },
-        p = { run_test('test_package'), desc_format('[P]ackage') },
-        a = {
-          name = desc_format('[A]ll Mode'),
-          a = { add_test('all_test', { '-parallel' }), desc_format('[A]dd All') },
-          c = { add_test('fun_test', { '-parallel' }), desc_format('[A]dd Cursor') },
-          e = { add_test('exported_test', { '-parallel' }), desc_format('[A]dd Public') },
+        name = '',
+        m = {
+          name = desc_format('[M]odule'),
+          i = { input_run('mod'), desc_format('[I]nitial') },
+          t = { require('go.gopls').tidy, desc_format('[T]idy') },
+          g = { input_run('goget'), desc_format('[G]et Package') },
         },
-      },
-      h = {
-        name = desc_format('[H]elper'),
-        d = { input_run('godoc'), desc_format('[D]ocumentation') },
-        c = { input_run('chtsh'), desc_format('[C]heat') },
-        i = { require('go.inlay').toggle_inlay_hints, desc_format('Toggle [I]nlay Hints') },
-        o = { require('go.package').outline, desc_format('Toggle Package [O]utline') },
-        l = { '<cmd>GoLint<cr>', desc_format('Go [L]int') },
+        g = {
+          name = desc_format('[G]enerator'),
+          c = { require('go.comment').gen, desc_format('Function [C]omment') },
+          r = { require('go.lsp').hover_returns, desc_format('Variable [R]eturn') },
+          i = { input_run('impl'), desc_format('[I]nterface') }
+        },
+        t = {
+          name = desc_format('[T]est'),
+          s = { run_test('test_func', { '-s' }), desc_format('[S]elect') },
+          c = { run_test('test_func'), desc_format('[C]ursor') },
+          f = { run_test('test_file'), desc_format('[F]ile') },
+          p = { run_test('test_package'), desc_format('[P]ackage') },
+          a = {
+            name = desc_format('[A]ll Mode'),
+            a = { add_test('all_test', { '-parallel' }), desc_format('[A]dd All') },
+            c = { add_test('fun_test', { '-parallel' }), desc_format('[A]dd Cursor') },
+            e = { add_test('exported_test', { '-parallel' }), desc_format('[A]dd Public') },
+          },
+        },
+        h = {
+          name = desc_format('[H]elper'),
+          d = { input_run('godoc'), desc_format('[D]ocumentation') },
+          c = { input_run('chtsh'), desc_format('[C]heat') },
+          i = { require('go.inlay').toggle_inlay_hints, desc_format('Toggle [I]nlay Hints') },
+          o = { require('go.package').outline, desc_format('Toggle Package [O]utline') },
+          l = { '<cmd>GoLint<cr>', desc_format('Go [L]int') },
+        },
       },
     }, buf_opts)
   end,

@@ -17,6 +17,7 @@ lualine.setup({
     theme = require('colorschemes').color.lualine,
     disabled_filetypes = {
       statusline = {
+        'neo-tree',
         'NvimTree',
         'undotree',
         'packer',
