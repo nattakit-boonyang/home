@@ -82,6 +82,13 @@ alias_common() {
   alias c='clear'
 }
 
+alias_todo() {
+  alias t='todo.sh'
+  alias tdls='todo.sh list'
+  alias tda='todo.sh add'
+  alias tdrm='todo.sh rm'
+}
+
 alias_ssh() {
   function start_sc_server() {
     while true; do
@@ -160,5 +167,6 @@ alias_home_git
 alias_git
 alias_dir
 alias_common
+alias_todo
 export_env
 execute_common
