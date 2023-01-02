@@ -348,6 +348,12 @@
       "Text" : "5",
       "Action" : 12
     },
+    "0x6d-0x80000-0x2e" : {
+      "Version" : 1,
+      "Label" : "",
+      "Text" : "m",
+      "Action" : 10
+    },
     "0xf739-0x0-0x0" : {
       "Text" : "",
       "Action" : 13
@@ -798,10 +804,10 @@
       "Text" : "4",
       "Action" : 12
     },
-    "0x5d-0x80000-0x1e" : {
+    "0x6d-0x80000-0x2e" : {
       "Version" : 1,
       "Label" : "",
-      "Text" : "]",
+      "Text" : "m",
       "Action" : 10
     },
     "0x35-0x200000" : {
@@ -843,6 +849,12 @@
     "0x2b-0x200000" : {
       "Text" : "+",
       "Action" : 12
+    },
+    "0x5d-0x80000-0x1e" : {
+      "Version" : 1,
+      "Label" : "",
+      "Text" : "]",
+      "Action" : 10
     },
     "0xf70e-0x20000" : {
       "Text" : "[23;2~",
