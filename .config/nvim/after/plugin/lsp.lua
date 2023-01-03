@@ -71,9 +71,6 @@ lsp.on_attach(on_attach({
 
 lsp.setup()
 
--- Turn on lsp status information
-require('fidget').setup()
-
 return {
   on_attach = on_attach, -- Export for external lsp config
 }

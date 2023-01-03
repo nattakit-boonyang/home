@@ -1,4 +1,4 @@
--- Plugin for syntax
+-- plugin for syntax
 local treesitter = require('nvim-treesitter.configs')
 
 local install_list
@@ -41,20 +41,20 @@ treesitter.setup({
       set_jumps = true,
       goto_next_start = {
         [']m'] = '@function.outer',
-        [']]'] = '@class.outer'
+        [']]'] = '@class.outer',
       },
       goto_next_end = {
-        [']M'] = '@function.outer',
-        [']['] = '@class.outer'
+        [']m'] = '@function.outer',
+        [']['] = '@class.outer',
       },
       goto_previous_start = {
         ['[m'] = '@function.outer',
-        ['[['] = '@class.outer'
+        ['[['] = '@class.outer',
       },
       goto_previous_end = {
-        ['[M'] = '@function.outer',
-        ['[]'] = '@class.outer'
-      }
+        ['[m'] = '@function.outer',
+        ['[]'] = '@class.outer',
+      },
     },
     select = {
       enable = true,
@@ -75,7 +75,7 @@ treesitter.setup({
         ['ap'] = '@parameter.outer',
         ['ip'] = '@parameter.inner',
         ['as'] = '@statement.outer',
-      }
+      },
     },
   },
 })

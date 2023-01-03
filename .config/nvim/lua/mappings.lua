@@ -1,23 +1,16 @@
-local keymap = vim.keymap
+-- Multiple mode mappings
 local wk = require('which-key')
-
--- Disable Arrow
-local delete_key = function(lhs)
-  local modes = { 'n', 'v', 'i', 'x', 's', 'o', 'l', 't' }
-  keymap.set(modes, lhs, '', { remap = true, desc = 'Disable Key' })
+local key_register = function(opts, ...)
+  local c_modes = select('#', ...)
+  if c_modes == 0 then return end
+  local modes = { ... }
+  for _, mode in ipairs(modes) do
+    wk.register(opts, mode)
+  end
 end
 
-delete_key('<down>')
-delete_key('<up>')
-delete_key('<left>')
-delete_key('<right>')
-
--- Disable macro
-keymap.set({ 'n', 'v' }, 'q', '', { remap = true, desc = 'Disable Key' })
-keymap.set({ 'n', 'v' }, 'Q', '', { remap = true, desc = 'Disable Key' })
-
--- group options
-local new_opts = function(mode, prefix)
+-- Group options
+local new_mode_opts = function(mode, prefix)
   return {
     mode = mode,
     silent = true,
@@ -26,63 +19,118 @@ local new_opts = function(mode, prefix)
   }
 end
 
-local mode_opts = {
-  n = new_opts('n'), -- Default: normal mode
-  n_leader = new_opts('n', '<leader>'), -- Default: normal mode (prefix: <leader>)
-  v = new_opts('v'), -- Default: visual mode
-  t = new_opts('t'), -- Default: terminal mode
-  o = new_opts('o'), -- Default: motions
-  x = new_opts('x'), -- Default: motions
+local modes = {
+  n = new_mode_opts('n'), -- Default: normal mode
+  n_leader = new_mode_opts('n', '<leader>'), -- Default: normal mode (prefix: <leader>)
+  n_comma = new_mode_opts('n', ','), -- Default: normal mode (prefix: ,)
+  x_comma = new_mode_opts('x', ','), -- Default: normal mode (prefix: ,)
+  v = new_mode_opts('v'), -- Default: visual mode
+  t = new_mode_opts('t'), -- Default: terminal mode
+  o = new_mode_opts('o'), -- Default: motions
+  x = new_mode_opts('x'), -- Default: motions
   set_buf = function(opts, bufnr)
     opts.buffer = bufnr
     return opts
   end,
 }
 
--- TODO: design it!
+-- Disable key
+local key_disable = function(lhs_list)
+  if type(lhs_list) == 'string' then
+    lhs_list = { lhs_list }
+  end
+  for _, lhs in ipairs(lhs_list) do
+    key_register({
+      [lhs] = { '', 'Disable Key' },
+    }, {
+      mode = 'n',
+      noremap = false,
+      silent = true,
+    }, {
+      mode = 'v',
+      noremap = false,
+      silent = true,
+    })
+  end
+end
+
 local quit = function()
   -- Delete Windows
-  if vim.tbl_count(vim.api.nvim_tabpage_list_wins(0)) > 0 then
+  local c_wins = vim.tbl_count(vim.api.nvim_tabpage_list_wins(0))
+  if c_wins >= 1 then
     local status, _ = pcall(vim.api.nvim_win_close, 0, true)
     if status then return end
   end
 
-  -- Delete Buffers
-  local status, _ = pcall(vim.api.nvim_buf_delete, 0, { force = true })
-  if status then return end
-
-  -- Delete
-  local buf_line_count = vim.api.nvim_buf_line_count(0)
-  local buf_name = vim.api.nvim_buf_get_name(0)
-  if (buf_line_count == 0) and (buf_name == '') then
+  -- Delete Tabs
+  local c_tabs = vim.tbl_count(vim.api.nvim_list_tabpages())
+  if c_tabs >= 1 then
+    local status, _ = pcall(vim.cmd, ':tabclose<cr>')
+    if status then return end
   end
 
-  -- local is_valid = function(buff)
-  --   vim.pretty_print(buff)
-  --   return vim.api.nvim_buf_is_valid(buff) and vim.api.nvim_buf_is_valid(buff)
-  -- end
-  -- local buffers = vim.tbl_filter(is_valid, vim.api.nvim_list_bufs())
-  -- local cmd = '<cmd>bd!<cr>'
-  -- vim.pretty_print(buffers)
-  -- vim.pretty_print(vim.api.nvim_buf_is_loaded(27))
-  -- vim.pretty_print(vim.api.nvim_buf_is_valid(27))
-  -- if buffers == 1 then
-  --   cmd = '<cmd>q!<cr>'
-  -- end
-  -- pcall(vim.cmd, cmd)
+  -- Prompt Wipeout Buffer
+  vim.ui.select({ 'No', 'Yes' }, {
+    prompt = 'Confirm to wipeout buffer and exit',
+  }, function(choice)
+    if choice == 'Yes' then
+      local buffers = vim.api.nvim_list_bufs()
+      for _, buf in ipairs(buffers) do
+        pcall(vim.api.nvim_buf_delete, buf, { force = true })
+        pcall(vim.cmd, ':qa!<cr>')
+      end
+    end
+  end)
 end
 
-wk.register({
-  ['g?'] = { '<cmd>WhichKey<cr>', '[G]oto WhichKey Mappings[?]' },
-  x = { '"_x', '[D]elete Char' },
-  dw = { 'vb"_d', '[D]elete [W]ord Backward' },
-  q = { '<cmd>bd!<cr>', 'Delete Buffer' },
-  Q = { '<cmd>q!<cr>', '[Q]uit' },
-}, mode_opts.n)
+-- Toggle last line comma
+local toggle_last_comma = function()
+  local line = vim.api.nvim_get_current_line()
+  if line:match(',$') then
+    line = line:gsub(',$', '')
+  else
+    line = line .. ','
+  end
+  vim.api.nvim_set_current_line(line)
+end
 
--- CamelCase Motion
-for _, mode in ipairs({ mode_opts.o, mode_opts.x }) do
-  wk.register({
+-- Insert line count
+local insert_line = function(offset)
+  offset = offset or 0
+  return function()
+    local cursor = vim.api.nvim_win_get_cursor(0)
+    local line = cursor[1] + offset
+    local count = vim.api.nvim_get_vvar('count')
+    -- Single line
+    if count == 0 then count = 1 end
+    for _ = 0, count - 1 do
+      vim.api.nvim_buf_set_lines(0, line, line, false, { '' })
+    end
+  end
+end
+
+-- Disable macro
+key_disable({ 'q', 'Q' })
+
+-- General Mappings
+key_register({
+  ['g?'] = { '<cmd>WhichKey<cr>', '[G]oto WhichKey Mappings[?]' },
+  x = { '"_x', '[D]elete Char (Hole)' },
+  dw = { 'vb"_d', '[D]elete [W]ord Backward' },
+  q = { quit, 'Delete Buffer' },
+}, modes.n)
+
+key_register({
+  o = { insert_line(), 'Insert below empty line' },
+  O = { insert_line(-1), 'Insert above empty line' },
+  [','] = { toggle_last_comma, 'Toggle last line comma' },
+  d = { '"_d', '[D]elete (Hole)' },
+  c = { '"_c', '[C]hange (Hole)' },
+}, modes.n_comma, modes.x_comma)
+
+-- CamelCase and SnakeCase Motion
+for _, mode in ipairs({ modes.o, modes.x }) do
+  key_register({
     ['i,'] = {
       name = 'InnerCase',
       w = { '<Plug>CamelCaseMotion_iw', '[W]ord Forward' },
@@ -98,31 +146,24 @@ for _, mode in ipairs({ mode_opts.o, mode_opts.x }) do
   }, mode)
 end
 
-for _, mode in ipairs({ 'n', 'v' }) do
-  wk.register({
-    w = { '<Plug>CamelCaseMotion_w', '[W]ord Forward' },
-    b = { '<Plug>CamelCaseMotion_b', 'Word [B]ackwad' },
-    e = { '<Plug>CamelCaseMotion_e', '[E]nd of Word' },
-  }, {
-    mode = mode,
-    noremap = true,
-    silent = true,
-    prefix = ',',
-  })
-end
+key_register({
+  w = { '<Plug>CamelCaseMotion_w', '[W]ord Forward' },
+  b = { '<Plug>CamelCaseMotion_b', 'Word [B]ackwad' },
+  e = { '<Plug>CamelCaseMotion_e', '[E]nd of Word' },
+}, modes.n_comma, modes.x_comma)
 
 -- Move Lines
-wk.register({
+key_register({
   ['<m-[>'] = { ':MoveLine(1)<cr>', '[Move LDown' },
   ['<m-]>'] = { ':MoveLine(-1)<cr>', 'Move LUp]' },
-}, mode_opts.n)
-wk.register({
+}, modes.n)
+key_register({
   ['<m-[>'] = { ':MoveBlock(-1)<cr>', '[Move BUp' },
   ['<m-]>'] = { ':MoveBlock(1)<cr>', 'Move BDown]' },
-}, mode_opts.v)
+}, modes.v)
 
 -- Options
-local toggleOption = function(name, bufnr)
+local toggle_opt = function(name, bufnr)
   return function()
     bufnr = bufnr or 0
     local opts = { buf = bufnr }
@@ -131,20 +172,20 @@ local toggleOption = function(name, bufnr)
   end
 end
 
-wk.register({
+key_register({
   o = {
     name = '[O]ptions',
-    l = { toggleOption('list'), '[L]ist' },
-    h = { toggleOption('hlsearch'), '[H]ightlight' },
+    l = { toggle_opt('list'), '[L]ist' },
+    h = { toggle_opt('hlsearch'), '[H]ightlight' },
   }
-}, mode_opts.n_leader)
+}, modes.n_leader)
 
 -- Telescope
 local telescope_builtin = require('telescope.builtin')
 local new_telescope_preview_off = function(fn)
   return string.format([[<cmd>lua require('telescope.builtin').%s({previewer=false})<cr>]], fn)
 end
-wk.register({
+key_register({
   f = {
     name = 'Telescope',
     a = { new_telescope_preview_off('builtin'), '[A]ll Pickers' },
@@ -156,38 +197,38 @@ wk.register({
     r = { '<cmd>Telescope oldfiles<cr>', '[R]ecent File' },
     B = { '<cmd>Telescope file_browser<cr>', 'File [B]rowser' },
   },
-}, mode_opts.n_leader)
+}, modes.n_leader)
 
 -- Editors
-wk.register({
+key_register({
   w = { '<cmd>w<cr>', '[W]rite' },
   e = {
     name = '[E]ditor',
     s = { '<cmd>source%<cr>', '[S]ource Current F' },
     l = { '<cmd>LspInfo<cr>', '[L]SP Info' },
     u = { '<cmd>UndotreeToggle<cr>', '[U]ndoTree' },
-    e = { '<cmd>NeoTreeShowToggle<cr>', 'N[e]oTree' },
+    e = { '<cmd>NvimTreeToggle<cr>', 'NvimTre[e]' },
     q = { '<cmd>q!<cr>', '[Q]uit!' },
   },
-}, mode_opts.n_leader)
+}, modes.n_leader)
 
 -- Plugin
-wk.register({
+key_register({
   p = {
     name = '[P]lugin',
-    c = { '<cmd>PackerCompile<cr>', 'Packer[C]ompile' },
+    C = { '<cmd>PackerCompile<cr>', 'Packer[C]ompile' },
     s = { '<cmd>PackerSync<cr>', 'Packer[S]ync' },
     i = { '<cmd>PackerInstall<cr>', 'Packer[I]nstall' },
-    C = { '<cmd>PackerClean<cr>', 'Packer[C]lean' },
+    c = { '<cmd>PackerClean<cr>', 'Packer[C]lean' },
     e = { '<cmd>e ' .. vim.fn.stdpath('config') .. '/lua/plugins.lua' .. '<cr>', '[E]dit Plugin' },
   },
-}, mode_opts.n_leader)
+}, modes.n_leader)
 
 -- Lsp Code
 local lsp_buf = vim.lsp.buf
 local lsp_module = {
   register_mappings = function(client, bufnr, opts)
-    local buf_opts = mode_opts.set_buf(mode_opts.n, bufnr)
+    local buf_opts = modes.set_buf(modes.n, bufnr)
     local new_lsp_mapping = function(opts)
       -- set values
       opts.mapping = opts.mapping or ''
@@ -206,7 +247,7 @@ local lsp_module = {
       opts.desc = string.format('%s%s', opts.sign, opts.desc)
 
       -- register mapping
-      wk.register({ [opts.mapping] = { opts.fn, opts.desc, buffer = bufnr } }, opts.opts)
+      key_register({ [opts.mapping] = { opts.fn, opts.desc, buffer = bufnr } }, opts.opts)
     end
     new_lsp_mapping({
       mapping = 'ff',
@@ -283,13 +324,13 @@ local lsp_module = {
 
 -- Controller (Tabs, Buffers, Windows)
 local tmux = require('tmux')
-wk.register({
+key_register({
   ['<m-h>'] = { tmux.resize_left, 'Resize WLeft' },
   ['<m-j>'] = { tmux.resize_bottom, 'Resize WBottom' },
   ['<m-k>'] = { tmux.resize_top, 'Resize WTop' },
   ['<m-l>'] = { tmux.resize_right, 'Resize WRight' },
-}, mode_opts.n)
-wk.register({
+}, modes.n)
+key_register({
   ['['] = {
     name = '[Prev',
     t = { '<cmd>tabprevious<cr>', 'Previous [T]ab' },
@@ -300,8 +341,8 @@ wk.register({
     t = { '<cmd>tabnext<cr>', 'Next [T]ab' },
     b = { '<cmd>bnext<cr>', 'Next [B]uffer' },
   },
-}, mode_opts.n)
-wk.register({
+}, modes.n)
+key_register({
   n = {
     name = '[N]ew',
     t = { '<cmd>tabnew<cr>', 'New [T]ab' },
@@ -318,7 +359,7 @@ wk.register({
     b = { '<cmd>bd!<cr><cmd>blast<cr>', 'Delete [B]uffer' },
     w = { '<cmd>wincmd q<cr>', 'Quit [W]indow' },
   },
-}, mode_opts.n_leader)
+}, modes.n_leader)
 
 -- Terminal
 local term_module = {
@@ -328,7 +369,7 @@ local term_module = {
       silent = true,
       buffer = 0,
     }
-    wk.register({
+    key_register({
       ['<esc>'] = { [[ <c-\><c-n> ]], 'Terminal Normal Mode' },
       ['<c-[>'] = { [[ <c-\><c-n> ]], 'Terminal Normal Mode' },
       ['<c-h>'] = { '<cmd>wincmd h<cr>', 'Move Left W' },
@@ -339,13 +380,14 @@ local term_module = {
   end,
 }
 local term = require('after.plugin.toggleterm')
-wk.register({
+key_register({
   [','] = {
     name = 'Terminal',
-    l = { term.new_cmd('lazygit'), '[L]azygit' },
+    g = { term.new_cmd('lazygit'), 'Lazy[g]it' },
+    d = { term.new_cmd('lazydocker'), 'Lazy[d]ocker' },
     s = { term.new_cmd('zsh'), '[S]hell' },
   },
-}, mode_opts.n_leader)
+}, modes.n_leader)
 
 -- Golang
 local input_run = function(name)
@@ -373,8 +415,8 @@ local desc_format = function(text)
 end
 local go_module = {
   register_mappings = function(bufnr)
-    local buf_opts = mode_opts.set_buf(mode_opts.n_leader, bufnr)
-    wk.register({
+    local buf_opts = modes.set_buf(modes.n_leader, bufnr)
+    key_register({
       g = {
         name = '',
         m = {
@@ -387,7 +429,7 @@ local go_module = {
           name = desc_format('[G]enerator'),
           c = { require('go.comment').gen, desc_format('Function [C]omment') },
           r = { require('go.lsp').hover_returns, desc_format('Variable [R]eturn') },
-          i = { input_run('impl'), desc_format('[I]nterface') }
+          i = { '<cmd>Telescope goimpl<cr>', desc_format('[I]nterface') },
         },
         t = {
           name = desc_format('[T]est'),
@@ -410,10 +452,25 @@ local go_module = {
           o = { require('go.package').outline, desc_format('Toggle Package [O]utline') },
           l = { '<cmd>GoLint<cr>', desc_format('Go [L]int') },
         },
+        -- Alias
+        c = { run_test('test_func'), desc_format('[C]ursor') },
+        i = { '<cmd>Telescope goimpl<cr>', desc_format('[I]nterface') },
+        r = { require('go.lsp').hover_returns, desc_format('Variable [R]eturn') },
       },
     }, buf_opts)
   end,
 }
+
+-- |Test|
+key_register({
+  et = { function()
+    local ns = vim.api.nvim_create_namespace('ns-test')
+    vim.api.nvim_set_hl(ns, 'NodeCursor', {
+      italic = true,
+    })
+  end, 'Test Feature' },
+}, modes.n_leader)
+
 
 return {
   lsp = lsp_module, -- Lsp Mapping Registration

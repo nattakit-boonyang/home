@@ -80,6 +80,7 @@ packer.startup(function(use)
     end
   }
   use 'nvim-telescope/telescope-file-browser.nvim'
+  use 'edolphin-ydf/goimpl.nvim'
 
   -- Status line
   use 'nvim-lualine/lualine.nvim'
@@ -140,25 +141,13 @@ packer.startup(function(use)
     end,
   }
 
-  -- Undo Explorer
-  use 'mbbill/undotree'
-
   -- File Explorer
   use {
-    'nvim-neo-tree/neo-tree.nvim',
-    branch = 'v2.x',
+    'nvim-tree/nvim-tree.lua',
     requires = {
-      'nvim-lua/plenary.nvim',
       'nvim-tree/nvim-web-devicons',
-      'MunifTanjim/nui.nvim',
-      {
-        's1n7ax/nvim-window-picker',
-        tag = 'v1.*',
-        config = function()
-          require 'window-picker'.setup({})
-        end,
-      },
     },
+    tag = 'nightly'
   }
 
   -- Move Line
@@ -166,7 +155,6 @@ packer.startup(function(use)
 
   -- Golang
   use 'ray-x/go.nvim'
-  use 'ray-x/guihua.lua'
 
   -- UI Improvement
   use 'stevearc/dressing.nvim'
@@ -189,6 +177,22 @@ packer.startup(function(use)
 
   -- Dashboard
   use 'glepnir/dashboard-nvim'
+
+  -- Markdown Previewers
+  use({
+    'iamcco/markdown-preview.nvim',
+    run = 'cd app && yarn install',
+    setup = function()
+      vim.g.mkdp_filetypes = { 'markdown' }
+    end,
+    ft = { 'markdown' },
+  })
+
+  -- Multiple Line
+  use({
+    'mg979/vim-visual-multi',
+    tag = 'master',
+  })
 end)
 
 if packer_bootstrap then

@@ -4,8 +4,8 @@ local opt = vim.opt
 -- Editor
 g.mapleader = ' '
 g.maplocalleader = ' '
-g.loaded_netrw = 0
-g.loaded_netrwPlugin = 0
+g.loaded_netrw = 1
+g.loaded_netrwPlugin = 1
 opt.timeoutlen = 0
 opt.number = true
 opt.relativenumber = true
@@ -49,6 +49,7 @@ opt.backup = false
 opt.swapfile = false
 
 -- Window
+opt.switchbuf = 'useopen'
 opt.splitbelow = true
 opt.splitright = true
 opt.visualbell = true
@@ -68,7 +69,7 @@ opt.listchars = {
 }
 
 -- Cursor
-opt.cursorline = true
+opt.cursorline = false
 opt.termguicolors = true
 opt.winblend = 0
 opt.wildoptions = 'pum'

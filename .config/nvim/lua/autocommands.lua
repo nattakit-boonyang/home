@@ -29,6 +29,7 @@ api.nvim_create_autocmd('BufWritePre', {
   end,
 })
 
+-- Yank highlight
 api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
   group = vim.api.nvim_create_augroup('YankHighlight', { clear = true }),
