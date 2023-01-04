@@ -77,21 +77,25 @@ local quit = function()
       local buffers = vim.api.nvim_list_bufs()
       for _, buf in ipairs(buffers) do
         pcall(vim.api.nvim_buf_delete, buf, { force = true })
-        pcall(vim.cmd, ':qa!<cr>')
       end
     end
+    pcall(vim.cmd, ':qa!')
   end)
 end
 
 -- Toggle last line comma
-local toggle_last_comma = function()
-  local line = vim.api.nvim_get_current_line()
-  if line:match(',$') then
-    line = line:gsub(',$', '')
-  else
-    line = line .. ','
+local toggle_suffix = function(ch)
+  return function()
+    local line = vim.api.nvim_get_current_line()
+    local pattern = string.format('%s$', ch)
+    if ch == '.' then pattern = '%' .. pattern end
+    if line:match(pattern) then
+      line = line:gsub(pattern, '')
+    else
+      line = line .. ch
+    end
+    vim.api.nvim_set_current_line(line)
   end
-  vim.api.nvim_set_current_line(line)
 end
 
 -- Insert line count
@@ -123,7 +127,8 @@ key_register({
 key_register({
   o = { insert_line(), 'Insert below empty line' },
   O = { insert_line(-1), 'Insert above empty line' },
-  [','] = { toggle_last_comma, 'Toggle last line comma' },
+  [','] = { toggle_suffix(','), 'Toggle last line comma' },
+  ['.'] = { toggle_suffix('.'), 'Toggle last line dot' },
   d = { '"_d', '[D]elete (Hole)' },
   c = { '"_c', '[C]hange (Hole)' },
 }, modes.n_comma, modes.x_comma)
