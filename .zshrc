@@ -58,7 +58,7 @@ alias_common() {
 
 alias_dir() {
   alias nvc='~/.config/nvim'
-    alias pg='~/Documents/pg'
+  alias pg='~/Documents/pg'
 }
 
 execute_common() {
