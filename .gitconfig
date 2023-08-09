@@ -11,7 +11,8 @@
 [push]
 	autoSetupRemote = true
 [alias]
-	lp = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	logPretty = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	statusStagedOnly = status -uno
 [icdiff]
 	options = --highlight --line-numbers
 [color]
