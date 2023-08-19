@@ -20,6 +20,7 @@ global_zsh_setup() {
 
 global_zsh_plugins() {
   plugins=(
+    web-search
     git
     zsh-autosuggestions
     zsh-syntax-highlighting
@@ -93,4 +94,3 @@ alias_dir
 alias_common
 export_env
 execute_common
-
