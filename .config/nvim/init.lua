@@ -4,15 +4,25 @@ package.path = string.format('%s;%s', vim.fn.expand('~/.config/nvim/?.lua'), pac
 -- Enable package caching
 require('impatient')
 
--- Override notify package
-vim.notify = require('notify')
-
 -- Reset autocmd
 vim.cmd [[autocmd!]]
 
--- Require modules
-require('autocommands')
-require('options')
-require('mappings')
-require('colorschemes')
-require('plugins')
+local core_conf_files = {
+  'options.lua',
+  'plugins.lua',
+  'mappings.lua',
+  'autocmds.lua',
+}
+
+-- source all the core config files
+for _, file_name in ipairs(core_conf_files) do
+  if vim.endswith(file_name, 'vim') then
+    local path = string.format("%s/core/%s", vim.fn.stdpath("config"), file_name)
+    local source_cmd = "source " .. path
+    vim.cmd(source_cmd)
+  else
+    local module_name, _ = string.gsub(file_name, "%.lua", "")
+    package.loaded[module_name] = nil
+    require(module_name)
+  end
+end

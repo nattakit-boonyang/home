@@ -12,194 +12,217 @@ local packer_bootstrap = ensure_packer()
 local packer = require('packer')
 
 packer.startup(function(use)
-  -- Plugin Cache
-  use 'lewis6991/impatient.nvim'
-
-  -- Plugin Manager
+  -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
-  -- Colorscheme
-  use 'Mofiqul/dracula.nvim'
-  use 'shaunsingh/solarized.nvim'
-  use 'morhetz/gruvbox'
+  -- Cache plugins
+  use 'lewis6991/impatient.nvim'
 
-  -- Builtin LSP Config
+  -- Treesitter
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate',
+  }
+
+  use {
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    after = 'nvim-treesitter',
+    requires = 'nvim-treesitter/nvim-treesitter',
+  }
+
+  use {
+    'nvim-treesitter/nvim-treesitter-context',
+    after = 'nvim-treesitter',
+    requires = 'nvim-treesitter/nvim-treesitter',
+  }
+
+  use 'nvim-treesitter/playground'
+
+  -- Colorizer
+  use {
+    'norcalli/nvim-colorizer.lua',
+    config = function()
+      require('colorizer').setup()
+    end,
+  }
+
+  -- Github copilot (alternative)
+  use {
+    'zbirenbaum/copilot.lua',
+    cmd = 'Copilot',
+    event = 'InsertEnter',
+    config = function()
+      require('copilot').setup({
+        suggestion = { enabled = false },
+        panel = { enabled = false },
+      })
+    end,
+  }
+
+  use {
+    'zbirenbaum/copilot-cmp',
+    after = { 'copilot.lua' },
+    config = function()
+      require('copilot_cmp').setup()
+    end
+  }
+
+  -- Golang
+  use {
+    'ray-x/go.nvim',
+    config = function()
+      require('go').setup()
+    end,
+  }
+  use {
+    'ray-x/guihua.lua',
+    requires = 'go.nvim',
+  }
+
+  -- File explorer
+  use 'nvim-tree/nvim-tree.lua'
+
+  -- File trimer
+  use {
+    'cappyzawa/trim.nvim',
+    config = function()
+      require('trim').setup({
+        patterns = {
+          [[%s/\(\n\n\)\n\+/\1/]],
+        },
+      })
+    end,
+  }
+
+  -- Status line
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'nvim-tree/nvim-web-devicons', opt = true },
+    config = function()
+      require('lualine').setup()
+    end,
+  }
+
+  -- Manipulate match pairs
+  use {
+    'kylechui/nvim-surround',
+    config = function()
+      require('nvim-surround').setup()
+    end
+  }
+
+  -- Mappings helper
+  use 'folke/which-key.nvim'
+
+  -- Indent lines
+  use 'lukas-reineke/indent-blankline.nvim'
+
+  -- LSP
   use {
     'VonHeikemen/lsp-zero.nvim',
+    branch = 'v2.x',
     requires = {
       -- LSP Support
       { 'neovim/nvim-lspconfig' },
       { 'williamboman/mason.nvim' },
       { 'williamboman/mason-lspconfig.nvim' },
-      { 'j-hui/fidget.nvim' },
+      {
+        'j-hui/fidget.nvim',
+        tag = 'legacy',
+      },
 
       -- Autocompletion
       { 'hrsh7th/nvim-cmp' },
-      { 'hrsh7th/cmp-buffer' },
-      { 'hrsh7th/cmp-path' },
-      { 'saadparwaiz1/cmp_luasnip' },
       { 'hrsh7th/cmp-nvim-lsp' },
       { 'hrsh7th/cmp-nvim-lua' },
-
-      -- Snippets
+      { 'hrsh7th/cmp-buffer' },
+      { 'hrsh7th/cmp-path' },
       { 'L3MON4D3/LuaSnip' },
-      { 'rafamadriz/friendly-snippets' },
-    }
+    },
   }
 
-  -- Code Object
+  -- Comments
   use {
-    'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate'
-  }
-  use 'nvim-treesitter/nvim-treesitter-textobjects'
-  use 'nvim-treesitter/nvim-treesitter-context'
-  use {
-    'andymass/vim-matchup',
-    setup = function()
-      vim.g.matchup_matchparen_offscreen = { method = 'popup' }
-    end
-  }
-  use 'p00f/nvim-ts-rainbow'
-  use 'nvim-treesitter/playground'
-  use 'JoosepAlviste/nvim-ts-context-commentstring'
-
-  use {
-    'nvim-telescope/telescope.nvim', tag = '0.1.0',
-    requires = { { 'nvim-lua/plenary.nvim' } }
-  }
-  use {
-    'nvim-telescope/telescope-fzf-native.nvim',
-    run = 'make',
-  }
-  use {
-    'LukasPietzschmann/telescope-tabs',
-    requires = { 'nvim-telescope/telescope.nvim' },
+    'numToStr/Comment.nvim',
     config = function()
-      require 'telescope-tabs'.setup({})
-    end
-  }
-  use 'nvim-telescope/telescope-file-browser.nvim'
-  use 'edolphin-ydf/goimpl.nvim'
-
-  -- Status line
-  use 'nvim-lualine/lualine.nvim'
-  use 'arkav/lualine-lsp-progress'
-
-  -- Toggle Comment
-  use 'numToStr/Comment.nvim'
-
-  -- Match Pairs
-  use 'tpope/vim-surround'
-
-  -- Mappings Guide
-  use 'folke/which-key.nvim'
-
-  -- Todo Highlight
-  use {
-    'folke/todo-comments.nvim',
-    requires = 'nvim-lua/plenary.nvim',
-    config = function()
-      require('todo-comments').setup({})
+      require('Comment').setup()
     end,
   }
 
-  -- Diagnostic Navigator
+  -- Telescope
   use {
-    'folke/trouble.nvim',
-    requires = 'kyazdani42/nvim-web-devicons',
-    config = function()
-      require('trouble').setup({})
-    end
+    'nvim-telescope/telescope.nvim',
+    requires = { 'nvim-lua/plenary.nvim' },
   }
 
-  -- Notify GUI
-  use 'rcarriga/nvim-notify'
-
-  -- Indent Highlight
-  use 'lukas-reineke/indent-blankline.nvim'
-
-  -- Display Buffer
+  -- Bufferline
   use {
     'akinsho/bufferline.nvim',
-    tag = 'v3.*',
+    tag = '*',
+    requires = 'nvim-tree/nvim-web-devicons',
   }
 
   -- Git
-  use 'lewis6991/gitsigns.nvim'
+  use {
+    'lewis6991/gitsigns.nvim',
+    config = function()
+      require('gitsigns').setup()
+    end,
+  }
   use 'tpope/vim-fugitive'
 
   -- Enable Repeat Dot for Surround
   use 'tpope/vim-repeat'
 
-  -- Auto Add Pairs
-  use 'windwp/nvim-autopairs'
+  -- Markdown preview
   use {
-    'windwp/nvim-ts-autotag',
+    'iamcco/markdown-preview.nvim',
+    setup = function() vim.g.mkdp_filetypes = { 'markdown' } end,
+    ft = { 'markdown' },
+  }
+
+  -- Signature helper
+  use {
+    'ray-x/lsp_signature.nvim',
+  }
+
+  -- Auto pairs
+  use {
+    'windwp/nvim-autopairs',
     config = function()
-      require('nvim-ts-autotag').setup({})
+      require('nvim-autopairs').setup {}
     end,
   }
 
-  -- File Explorer
-  use {
-    'nvim-tree/nvim-tree.lua',
-    requires = {
-      'nvim-tree/nvim-web-devicons',
-    },
-    tag = 'nightly'
-  }
-
-  -- Move Line
-  use 'fedepujol/move.nvim'
-
-  -- Golang
-  use 'ray-x/go.nvim'
-
-  -- UI Improvement
-  use 'stevearc/dressing.nvim'
-
-  -- Terminal Management
-  use {
-    'akinsho/toggleterm.nvim',
-    tag = '*',
-  }
+  use 'windwp/nvim-ts-autotag'
 
   -- Tmux
-  use 'aserowy/tmux.nvim'
+  use {
+    'aserowy/tmux.nvim',
+    config = function()
+      require('tmux').setup({
+        copy_sync = {
+          enable = false,
+        },
+        navigation = {
+          enable_default_keybindings = true,
+        },
+      })
+    end,
+  }
   use 'tmux-plugins/vim-tmux'
 
-  -- Camel and Snake Case
+  -- Motion
   use 'bkad/CamelCaseMotion'
 
-  -- Editconfig
-  use 'editorconfig/editorconfig-vim'
+  -- Pretty diagnostics
+  use {
+    'folke/trouble.nvim',
+    requires = { 'nvim-tree/nvim-web-devicons' },
+  }
 
-  -- Dashboard
-  use 'glepnir/dashboard-nvim'
-
-  -- Markdown Previewers
-  use({
-    'iamcco/markdown-preview.nvim',
-    run = 'cd app && yarn install',
-    setup = function()
-      vim.g.mkdp_filetypes = { 'markdown' }
-    end,
-    ft = { 'markdown' },
-  })
-
-  -- Multiple Line
-  use({
-    'mg979/vim-visual-multi',
-    tag = 'master',
-  })
-end)
-
-if packer_bootstrap then
-  packer.sync()
-else
-  local status_pc = pcall(require, 'plugin.packer_compiled')
-  if not status_pc then
-    vim.notify('File packer_compiled.lua not found: run PackerSync to fix!')
+  -- Automatically sync plugins
+  if packer_bootstrap then
+    packer.sync()
   end
-end
+end)

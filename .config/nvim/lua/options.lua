@@ -6,6 +6,7 @@ g.mapleader = ' '
 g.maplocalleader = ' '
 g.loaded_netrw = 1
 g.loaded_netrwPlugin = 1
+opt.timeout = true
 opt.timeoutlen = 0
 opt.number = true
 opt.relativenumber = true
@@ -21,6 +22,8 @@ opt.foldenable = true
 -- Filetype
 opt.encoding = 'utf-8'
 opt.fileencoding = 'utf-8'
+opt.spell = true
+opt.spelllang = 'en_us'
 
 -- Indentation
 opt.expandtab = true
@@ -58,20 +61,25 @@ opt.title = true
 opt.laststatus = 3
 opt.clipboard:append('unnamedplus')
 opt.wrap = false
-opt.list = false
+opt.list = true
 opt.listchars = {
   tab = '▸\\ ',
-  lead = '␣',
-  trail = '␣',
+  lead = '⋅',
+  trail = '⋅',
   precedes = '❮',
   extends = '❯',
   eol = '↴',
 }
 
 -- Cursor
-opt.cursorline = false
+opt.cursorline = true
 opt.termguicolors = true
 opt.winblend = 0
 opt.wildoptions = 'pum'
 opt.pumblend = 5
+
+-- opt.background = 'light'
+-- vim.cmd [[colorscheme delek]]
+
 opt.background = 'dark'
+vim.cmd [[colorscheme murphy]]

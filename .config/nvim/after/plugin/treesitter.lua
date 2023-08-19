@@ -1,21 +1,13 @@
--- plugin for syntax
 local treesitter = require('nvim-treesitter.configs')
 
-local install_list
-if not (vim.fn.has('mac') == 1) then
-  install_list = {
-    'bash', 'cmake', 'comment', 'cpp', 'css', 'diff', 'dockerfile', 'dot',
-    'git_rebase', 'gitattributes', 'gitcommit', 'gitignore', 'go', 'gomod', 'gowork',
-    'graphql', 'help', 'html', 'http', 'java', 'javascript', 'jq', 'json', 'jsonc',
-    'json5', 'jsonnet', 'lua', 'make', 'markdown', 'markdown_inline', 'php', 'phpdoc', 'proto',
-    'python', 'regex', 'ruby', 'rust', 'scala', 'scss', 'sql', 'todotxt', 'tsx', 'typescript', 'yaml',
-  }
-else
-  install_list = 'all'
-end
-
 treesitter.setup({
-  ensure_installed = install_list,
+  ensure_installed = 'all',
+  autotag = {
+    enable = true,
+  },
+  playground = {
+    enable = true,
+  },
   highlight = {
     enable = true,
     disable = {},
@@ -31,9 +23,6 @@ treesitter.setup({
   matchup = {
     enable = true,
   },
-  playground = {
-    enable = true,
-  },
   textobjects = {
     enable = true,
     move = {
@@ -42,18 +31,30 @@ treesitter.setup({
       goto_next_start = {
         [']m'] = '@function.outer',
         [']]'] = '@class.outer',
+        [']p'] = '@parameter.inner',
+        [']l'] = '@loop.outer',
+        [']o'] = '@conditional.outer',
       },
       goto_next_end = {
         [']m'] = '@function.outer',
         [']['] = '@class.outer',
+        [']p'] = '@parameter.inner',
+        [']l'] = '@loop.outer',
+        [']o'] = '@conditional.outer',
       },
       goto_previous_start = {
         ['[m'] = '@function.outer',
         ['[['] = '@class.outer',
+        ['[p'] = '@parameter.inner',
+        ['[l'] = '@loop.outer',
+        ['[o'] = '@conditional.outer',
       },
       goto_previous_end = {
         ['[m'] = '@function.outer',
         ['[]'] = '@class.outer',
+        ['[p'] = '@parameter.inner',
+        ['[l'] = '@loop.outer',
+        ['[o'] = '@conditional.outer',
       },
     },
     select = {

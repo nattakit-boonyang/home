@@ -1,26 +1,40 @@
-local lsp = require('lsp-zero')
+local lsp = require('lsp-zero').preset('recommended')
+local cmp = require('cmp')
 
-lsp.preset('recommended')
-lsp.ensure_installed({
-  'sumneko_lua',
-  'bashls',
-  'yamlls',
-  'jsonls',
-  'dockerls',
-  'golangci_lint_ls',
-  'graphql',
-  'html',
-  'marksman',
-  'sqlls',
-  'lemminx',
+-- Lsp Status
+require('fidget').setup({
+  lsp_status = true,
 })
-lsp.set_preferences({
-  set_lsp_keymaps = false,
+
+cmp.setup({
+  mapping = {
+    ['<Tab>'] = cmp.mapping.confirm({ select = false }),
+    ['<CR>'] = cmp.mapping.confirm({ select = false }),
+  },
+  sources = {
+    { name = 'copilot',  group_index = 1 },
+    { name = 'nvim_lsp', group_index = 1 },
+    { name = 'nvim_lua', group_index = 1 },
+    { name = 'path',     group_index = 1 },
+    { name = 'buffer',   group_index = 1 },
+    { name = 'luasnip',  group_index = 1 },
+  },
+  sorting = {
+    comparators = {
+      cmp.config.compare.offset,
+      cmp.config.compare.exact,
+      cmp.config.compare.score,
+      cmp.config.compare.kind,
+      cmp.config.compare.recently_used,
+      cmp.config.compare.sort_text,
+      cmp.config.compare.length,
+      cmp.config.compare.order,
+    },
+  },
 })
-lsp.nvim_workspace({
-  library = vim.api.nvim_get_runtime_file('', true)
-})
-lsp.configure('sumneko_lua', {
+
+-- Custom config for lua_ls
+require('lspconfig').lua_ls.setup({
   settings = {
     Lua = {
       format = {
@@ -50,27 +64,35 @@ lsp.configure('sumneko_lua', {
   }
 })
 
-local api = vim.api
-local on_attach = function(opts)
-  return function(client, bufnr)
-    api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-    if client.server_capabilities.documentFormattingProvider then
-      require('autocommands').lsp.auto_format(opts.fn_format, bufnr)
-    end
+lsp.nvim_workspace({
+  library = vim.api.nvim_get_runtime_file('', true)
+})
 
-    -- set mappings
-    require('mappings').lsp.register_mappings(client, bufnr, opts)
-  end
-end
+lsp.on_attach(function(_, bufnr)
+  lsp.default_keymaps({ buffer = bufnr })
+end)
 
-lsp.on_attach(on_attach({
-  fn_format = function(bufnr)
-    vim.lsp.buf.format({ async = true, bufnr = bufnr })
-  end,
-}))
+lsp.ensure_installed({
+  'gopls',
+  'bashls',
+  'marksman',
+  'tsserver',
+  'rust_analyzer',
+  'cssls',
+  'dockerls',
+  'jsonls',
+  'eslint',
+  'html',
+  'lua_ls',
+  'yamlls',
+  'emmet_ls',
+})
+
+lsp.set_sign_icons({
+  error = '✘',
+  warn = '▲',
+  hint = '⚑',
+  info = '»'
+})
 
 lsp.setup()
-
-return {
-  on_attach = on_attach, -- Export for external lsp config
-}
