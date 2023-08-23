@@ -21,8 +21,10 @@ wk.register({
   t = { ':TroubleToggle<cr>', 'Diagnostics' },
   n = {
     name = 'Explorer',
-    n = { ':NvimTreeFocus<cr>', 'Focus' },
-    c = { ':NvimTreeClose<cr>', 'Close' },
+    n = { ':NvimTreeFocus<cr>', 'NvimTreeOpen' },
+    m = { ':NvimTreeClose<cr>', 'NvimTreeClose' },
+    s = { ':SymbolsOutlineOpen<cr>', 'SymbolsOutlineOpen' },
+    d = { ':SymbolsOutlineClose<cr>', 'SymbolsOutlineClose' },
   },
   b = { telescope_builtin.buffers, 'Buffers' },
   f = {

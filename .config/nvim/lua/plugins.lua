@@ -221,6 +221,12 @@ packer.startup(function(use)
     requires = { 'nvim-tree/nvim-web-devicons' },
   }
 
+  -- Symbol outline
+  use 'simrat39/symbols-outline.nvim'
+
+  -- Rest API testing
+  use 'rest-nvim/rest.nvim'
+
   -- Automatically sync plugins
   if packer_bootstrap then
     packer.sync()
