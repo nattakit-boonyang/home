@@ -3,6 +3,7 @@ local lazystatus = require("lazy.status")
 return {
   "nvim-lualine/lualine.nvim",
   name = "lualine",
+  event = "VeryLazy",
   dependencies = {
     { "nvim-tree/nvim-web-devicons" },
   },

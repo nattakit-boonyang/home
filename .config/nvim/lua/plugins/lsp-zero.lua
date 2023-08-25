@@ -22,7 +22,7 @@ return {
   },
   config = function()
     local lspzero = require("lsp-zero").preset("recommended")
-    local lspconfig = require('lspconfig')
+    local lspconfig = require("lspconfig")
 
     lspzero.ensure_installed({
       "gopls",

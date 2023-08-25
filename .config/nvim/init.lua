@@ -1,2 +1,2 @@
-require('core')
-require('_lazy')
+require("core")
+require("_lazy")

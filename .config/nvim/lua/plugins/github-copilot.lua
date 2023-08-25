@@ -3,7 +3,7 @@ return {
   "zbirenbaum/copilot.lua",
   name = "github-copilot",
   cmd = "Copilot",
-  event = "InsertEnter",
+  event = "LspAttach",
   opts = {
     suggestion = { enabled = false },
     panel = { enabled = false },

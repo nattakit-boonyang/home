@@ -36,9 +36,8 @@ return {
       },
       formatting = {
         format = lspkind.cmp_format({
-          mode = 'symbol_text',
+          mode = 'text_symbol',
           maxwidth = 50,
-          preset = 'codicons',
           ellipsis_char = '...',
           before = function(_, vim_item)
             return vim_item
