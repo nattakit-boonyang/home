@@ -1,6 +1,10 @@
--- https://github.com/aserowy/tmux.nvim
 return {
-  "aserowy/tmux.nvim",
-  name = "tmux-navigator",
-  config = true,
+  -- https://github.com/aserowy/tmux.nvim
+  {
+    "aserowy/tmux.nvim",
+    event = "VeryLazy",
+    config = true,
+  },
+  -- https://github.com/tmux-plugins/vim-tmux
+  { "tmux-plugins/vim-tmux" },
 }
