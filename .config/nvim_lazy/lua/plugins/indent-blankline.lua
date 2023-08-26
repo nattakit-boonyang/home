@@ -1,0 +1,29 @@
+-- https://github.com/lukas-reineke/indent-blankline.nvim
+return {
+  "lukas-reineke/indent-blankline.nvim",
+  config = function()
+    local indent = require("indent_blankline")
+    local colors = {
+      "#E06C75",
+      "#E5C07B",
+      "#98C379",
+      "#56B6C2",
+      "#61AFEF",
+      "#C678DD",
+    }
+    local char_highlight_list = {}
+    for i, color in ipairs(colors) do
+      local name = string.format("IndentBlanklineIndent%d", i)
+      table.insert(char_highlight_list, name)
+      vim.api.nvim_set_hl(0, name, { fg = color, nocombine = true })
+    end
+
+    indent.setup({
+      char = "│",
+      show_trailing_blankline_indent = false,
+      show_current_context = true,
+      show_current_context_start = true,
+      char_highlight_list = char_highlight_list,
+    })
+  end,
+}
