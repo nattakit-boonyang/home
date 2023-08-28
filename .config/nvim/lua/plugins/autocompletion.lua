@@ -19,10 +19,7 @@ return {
     local cmp = require("cmp")
 
     -- add sources
-    for _, source in ipairs(sources) do
-      table.insert(opts.sources, source)
-    end
-    opts.sources = cmp.config.sources(opts.sources)
+    opts.sources = cmp.config.sources(vim.list_extend(opts.sources, sources))
 
     -- add keymaps
     local selected = cmp.mapping.confirm({ select = false })

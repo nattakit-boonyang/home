@@ -1,4 +1,5 @@
 return {
+  -- https://github.com/williamboman/mason-lspconfig.nvim
   {
     "williamboman/mason-lspconfig.nvim",
     opts = {
@@ -23,6 +24,7 @@ return {
         "lua_ls",
         "dockerls",
       },
+      automatic_installation = true,
     },
   },
 
@@ -79,5 +81,18 @@ return {
       require("go.install").update_all_sync()
     end,
     config = true,
+  },
+
+  -- https://github.com/jose-elias-alvarez/null-ls.nvim
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    opts = function(_, opts)
+      if type(opts.sources) == "table" then
+        local nls = require("null-ls")
+        vim.list_extend(opts.sources, {
+          nls.builtins.diagnostics.revive,
+        })
+      end
+    end,
   },
 }
