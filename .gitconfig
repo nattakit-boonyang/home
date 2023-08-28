@@ -17,3 +17,5 @@
 	options = --highlight --line-numbers
 [color]
 	ui = auto
+[cinnabar]
+	version-check = 1693228181
