@@ -1,7 +1,9 @@
 local opt = vim.opt
 
--- opt.background = "light"
+vim.g.markdown_recommended_style = 1
 
+opt.spell = true
+opt.spelllang = { "en_us" }
 opt.backup = false
 opt.encoding = "utf-8"
 opt.errorbells = true
