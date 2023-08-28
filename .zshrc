@@ -42,6 +42,8 @@ global_zsh_setup() {
 
 alias_home_git() {
 	alias h='git --work-tree=$HOME --git-dir=$HOME/.home.git'
+  alias hs='h statusStagedOnly'
+  alias hd='h diff --staged'
 }
 
 alias_ls() {
@@ -51,6 +53,8 @@ alias_ls() {
 
 alias_tmux() {
 	alias td='tmux detach'
+  alias tsd='tmux new-session -d -t'
+  alias t='tmux'
 }
 
 alias_common() {
@@ -61,8 +65,7 @@ alias_common() {
 }
 
 alias_dir() {
-	alias nvc='~/.config/nvim'
-	alias pg='~/Documents/pg'
+	pg='~/Documents/pg'
 }
 
 execute_common() {
