@@ -3,6 +3,10 @@ return {
     "williamboman/mason-lspconfig.nvim",
     opts = {
       ensure_installed = {
+        "pylsp",
+        "pyright",
+        "cmake",
+        "clangd",
         "lemminx",
         "rust_analyzer",
         "gopls",
@@ -21,8 +25,9 @@ return {
       },
     },
   },
+
+  -- https://github.com/neovim/nvim-lspconfig
   {
-    -- https://github.com/neovim/nvim-lspconfig
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
@@ -58,5 +63,21 @@ return {
         },
       },
     },
+  },
+
+  -- https://github.com/ray-x/go.nvim
+  {
+    "ray-x/go.nvim",
+    dependencies = { -- optional packages
+      "ray-x/guihua.lua",
+      "neovim/nvim-lspconfig",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    event = "InsertEnter",
+    ft = { "go", "gomod" },
+    build = function()
+      require("go.install").update_all_sync()
+    end,
+    config = true,
   },
 }

@@ -29,6 +29,12 @@ return {
     opts.mapping["<Tab>"] = selected
     opts.mapping["<CR>"] = selected
 
+    -- add border
+    opts.window = {
+      completion = cmp.config.window.bordered(),
+      documentation = cmp.config.window.bordered(),
+    }
+
     return opts
   end,
 }
