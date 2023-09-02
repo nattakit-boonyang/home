@@ -4,7 +4,17 @@ return {
     "norcalli/nvim-colorizer.lua",
     event = "VeryLazy",
     config = function()
-      require("colorizer").setup({ "lua", "css", "scss", "html", "javascript", "go" }, {
+      local colorizer = require("colorizer")
+      local filetypes = {
+        "lua",
+        "css",
+        "scss",
+        "html",
+        "javascript",
+        "go",
+      }
+
+      colorizer.setup(filetypes, {
         RGB = true,
         RRGGBB = true,
         RRGGBBAA = true,

@@ -12,9 +12,12 @@ pcall(keymap.del, "n", "<C-k>")
 pcall(keymap.del, "n", "<C-l>")
 
 -- Move to window using the <ctrl> hjkl keys
-keymap.set("n", "<C-h>", '<cmd>lua require("tmux").move_left()<cr>', opts)
-keymap.set("n", "<C-j>", '<cmd>lua require("tmux").move_bottom()<cr>', opts)
-keymap.set("n", "<C-k>", '<cmd>lua require("tmux").move_top()<cr>', opts)
-keymap.set("n", "<C-l>", '<cmd>lua require("tmux").move_right()<cr>', opts)
+keymap.set("n", "<C-h>", ':lua require("tmux").move_left()<cr>', opts)
+keymap.set("n", "<C-j>", ':lua require("tmux").move_bottom()<cr>', opts)
+keymap.set("n", "<C-k>", ':lua require("tmux").move_top()<cr>', opts)
+keymap.set("n", "<C-l>", ':lua require("tmux").move_right()<cr>', opts)
 
 keymap.set("n", "x", '"_x', { noremap = true, silent = true })
+
+-- Select all text in the buffer
+keymap.set("n", "<leader>a", "ggVG", opts)

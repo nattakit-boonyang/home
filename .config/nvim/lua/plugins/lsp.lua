@@ -70,7 +70,7 @@ return {
   -- https://github.com/ray-x/go.nvim
   {
     "ray-x/go.nvim",
-    dependencies = { -- optional packages
+    dependencies = {
       "ray-x/guihua.lua",
       "neovim/nvim-lspconfig",
       "nvim-treesitter/nvim-treesitter",
@@ -81,18 +81,5 @@ return {
       require("go.install").update_all_sync()
     end,
     config = true,
-  },
-
-  -- https://github.com/jose-elias-alvarez/null-ls.nvim
-  {
-    "jose-elias-alvarez/null-ls.nvim",
-    opts = function(_, opts)
-      if type(opts.sources) == "table" then
-        local nls = require("null-ls")
-        vim.list_extend(opts.sources, {
-          nls.builtins.diagnostics.revive,
-        })
-      end
-    end,
   },
 }
