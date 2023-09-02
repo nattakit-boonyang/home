@@ -2,13 +2,14 @@ export ZSH=$HOME/.oh-my-zsh
 
 global_zsh_setup() {
   # settings
+	# ZSH_THEME="robbyrussell"
 	ZSH_THEME="colorblind"
 	CASE_SENSITIVE="true"
 	DISABLE_MAGIC_FUNCTIONS="true"
 
   # plugins
   source ~/.zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh
-	plugins=(
+  plugins=(
     copyfile
     copypath
     1password
@@ -21,28 +22,28 @@ global_zsh_setup() {
     sudo
     vscode
     command-not-found
-		web-search
-		git
-		zsh-autosuggestions
-		zsh-syntax-highlighting
-		fzf
-		fancy-ctrl-z
-		gitignore
-		golang
-		tmux
-		docker
-		docker-compose
-		kubectl
-		macos
-		brew
+    web-search
+    git
+    zsh-autosuggestions
+    zsh-syntax-highlighting
+    fzf
+    fancy-ctrl-z
+    gitignore
+    golang
+    tmux
+    docker
+    docker-compose
+    kubectl
+    macos
+    brew
     gh
     gitignore
-	)
+  )
 }
 
 alias_home_git() {
-	alias h='git --work-tree=$HOME --git-dir=$HOME/.home.git'
-  alias hs='h statusStagedOnly'
+	alias h='git --work-tree=$home --git-dir=$home/.home.git'
+  alias hs='h statusstagedonly'
   alias hd='h diff --staged'
 }
 
@@ -53,6 +54,7 @@ alias_ls() {
 
 alias_tmux() {
 	alias td='tmux detach'
+  alias ta='tmux attach'
   alias tsd='tmux new-session -d -t'
   alias t='tmux'
 }

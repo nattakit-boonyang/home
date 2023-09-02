@@ -1,11 +1,6 @@
-# fork from https://github.com/ohmyzsh/ohmyzsh/blob/master/themes/robbyrussell.zsh-theme
+dir_icon=""
+cmd_icon=""
 
-PROMPT="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
-PROMPT+=' %{$fg[cyan]%}%~%{$reset_color%} $(git_prompt_info)
-%{$fg[yellow]%}♜%{$reset_color%} '
-
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}git:(%{$fg[red]%}"
-ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[yellow]%}✗"
-ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"
+PROMPT='%(?:%{$fg_bold[yellow]%}${dir_icon} :%{$fg_bold[yellow]%}${dir_icon} )%{$fg[cyan]%}%~%{$reset_color%}
+%{$fg[yellow]%}${cmd_icon}%{$reset_color%} '
 
