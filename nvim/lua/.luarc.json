@@ -1,0 +1,27 @@
+{
+    "workspace.library": [
+        "/Users/kk/.local/share/nvim/lazy/neodev.nvim/types/stable",
+        "/usr/local/Cellar/neovim/0.9.1/share/nvim/runtime/lua",
+        "/Users/kk/.local/share/nvim/lazy/which-key.nvim/lua",
+        "/Users/kk/.local/share/nvim/lazy/mason-lspconfig.nvim/lua",
+        "/Users/kk/.local/share/nvim/lazy/nvim-web-devicons/lua",
+        "/Users/kk/.local/share/nvim/lazy/cmp-nvim-lsp/lua",
+        "/Users/kk/.local/share/nvim/lazy/null-ls.nvim/lua",
+        "/Users/kk/.local/share/nvim/lazy/mason-null-ls.nvim/lua",
+        "/Users/kk/.local/share/nvim/lazy/lazy.nvim/lua",
+        "/Users/kk/.local/share/nvim/lazy/plenary.nvim/lua",
+        "/Users/kk/.local/share/nvim/lazy/cmp-buffer/lua",
+        "/Users/kk/.local/share/nvim/lazy/cmp-path/lua",
+        "/Users/kk/.local/share/nvim/lazy/nvim-tree.lua/lua",
+        "/Users/kk/.local/share/nvim/lazy/nvim-lspconfig/lua",
+        "/Users/kk/.local/share/nvim/lazy/nvim-cmp/lua",
+        "/Users/kk/.local/share/nvim/lazy/neodev.nvim/lua",
+        "/Users/kk/.local/share/nvim/lazy/catppuccin/lua",
+        "/Users/kk/.local/share/nvim/lazy/LuaSnip/lua",
+        "/Users/kk/.local/share/nvim/lazy/mason.nvim/lua",
+        "/Users/kk/.local/share/nvim/lazy/cmp_luasnip/lua",
+        "/Users/kk/.local/share/nvim/lazy/tmux.nvim/lua",
+        "/Users/kk/.config/nvim/lua",
+    ],
+    "workspace.checkThirdParty": false
+}

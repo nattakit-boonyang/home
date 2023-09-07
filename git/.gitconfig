@@ -1,0 +1,17 @@
+[user]
+	email = nattakit.boonyang@gmail.com
+	name = Nattakit Boonyang
+[core]
+	editor = nvim
+	ignorecase = false
+	autocrlf = input
+	pager = cat
+[init]
+	defaultBranch = main
+[push]
+	autoSetupRemote = true
+[alias]
+	logPretty = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	statusStagedOnly = status -uno
+[color]
+	ui = auto
