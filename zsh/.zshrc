@@ -80,6 +80,11 @@ export_env() {
   export PATH=$HOME/.local/bin:$PATH
 }
 
+execute_common() {
+  # iterm2 shell integration
+  test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+}
+
 # execute functions
 global_zsh_setup
 source $ZSH/oh-my-zsh.sh
@@ -90,7 +95,3 @@ alias_ls
 alias_dir
 alias_common
 export_env
-
-# iterm2 shell integration
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
