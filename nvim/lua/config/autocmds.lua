@@ -8,7 +8,7 @@ local autocmd = api.nvim_create_autocmd
 autocmd("FileType", {
   group = augroup("close_with_q"),
   pattern = {
-    "PlenaryTestPopup",
+"PlenaryTestPopup",
     "help",
     "lspinfo",
     "man",

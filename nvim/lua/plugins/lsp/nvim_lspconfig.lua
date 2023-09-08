@@ -11,6 +11,7 @@ return new_plugin(plugins.lsp.nvim_lspconfig)
 				filetypes = { "sh", "zsh" },
 			},
 			yamlls = {
+				filetypes = { "yaml", "yaml.docker-compose", "sshconfig" },
 				capabilities = {
 					textDocument = {
 						foldingRange = {
@@ -67,10 +68,16 @@ return new_plugin(plugins.lsp.nvim_lspconfig)
 		local lspconfig = require("lspconfig")
 		local on_attach = function(_, bufnr)
 			require("config.keymaps").set_lsp_keymaps(bufnr)
-			require("config.autocmds").auto_format_on_save(bufnr)
+			if require("util.lsp").has("formatting") then
+				require("config.autocmds").auto_format_on_save(bufnr)
+			end
 		end
+		local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-		lspconfig.lua_ls.setup({
-			on_attach = on_attach,
-		})
+		for _, server in ipairs(servers.lsp) do
+			lspconfig[server].setup({
+				capabilities = capabilities,
+				on_attach = on_attach,
+			})
+		end
 	end)

@@ -1,5 +1,6 @@
 _G.plugins = {
 	coding = {
+		mini_ai = "echasnovski/mini.ai",
 		nvim_surround = "kylechui/nvim-surround",
 		nvim_autopairs = "windwp/nvim-autopairs",
 		mini_comment = "echasnovski/mini.comment",
@@ -16,6 +17,7 @@ _G.plugins = {
 		friendly_snippets = "rafamadriz/friendly-snippets",
 	},
 	editor = {
+		flash = "folke/flash.nvim",
 		telescope = "nvim-telescope/telescope.nvim",
 		trouble = "folke/trouble.nvim",
 		illuminate = "RRethy/vim-illuminate",

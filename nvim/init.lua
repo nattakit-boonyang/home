@@ -1,3 +1,4 @@
+require("config.servers")
 require("config.plugins")
 require("config.icons")
 
