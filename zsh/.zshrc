@@ -65,7 +65,7 @@ alias_common() {
 }
 
 alias_dir() {
-	pg='~/Documents/pg'
+	pg='~/Documents/playground'
 }
 
 export_env() {
