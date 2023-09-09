@@ -12,11 +12,13 @@ _G.plugins = {
 			buffer = "hrsh7th/cmp-buffer",
 			path = "hrsh7th/cmp-path",
 			luasnip = "saadparwaiz1/cmp_luasnip",
+			spell = "f3fora/cmp-spell",
 		},
 		luasnip = "L3MON4D3/LuaSnip",
 		friendly_snippets = "rafamadriz/friendly-snippets",
 	},
 	editor = {
+		gitsigns = "lewis6991/gitsigns.nvim",
 		flash = "folke/flash.nvim",
 		telescope = "nvim-telescope/telescope.nvim",
 		trouble = "folke/trouble.nvim",
@@ -29,6 +31,8 @@ _G.plugins = {
 		which_key = "folke/which-key.nvim",
 	},
 	lsp = {
+		markdown_preview = "iamcco/markdown-preview.nvim",
+		go = "ray-x/go.nvim",
 		mason = "williamboman/mason.nvim",
 		mason_lspconfig = "williamboman/mason-lspconfig.nvim",
 		mason_null_ls = "jay-babu/mason-null-ls.nvim",
@@ -46,6 +50,8 @@ _G.plugins = {
 		nvim_ts_commentstring = "JoosepAlviste/nvim-ts-context-commentstring",
 	},
 	ui = {
+		nvim_navic = "SmiteshP/nvim-navic",
+		guihua = "ray-x/guihua.lua",
 		lualine = "nvim-lualine/lualine.nvim",
 		bufferline = "akinsho/bufferline.nvim",
 		nvim_web_devicons = "nvim-tree/nvim-web-devicons",

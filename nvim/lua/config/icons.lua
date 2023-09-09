@@ -1,10 +1,21 @@
 _G.icons = {
+  diagnostics = {
+    Error = " ",
+    Warn = " ",
+    Hint = " ",
+    Info = " ",
+  },
+  git = {
+    added = " ",
+    modified = " ",
+    removed = " ",
+  },
   mason = {
     package_installed = "✓",
     package_pending = "➜",
     package_uninstalled = "✗",
   },
-  cmp = {
+  cmp_kind = {
     Array = " ",
     Boolean = " ",
     Class = " ",

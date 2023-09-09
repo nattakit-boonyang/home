@@ -68,7 +68,7 @@ return new_plugin(plugins.lsp.nvim_lspconfig)
 		local lspconfig = require("lspconfig")
 		local on_attach = function(_, bufnr)
 			require("config.keymaps").set_lsp_keymaps(bufnr)
-			if require("util.lsp").has("formatting") then
+			if require("util.lsp").has(bufnr, "formatting") then
 				require("config.autocmds").auto_format_on_save(bufnr)
 			end
 		end
