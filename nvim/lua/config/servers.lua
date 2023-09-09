@@ -8,6 +8,7 @@ _G.servers = {
     "gopls",
   },
   null_ls = {
+    "shfmt",
     "hadolint",
     "yamllint",
     "stylua",
@@ -22,6 +23,7 @@ _G.servers = {
     local builtins = require("null-ls").builtins
 
     return {
+      builtins.formatting.shfmt,
       builtins.diagnostics.hadolint,
       builtins.diagnostics.yamllint,
       builtins.formatting.stylua,
