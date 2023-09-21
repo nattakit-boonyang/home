@@ -5,7 +5,7 @@ return {
   dependencies = plugins.ui.plenary,
   cmd = "Telescope",
   keys = {
-    { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
+    { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Files" },
     { "<leader>fg", "<cmd>Telescope live_grep<cr>",  desc = "Live Grep" },
     { "<leader>fr", "<cmd>Telescope oldfiles<cr>",   desc = "Recent" },
   },

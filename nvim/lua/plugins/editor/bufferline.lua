@@ -21,4 +21,9 @@ return {
       },
     },
   },
+  keys = {
+    {"gb", "<cmd>BufferLinePick<cr>", desc = "Buffer Pick"},
+    {"[b", "<cmd>BufferLineCyclePrev<cr>", desc = "Buffer Prev"},
+    {"]b", "<cmd>BufferLineCycleNext<cr>", desc = "Buffer Next"},
+  },
 }

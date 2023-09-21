@@ -10,7 +10,7 @@ return {
     plugins.ui.window_picker,
   },
   keys = {
-    { "<leader>e", "<cmd>Neotree toggle<cr>", desc = "NeoTree" },
+    { "<leader>e", "<cmd>Neotree toggle<cr>", desc = "Neo Tree" },
   },
   opts = {
     sources = {

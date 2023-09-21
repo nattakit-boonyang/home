@@ -8,6 +8,7 @@ local _plugins = {
       mini = "echasnovski/mini.nvim",
       mini_surround = "echasnovski/mini.surround",
       mini_indentscope = "echasnovski/mini.indentscope",
+      mini_bufremove = "echasnovski/mini.bufremove",
     },
     catppuccin = "catppuccin/nvim",
     neo_tree = "nvim-neo-tree/neo-tree.nvim",
@@ -17,6 +18,7 @@ local _plugins = {
     tmux_navigator = "aserowy/tmux.nvim",
     flash = "folke/flash.nvim",
     telescope = "nvim-telescope/telescope.nvim",
+    which_key = "folke/which-key.nvim",
   },
   ui = {
     web_devicons = "nvim-tree/nvim-web-devicons",
