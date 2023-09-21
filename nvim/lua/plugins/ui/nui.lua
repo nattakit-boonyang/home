@@ -1,2 +1,6 @@
 -- Plugin: https://github.com/MunifTanjim/nui.nvim
-return new_plugin(plugins.ui.nui).load_when_used()
+return {
+  plugins.ui.repo_nui,
+  name = plugins.ui.nui,
+  lazy = true,
+}

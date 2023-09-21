@@ -1,38 +1,23 @@
 -- Plugin: https://github.com/nvim-telescope/telescope.nvim
-return new_plugin(plugins.editor.telescope)
-	.load_after(plugins.util.plenary)
-	.load_when_called("Telescope")
-	.set_options({
-		defaults = {
-			prompt_prefix = " ",
-			selection_caret = " ",
-			mappings = {
-				n = {
-					["q"] = function(...)
-						return require("telescope.actions").close(...)
-					end,
-				},
-			},
-		},
-	})
-	.load_when_pressed({
-		"<leader>ff",
-		function()
-			require("telescope.builtin").find_files()
-		end,
-		desc = "Find files",
-	})
-	.load_when_pressed({
-		"<leader>fg",
-		function()
-			require("telescope.builtin").live_grep()
-		end,
-		desc = "Live Grep",
-	})
-	.load_when_pressed({
-		"<leader>fr",
-		function()
-			require("telescope.builtin").oldfiles()
-		end,
-		desc = "Old Files",
-	})
+return {
+  plugins.editor.repo_telescope,
+  name = plugins.editor.telescope,
+  dependencies = plugins.ui.plenary,
+  cmd = "Telescope",
+  keys = {
+    { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
+    { "<leader>fg", "<cmd>Telescope live_grep<cr>",  desc = "Live Grep" },
+    { "<leader>fr", "<cmd>Telescope oldfiles<cr>",   desc = "Recent" },
+  },
+  opts = {
+    defaults = {
+      mappings = {
+      n = {
+        q = function(...)
+          return require("telescope.actions").close(...)
+        end,
+      },
+    },
+    },
+  },
+}

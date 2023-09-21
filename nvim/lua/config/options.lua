@@ -70,8 +70,3 @@ opt.visualbell = true
 opt.wildmode = "longest:full,full"
 opt.winminwidth = 5
 opt.wrap = false
-
-if vim.fn.has("nvim-0.9.0") == 1 then
-  opt.splitkeep = "screen"
-  opt.shortmess:append({ C = true })
-end

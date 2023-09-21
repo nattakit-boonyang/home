@@ -1,3 +1,4 @@
+-- Plugin: https://github.com/folke/lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -13,12 +14,10 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   spec = {
-    { import = "plugins.editor" },
-    { import = "plugins.ui" },
-    { import = "plugins.lsp" },
     { import = "plugins.coding" },
-    { import = "plugins.treesitter" },
-    { import = "plugins.util" },
+    { import = "plugins.editor" },
+    { import = "plugins.editor.mini" },
+    { import = "plugins.ui" },
   },
   defaults = {
     lazy = false,
@@ -26,20 +25,5 @@ require("lazy").setup({
   },
   install = { colorscheme = { "catppuccin" } },
   change_detection = { enabled = true, notify = false },
-  checker = { enabled = true },
-  performance = {
-    rtp = {
-      disabled_plugins = {
-        "gzip",
-        "matchit",
-        "matchparen",
-        "netrwPlugin",
-        "tarPlugin",
-        "tohtml",
-        "tutor",
-        "zipPlugin",
-        "nvim-treesitter-textobjects",
-      },
-    },
-  },
+  checker = { enabled = false },
 })

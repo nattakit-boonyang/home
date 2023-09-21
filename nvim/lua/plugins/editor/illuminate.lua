@@ -1,14 +1,13 @@
 -- Plugin: https://github.com/RRethy/vim-illuminate
-return new_plugin(plugins.editor.illuminate)
-	.load_on_event("BufReadPost")
-	.load_on_event("BufNewFile")
-	.set_options({
-		delay = 200,
-		large_file_cutoff = 2000,
-		large_file_overrides = {
-			providers = { "lsp" },
-		},
-	})
-	.setup(function(_, opts)
-		require("illuminate").configure(opts)
-	end)
+return {
+  plugins.editor.repo_illuminate,
+  name = plugins.editor.illuminate,
+  event = { "BufReadPost", "BufNewFile" },
+  keys = {
+    { "[[", function() require("illuminate").goto_prev_reference(false) end, desc = "Prev Reference" },
+    { "]]", function() require("illuminate").goto_next_reference(false) end, desc = "Next Reference" },
+  },
+  config = function(_, opts)
+    require("illuminate").configure(opts)
+  end,
+}
