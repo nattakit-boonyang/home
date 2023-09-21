@@ -18,10 +18,10 @@ brew tap homebrew/cask-fonts
 # install applications
 brew install firefox 1password neovim visual-studio-code gh node yarn iterm2 php python3 postman \
 	dbeaver-community xquartz tor-browser vmware-fusion lazygit docker colima kubectl raspberry-pi-image \
-	balenaEtcher ghidra
+	balenaEtcher ghidra vnc-viewer
 
 # install cli tools
-brew install zsh fish fzf mas p7zip paragon-ntfs tmux rg mysql-client whois tree openjdk jq rust
+brew install zsh fish fzf mas p7zip paragon-ntfs tmux rg mysql-client whois tree openjdk jq rust exa bat fd trash
 
 # install programming language
 brew install go # golang
@@ -46,9 +46,9 @@ sudo ln -s /usr/local/bin/nvim /usr/local/bin/vim
 sudo ln -s /usr/local/bin/nvim /usr/local/bin/vi
 
 # oh-my-zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+# sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+# git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+# git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
 # tmux (tpm)
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
@@ -60,3 +60,17 @@ curl -L https://iterm2.com/shell_integration/install_shell_integration_and_utili
 # enable touch id for sudo
 # edit /etc/pam.d/sudo
 # auth       sufficient     pam_tid.so
+
+# oh my fish
+curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
+
+# fisher for fish shell
+curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+
+# install plugins
+fisher install pure-fish/pure
+fisher install jethrokuan/z
+fisher install PatrickF1/fzf.fish
+fisher install markcial/upto
+fisher install jhillyerd/plugin-git
+fisher install budimanjojo/tmux.fish
