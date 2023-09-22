@@ -2,7 +2,7 @@
 return {
   plugins.editor.mini.repo_mini_surround,
   name = plugins.editor.mini.mini_surround,
-  event = "VeryLazy",
+  config = function(_, opts) require("mini.surround").setup(opts) end,
   opts = {
     n_lines = 50,
     mappings = {
@@ -15,5 +15,4 @@ return {
       update_n_lines = "gzn", -- Update `n_lines`
     },
   },
-  config = function(_, opts) require("mini.surround").setup(opts) end,
 }

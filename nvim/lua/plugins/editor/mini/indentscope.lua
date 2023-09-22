@@ -2,7 +2,6 @@
 return {
   plugins.editor.mini.repo_mini_indentscope,
   name = plugins.editor.mini.mini_indentscope,
-  event = "VeryLazy",
   config = function(_, opts)
     require("mini.indentscope").gen_animation.none()
     require("mini.indentscope").setup(opts)

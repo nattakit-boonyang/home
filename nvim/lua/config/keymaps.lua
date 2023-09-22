@@ -2,14 +2,14 @@ local keymap = vim.keymap
 local opts = { silent = true, noremap = true }
 
 -- Delete keymaps
-pcall(keymap.del, "n", "<C-up>")
-pcall(keymap.del, "n", "<C-down")
-pcall(keymap.del, "n", "<C-left>")
-pcall(keymap.del, "n", "<C-right>")
-pcall(keymap.del, "n", "<C-h>")
-pcall(keymap.del, "n", "<C-j")
-pcall(keymap.del, "n", "<C-k>")
-pcall(keymap.del, "n", "<C-l>")
+pcall(keymap.del, "n", "<c-up>")
+pcall(keymap.del, "n", "<c-down")
+pcall(keymap.del, "n", "<c-left>")
+pcall(keymap.del, "n", "<c-right>")
+pcall(keymap.del, "n", "<c-h>")
+pcall(keymap.del, "n", "<c-j")
+pcall(keymap.del, "n", "<c-k>")
+pcall(keymap.del, "n", "<c-l>")
 
 -- Delete single character
 opts.desc = "Delete single character"

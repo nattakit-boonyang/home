@@ -15,6 +15,7 @@ return {
       ["<leader>f"] = { name = "+Find" },
       ["<leader>c"] = { name = "+Code" },
       ["<leader>b"] = { name = "+Buffer" },
+      ["<leader>o"] = { name = "+Off" },
     })
   end,
 }
