@@ -36,4 +36,9 @@ _G.icons = {
     Value = " ",
     Variable = " ",
   },
+  mason_ui = {
+    package_installed = "✓",
+    package_pending = "➜",
+    package_uninstalled = "✗",
+  },
 }

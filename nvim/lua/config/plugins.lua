@@ -1,4 +1,14 @@
 local _plugins = {
+  lsp = {
+    lua = {
+      neodev = "folke/neodev.nvim",
+    },
+    lspconfig = "neovim/nvim-lspconfig",
+    null_ls = "jose-elias-alvarez/null-ls.nvim",
+    mason = "williamboman/mason.nvim",
+    mason_lspconfig = "williamboman/mason-lspconfig.nvim",
+    mason_null_ls = "jay-babu/mason-null-ls.nvim",
+  },
   coding = {
     completion = {
       sources = {
@@ -64,6 +74,11 @@ end
 
 -- TODO: hard ways, fix later
 _G.plugins = {
+  lsp = (function()
+    local lsp = new_table(_plugins.lsp)
+    lsp.lua = new_table(_plugins.lsp.lua)
+    return lsp
+  end)(),
   coding = (function()
     local coding = new_table(_plugins.coding)
     coding.completion = new_table(_plugins.coding.completion)

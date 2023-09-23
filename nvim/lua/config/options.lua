@@ -70,3 +70,4 @@ opt.visualbell = true
 opt.wildmode = "longest:full,full"
 opt.winminwidth = 5
 opt.wrap = false
+

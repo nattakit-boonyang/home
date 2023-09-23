@@ -21,7 +21,12 @@ keymap.set("n", "<leader>a", "ggVG", opts)
 
 -- Save file
 opts.desc = "Save file"
-keymap.set({ "i", "x", "n", "s" }, "<c-s>", "<cmd>w<cr><esc>", opts)
+keymap.set({ "i", "x", "n", "s" }, "<c-s>", function()
+  vim.cmd("w")
+end, opts)
 
 opts.desc = "Lazy"
 keymap.set("n", "<leader>l", "<cmd>Lazy<cr>", opts)
+
+opts.desc = "LspInfo"
+vim.keymap.set("n", "<leader>cl", "<cmd>LspInfo<cr>", opts)

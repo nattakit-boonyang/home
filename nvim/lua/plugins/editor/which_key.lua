@@ -13,9 +13,9 @@ return {
       ["["] = { name = "+Prev" },
       ["]"] = { name = "+Next" },
       ["<leader>f"] = { name = "+Find" },
-      ["<leader>c"] = { name = "+Code" },
       ["<leader>b"] = { name = "+Buffer" },
-      ["<leader>o"] = { name = "+Off" },
+      ["<leader>o"] = { name = "+Dismiss" },
+      ["<leader>c"] = { name = "+Code" },
     })
   end,
 }
