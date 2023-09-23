@@ -41,9 +41,21 @@ return {
       plugins.coding.completion.sources.repo_buffer_cmp,
       name = plugins.coding.completion.sources.buffer_cmp,
     },
-    plugins.coding.completion.luasnip,
-    plugins.coding.completion.friendly_snippets,
-    plugins.coding.completion.lspkind,
+    {
+      -- Plugin: https://github.com/L3MON4D3/LuaSnip
+      plugins.coding.completion.repo_luasnip,
+      name = plugins.coding.completion.luasnip,
+    },
+    {
+      -- Plugin: https://github.com/rafamadriz/friendly-snippets
+      plugins.coding.completion.repo_friendly_snippets,
+      name = plugins.coding.completion.friendly_snippets,
+    },
+    {
+      -- Plugin: https://github.com/onsails/lspkind.nvim
+      plugins.coding.completion.repo_lspkind,
+      name = plugins.coding.completion.lspkind,
+    }
   },
   config = function()
     vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
