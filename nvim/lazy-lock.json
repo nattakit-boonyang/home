@@ -1,4 +1,5 @@
 {
+  "alpha": { "branch": "main", "commit": "234822140b265ec4ba3203e3e0be0e0bb826dff5" },
   "autopairs": { "branch": "master", "commit": "de4f7138a68d5d5063170f2182fd27faf06b0b54" },
   "autotag": { "branch": "main", "commit": "6be1192965df35f94b8ea6d323354f7dc7a557e4" },
   "buffer_cmp": { "branch": "main", "commit": "3022dbc9166796b644a841a02de8dd1cc1d311fa" },

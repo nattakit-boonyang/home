@@ -25,5 +25,11 @@ return {
         with_expanders = true,
       },
     },
+    window = {
+      mappings = {
+        ["C"] = "close_all_subnodes",
+        ["Z"] = "expand_all_nodes",
+      },
+    },
   },
 }

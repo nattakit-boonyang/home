@@ -11,7 +11,7 @@ return {
     },
     options = {
       disabled_filetypes = {
-        statusline = { "neo-tree" },
+        statusline = { "alpha", "neo-tree" },
       },
     },
   },

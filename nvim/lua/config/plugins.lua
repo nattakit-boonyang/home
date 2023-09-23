@@ -62,6 +62,7 @@ local _plugins = {
     noice = "folke/noice.nvim",
     guihua = "ray-x/guihua.lua",
     navic = "SmiteshP/nvim-navic",
+    alpha = "goolord/alpha-nvim",
   },
 }
 
