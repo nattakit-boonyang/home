@@ -6,18 +6,18 @@ return {
   cmd = "Telescope",
   keys = {
     { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Files" },
-    { "<leader>fg", "<cmd>Telescope live_grep<cr>",  desc = "Live Grep" },
-    { "<leader>fr", "<cmd>Telescope oldfiles<cr>",   desc = "Recent" },
+    { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Live Grep" },
+    { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
   },
   opts = {
     defaults = {
       mappings = {
-      n = {
-        q = function(...)
-          return require("telescope.actions").close(...)
-        end,
+        n = {
+          q = function(...)
+            return require("telescope.actions").close(...)
+          end,
+        },
       },
-    },
     },
   },
 }

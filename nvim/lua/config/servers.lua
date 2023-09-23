@@ -10,6 +10,8 @@ _G.servers = {
     "html",
     "tsserver",
     "cssls",
+    "dockerls",
+    "docker_compose_language_service",
   },
   null_ls = {
     "shfmt",
@@ -17,10 +19,6 @@ _G.servers = {
     "yamllint",
     "stylua",
     "markdownlint",
-    "gomodifytags",
-    "impl",
-    "gofumpt",
-    "goimports_reviser",
     "revive",
   },
   sources_null_ls = function()
@@ -31,10 +29,6 @@ _G.servers = {
       builtins.diagnostics.yamllint,
       builtins.formatting.stylua,
       builtins.formatting.markdownlint,
-      builtins.code_actions.gomodifytags,
-      builtins.code_actions.impl,
-      builtins.formatting.gofumpt,
-      builtins.formatting.goimports_reviser,
       builtins.diagnostics.revive,
     }
   end,

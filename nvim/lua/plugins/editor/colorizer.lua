@@ -4,5 +4,5 @@ return {
   name = plugins.editor.colorizer,
   event = "VeryLazy",
   config = true,
-  opts = { '*' },
+  opts = { "*" },
 }

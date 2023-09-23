@@ -1,8 +1,7 @@
 local _plugins = {
   lsp = {
-    lua = {
-      neodev = "folke/neodev.nvim",
-    },
+    go = { go = "ray-x/go.nvim" },
+    lua = { neodev = "folke/neodev.nvim" },
     lspconfig = "neovim/nvim-lspconfig",
     null_ls = "jose-elias-alvarez/null-ls.nvim",
     mason = "williamboman/mason.nvim",
@@ -27,6 +26,7 @@ local _plugins = {
       friendly_snippets = "rafamadriz/friendly-snippets",
     },
     treesitter = "nvim-treesitter/nvim-treesitter",
+    treesitter_textobject = "nvim-treesitter/nvim-treesitter-textobjects",
     autotag = "windwp/nvim-ts-autotag",
     autopairs = "windwp/nvim-autopairs",
   },
@@ -57,6 +57,7 @@ local _plugins = {
     dressing = "stevearc/dressing.nvim",
     notify = "rcarriga/nvim-notify",
     noice = "folke/noice.nvim",
+    guihua = "ray-x/guihua.lua",
   },
 }
 
@@ -77,6 +78,7 @@ _G.plugins = {
   lsp = (function()
     local lsp = new_table(_plugins.lsp)
     lsp.lua = new_table(_plugins.lsp.lua)
+    lsp.go = new_table(_plugins.lsp.go)
     return lsp
   end)(),
   coding = (function()

@@ -39,7 +39,9 @@ return {
       end
       local format = function()
         vim.lsp.buf.format({
-          filter = function(client) return client.name == "null-ls" end,
+          filter = function(client)
+            return client.name == "null-ls"
+          end,
           bufnr = bufnr,
         })
       end
@@ -47,11 +49,17 @@ return {
       map("formatting", "n", "<leader>cf", format, "Format")
       map("rangeFormatting", "v", "<leader>cf", format, "Format")
       map("rename", "n", "<leader>cr", vim.lsp.buf.rename, "Rename")
-      map("definition", "n", "gd", function() tc.lsp_definitions(tc_opts) end, "Goto Definition")
+      map("definition", "n", "gd", function()
+        tc.lsp_definitions(tc_opts)
+      end, "Goto Definition")
       map("references", "n", "gr", "<cmd>Telescope lsp_references<cr>", "References")
       map("declaration", "n", "gD", vim.lsp.buf.declaration, "Goto Declaration")
-      map("implementation", "n", "gI", function() tc.lsp_implementations(tc_opts) end, "Goto Implementation")
-      map("typeDefinition", "n", "gy", function() tc.lsp_type_definitions(tc_opts) end, "Goto Type Definition")
+      map("implementation", "n", "gI", function()
+        tc.lsp_implementations(tc_opts)
+      end, "Goto Implementation")
+      map("typeDefinition", "n", "gy", function()
+        tc.lsp_type_definitions(tc_opts)
+      end, "Goto Type Definition")
       map("hover", "n", "K", vim.lsp.buf.hover, "Hover")
       map("signatureHelp", "n", "gK", vim.lsp.buf.signature_help, "Signature Help")
       map("signatureHelp", "i", "<c-k>", vim.lsp.buf.signature_help, "Signature Help")

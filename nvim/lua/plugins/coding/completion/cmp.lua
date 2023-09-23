@@ -55,7 +55,7 @@ return {
       -- Plugin: https://github.com/onsails/lspkind.nvim
       plugins.coding.completion.repo_lspkind,
       name = plugins.coding.completion.lspkind,
-    }
+    },
   },
   config = function()
     vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
@@ -67,11 +67,19 @@ return {
     require("luasnip.loaders.from_vscode").lazy_load()
 
     local opts = { silent = true, noremap = true }
-    vim.keymap.set({ "i" }, "<c-k>", function() ls.expand() end, opts)
-    vim.keymap.set({ "i", "s" }, "<c-l>", function() ls.jump(1) end, opts)
-    vim.keymap.set({ "i", "s" }, "<c-h>", function() ls.jump(-1) end, opts)
+    vim.keymap.set({ "i" }, "<c-k>", function()
+      ls.expand()
+    end, opts)
+    vim.keymap.set({ "i", "s" }, "<c-l>", function()
+      ls.jump(1)
+    end, opts)
+    vim.keymap.set({ "i", "s" }, "<c-h>", function()
+      ls.jump(-1)
+    end, opts)
     vim.keymap.set({ "i", "s" }, "<c-e>", function()
-      if ls.choice_active() then ls.change_choice(1) end
+      if ls.choice_active() then
+        ls.change_choice(1)
+      end
     end, opts)
 
     cmp.setup({
@@ -111,7 +119,7 @@ return {
         format = lspkind.cmp_format({
           mode = "symbol_text",
           maxwidth = 50,
-          ellipsis_char = '...',
+          ellipsis_char = "...",
           symbol_map = icons.lspkind,
         }),
       },
@@ -122,24 +130,24 @@ return {
       },
     })
 
-    cmp.setup.cmdline('/', {
+    cmp.setup.cmdline("/", {
       mapping = cmp.mapping.preset.cmdline(),
       sources = {
-        { name = 'buffer' }
-      }
+        { name = "buffer" },
+      },
     })
 
-    cmp.setup.cmdline(':', {
+    cmp.setup.cmdline(":", {
       mapping = cmp.mapping.preset.cmdline(),
       sources = cmp.config.sources({
-        { name = 'path' },
+        { name = "path" },
         {
-          name = 'cmdline',
+          name = "cmdline",
           option = {
-            ignore_cmds = { 'Man', '!' }
-          }
-        }
-      })
+            ignore_cmds = { "Man", "!" },
+          },
+        },
+      }),
     })
   end,
 }

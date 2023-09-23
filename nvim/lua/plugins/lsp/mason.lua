@@ -6,7 +6,7 @@ return {
   opts = {
     ui = {
       icons = icons.mason_ui,
-    }
+    },
   },
   keys = {
     { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" },
