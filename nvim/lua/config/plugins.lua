@@ -48,6 +48,9 @@ local _plugins = {
     telescope = "nvim-telescope/telescope.nvim",
     which_key = "folke/which-key.nvim",
     colorizer = "norcalli/nvim-colorizer.lua",
+    todo_comments = "folke/todo-comments.nvim",
+    trouble = "folke/trouble.nvim",
+    gitsigns = "lewis6991/gitsigns.nvim",
   },
   ui = {
     web_devicons = "nvim-tree/nvim-web-devicons",
@@ -58,6 +61,7 @@ local _plugins = {
     notify = "rcarriga/nvim-notify",
     noice = "folke/noice.nvim",
     guihua = "ray-x/guihua.lua",
+    navic = "SmiteshP/nvim-navic",
   },
 }
 
@@ -65,9 +69,15 @@ local new_table = function(t)
   return setmetatable({}, {
     __index = function(_, key)
       local is_base = key:sub(1, 5) == "repo_"
-      if is_base then key = key:sub(6) end
-      if t[key] == nil then return nil end
-      if is_base then return t[key] end
+      if is_base then
+        key = key:sub(6)
+      end
+      if t[key] == nil then
+        return nil
+      end
+      if is_base then
+        return t[key]
+      end
       return key
     end,
   })

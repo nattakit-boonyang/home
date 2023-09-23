@@ -16,6 +16,8 @@ return {
       ["<leader>b"] = { name = "+Buffer" },
       ["<leader>o"] = { name = "+Dismiss" },
       ["<leader>c"] = { name = "+Code" },
+      ["<leader>s"] = { name = "+Search" },
+      ["<leader>x"] = { name = "+Trouble" },
     })
   end,
 }

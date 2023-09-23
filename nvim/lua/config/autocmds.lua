@@ -21,6 +21,7 @@ autocmd("FileType", {
     "notify",
     "qf",
     "checkhealth",
+    "Trouble",
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false

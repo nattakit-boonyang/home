@@ -7,6 +7,6 @@ return {
   config = true,
   opts = {
     check_ts = true,
-    disable_filetype = { "TelescopePrompt", "spectre_panel", "vim" },
+    disable_filetype = { "Trouble", "TelescopePrompt", "spectre_panel", "vim" },
   },
 }

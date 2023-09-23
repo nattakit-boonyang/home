@@ -5,6 +5,10 @@ return {
   event = "VeryLazy",
   config = true,
   opts = {
+    sections = {
+      lualine_c = { "filename", { "navic" } },
+      lualine_y = { "progress" },
+    },
     options = {
       disabled_filetypes = {
         statusline = { "neo-tree" },
