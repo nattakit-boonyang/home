@@ -9,6 +9,6 @@ return {
     },
   },
   keys = {
-    { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" },
+    { "<leader>cm", "<cmd>Mason<cr>", desc = " Mason" },
   },
 }

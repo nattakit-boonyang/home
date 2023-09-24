@@ -8,16 +8,16 @@ return {
     wk.setup(opts)
     wk.register({
       mode = { "n", "v" },
-      g = { name = "+Goto" },
-      gz = { name = "+Surround" },
-      ["["] = { name = "+Prev" },
-      ["]"] = { name = "+Next" },
-      ["<leader>f"] = { name = "+Find" },
-      ["<leader>b"] = { name = "+Buffer" },
-      ["<leader>o"] = { name = "+Dismiss" },
-      ["<leader>c"] = { name = "+Code" },
-      ["<leader>s"] = { name = "+Search" },
-      ["<leader>x"] = { name = "+Trouble" },
+      g = { name = "󰷕 Goto" },
+      gz = { name = "󰅪 Surround" },
+      ["["] = { name = " Prev" },
+      ["]"] = { name = " Next" },
+      ["<leader>f"] = { name = "󰮗 Find" },
+      ["<leader>b"] = { name = " Buffer" },
+      ["<leader>o"] = { name = " Dismiss" },
+      ["<leader>c"] = { name = "󰨽 Code" },
+      ["<leader>s"] = { name = " Search" },
+      ["<leader>x"] = { name = "󰍉 Trouble" },
     })
   end,
 }

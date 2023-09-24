@@ -8,11 +8,11 @@ return {
     local alpha = require("alpha")
     local dashboard = require("alpha.themes.dashboard")
     dashboard.section.buttons.val = {
-      dashboard.button("e", "  New file", "<cmd>ene <CR>"),
-      dashboard.button("SPC f f", "󰈞  Find file"),
-      dashboard.button("SPC f r", "󰊄  Recently opened files"),
-      dashboard.button("SPC f g", "󰈬  Find word"),
-      dashboard.button("q", "󰅚  Quit NVIM", ":qa<CR>"),
+      dashboard.button("e", "  New file", "<cmd>ene <cr>"),
+      dashboard.button("<leader> f f", "󰍉  Find file"),
+      dashboard.button("<leader> f r", "󰘓  Recently opened files"),
+      dashboard.button("<leader> f g", "󰮗  Find word"),
+      dashboard.button("q", "󰗼  Quit NVIM", "<cmd>qa!<cr>"),
     }
     alpha.setup(dashboard.config)
   end,

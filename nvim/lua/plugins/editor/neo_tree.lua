@@ -10,14 +10,13 @@ return {
     plugins.ui.window_picker,
   },
   keys = {
-    { "<leader>e", "<cmd>Neotree toggle<cr>", desc = "Neo Tree" },
+    { "<leader>e", "<cmd>Neotree toggle<cr>", desc = " Neo Tree" },
   },
   opts = {
     sources = {
       "filesystem",
       "buffers",
       "git_status",
-      "document_symbols",
     },
     popup_border_style = "single",
     default_component_configs = {

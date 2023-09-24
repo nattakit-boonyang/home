@@ -20,15 +20,7 @@ return {
     },
     incremental_selection = { enable = false },
     textobjects = {
-      lsp_interop = {
-        enable = true,
-        border = "none",
-        floating_preview_opts = {},
-        peek_definition_code = {
-          ["<leader>df"] = "@function.outer",
-          ["<leader>dF"] = "@class.outer",
-        },
-      },
+      lsp_interop = { enable = false },
       select = {
         enable = true,
         lookahead = true,

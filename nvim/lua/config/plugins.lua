@@ -51,6 +51,8 @@ local _plugins = {
     todo_comments = "folke/todo-comments.nvim",
     trouble = "folke/trouble.nvim",
     gitsigns = "lewis6991/gitsigns.nvim",
+    symbols_outline = "simrat39/symbols-outline.nvim",
+    spider = "chrisgrieser/nvim-spider",
   },
   ui = {
     web_devicons = "nvim-tree/nvim-web-devicons",
