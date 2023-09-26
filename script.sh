@@ -21,7 +21,7 @@ brew install firefox 1password neovim visual-studio-code gh node yarn iterm2 php
 	balenaEtcher ghidra vnc-viewer
 
 # install cli tools
-brew install zsh fish fzf mas p7zip paragon-ntfs tmux rg mysql-client whois tree openjdk jq rust exa bat fd trash
+brew install zsh fish fzf mas p7zip paragon-ntfs tmux rg mysql-client whois tree openjdk jq rust exa bat fd trash fswatch
 
 # install programming language
 brew install go # golang
