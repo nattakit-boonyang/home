@@ -14,22 +14,31 @@ _G.servers = {
     "docker_compose_language_service",
   },
   null_ls = {
-    "shfmt",
+    "checkmake",
     "hadolint",
     "yamllint",
+    "revive",
+    "shfmt",
     "stylua",
     "markdownlint",
-    "revive",
+    "gofumpt",
+    "golines",
+    "goimports_reviser",
   },
   sources_null_ls = function()
     local builtins = require("null-ls").builtins
     return {
-      builtins.formatting.shfmt,
+      builtins.diagnostics.checkmake,
       builtins.diagnostics.hadolint,
       builtins.diagnostics.yamllint,
+      builtins.diagnostics.revive,
+      builtins.formatting.shfmt,
       builtins.formatting.stylua,
       builtins.formatting.markdownlint,
-      builtins.diagnostics.revive,
+      builtins.formatting.gofumpt,
+      builtins.formatting.golines,
+      builtins.formatting.goimports_reviser,
     }
   end,
+  dap = { "delve" },
 }

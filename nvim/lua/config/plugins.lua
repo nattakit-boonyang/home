@@ -1,7 +1,13 @@
 local _plugins = {
+  dap = {
+    dap = "mfussenegger/nvim-dap",
+    dap_ui = "rcarriga/nvim-dap-ui",
+    dap_virtual_text = "theHamsta/nvim-dap-virtual-text",
+    mason_dap = "jay-babu/mason-nvim-dap.nvim",
+  },
   lsp = {
-    go = { go = "ray-x/go.nvim" },
-    lua = { neodev = "folke/neodev.nvim" },
+    neodev = "folke/neodev.nvim",
+    schema_store = "b0o/SchemaStore.nvim",
     lspconfig = "neovim/nvim-lspconfig",
     null_ls = "jose-elias-alvarez/null-ls.nvim",
     mason = "williamboman/mason.nvim",
@@ -88,12 +94,8 @@ end
 
 -- TODO: hard ways, fix later
 _G.plugins = {
-  lsp = (function()
-    local lsp = new_table(_plugins.lsp)
-    lsp.lua = new_table(_plugins.lsp.lua)
-    lsp.go = new_table(_plugins.lsp.go)
-    return lsp
-  end)(),
+  dap = new_table(_plugins.dap),
+  lsp = new_table(_plugins.lsp),
   coding = (function()
     local coding = new_table(_plugins.coding)
     coding.completion = new_table(_plugins.coding.completion)

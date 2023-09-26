@@ -7,14 +7,46 @@ return {
     plugins.lsp.mason_lspconfig,
     {
       -- Plugin: https://github.com/folke/neodev.nvim
-      plugins.lsp.lua.repo_neodev,
-      name = plugins.lsp.lua.neodev,
+      plugins.lsp.repo_neodev,
+      name = plugins.lsp.neodev,
       config = true,
+    },
+    {
+      -- Plugin: https://github.com/b0o/SchemaStore.nvim
+      plugins.lsp.repo_schema_store,
+      name = plugins.lsp.schema_store,
+      lazy = true,
     },
   },
   event = { "BufReadPre", "BufNewFile" },
   opts = {
     servers = {
+      jsonls = {
+        on_new_config = function(new_config)
+          new_config.settings.json.schemas = new_config.settings.json.schemas or {}
+          vim.list_extend(new_config.settings.json.schemas, require("schemastore").json.schemas())
+        end,
+        settings = {
+          json = {
+            format = { enable = true },
+            validate = { enable = true },
+          },
+        },
+      },
+      yamlls = {
+        on_new_config = function(new_config)
+          new_config.settings.yaml.schemas = new_config.settings.yaml.schemas or {}
+          vim.list_extend(new_config.settings.yaml.schemas, require("schemastore").yaml.schemas())
+        end,
+        settings = {
+          yaml = {
+            schemaStore = {
+              enable = true,
+              url = "",
+            },
+          },
+        },
+      },
       lua_ls = {
         settings = {
           Lua = {

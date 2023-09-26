@@ -36,11 +36,11 @@ opts.desc = " LspInfo"
 keymap.set("n", "<leader>cl", "<cmd>LspInfo<cr>", opts)
 
 opts.desc = " spider-w"
-keymap.set({ "n", "o", "x" }, "w", "<cmd>lua require('spider').motion('w')<cr>", opts)
+keymap.set({ "n", "o", "x" }, "W", "<cmd>lua require('spider').motion('w')<cr>", opts)
 opts.desc = " spider-e"
-keymap.set({ "n", "o", "x" }, "e", "<cmd>lua require('spider').motion('e')<cr>", opts)
+keymap.set({ "n", "o", "x" }, "E", "<cmd>lua require('spider').motion('e')<cr>", opts)
 opts.desc = " spider-b"
-keymap.set({ "n", "o", "x" }, "b", "<cmd>lua require('spider').motion('b')<cr>", opts)
+keymap.set({ "n", "o", "x" }, "B", "<cmd>lua require('spider').motion('b')<cr>", opts)
 
 opts.desc = " Split Window Verically"
 keymap.set("n", "<c-w>\\", "<c-w>v", opts)
