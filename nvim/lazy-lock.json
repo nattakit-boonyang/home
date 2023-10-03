@@ -45,7 +45,7 @@
   "noice": { "branch": "main", "commit": "8d775bc8ac1a594a2ecdb80e092330afd916e4c3" },
   "notify": { "branch": "master", "commit": "e4a2022f4fec2d5ebc79afa612f96d8b11c627b3" },
   "nui": { "branch": "main", "commit": "c8de23342caf8d50b15d6b28368d36a56a69d76f" },
-  "null_ls": { "branch": "main", "commit": "0010ea927ab7c09ef0ce9bf28c2b573fc302f5a7" },
+  "null_ls": { "branch": "main", "commit": "f39f627bbdfb33cc4ae4a95b4708e7dba7b9aafc" },
   "path_cmp": { "branch": "main", "commit": "91ff86cd9c29299a64f968ebb45846c485725f23" },
   "plenary": { "branch": "master", "commit": "9ce85b0f7dcfe5358c0be937ad23e456907d410b" },
   "rainbow_delimiters": { "branch": "master", "commit": "652345bd1aa333f60c9cbb1259f77155786e5514" },

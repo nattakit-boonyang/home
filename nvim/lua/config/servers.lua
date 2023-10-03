@@ -16,6 +16,8 @@ _G.servers = {
     "docker_compose_language_service",
   },
   null_ls = {
+    "fish_indent",
+    "fish",
     "checkmake",
     "hadolint",
     "yamllint",
@@ -34,6 +36,7 @@ _G.servers = {
   sources_null_ls = function()
     local builtins = require("null-ls").builtins
     return {
+      builtins.diagnostics.fish,
       builtins.diagnostics.checkmake,
       builtins.diagnostics.hadolint,
       builtins.diagnostics.yamllint,
@@ -41,6 +44,7 @@ _G.servers = {
       builtins.diagnostics.buf,
       builtins.code_actions.gomodifytags,
       builtins.code_actions.impl,
+      builtins.formatting.fish_indent,
       builtins.formatting.shfmt,
       builtins.formatting.stylua,
       builtins.formatting.markdownlint,

@@ -5,6 +5,7 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   config = true,
   opts = {
+    signs = icons.gitsigns,
     current_line_blame = true,
     current_line_blame_formatter = "<author>, <author_time:%c> - <summary>",
     signcolumn = true,

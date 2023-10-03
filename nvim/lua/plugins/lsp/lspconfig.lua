@@ -20,6 +20,9 @@ return {
   },
   event = { "BufReadPre", "BufNewFile" },
   opts = {
+    diagnostics = { underline = false },
+    inlay_hints = { enabled = true },
+    autoformat = true,
     servers = {
       jsonls = {
         on_new_config = function(new_config)

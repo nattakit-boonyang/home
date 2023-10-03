@@ -1,4 +1,4 @@
--- Plugin: https://github.com/jose-elias-alvarez/null-ls.nvim
+-- Plugin: https://github.com/nvimtools/none-ls.nvim
 return {
   plugins.lsp.repo_null_ls,
   name = plugins.lsp.null_ls,
@@ -6,9 +6,7 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   opts = function()
     return {
-      diagnostic_config = {
-        underline = false,
-      },
+      diagnostic_config = { underline = false },
       sources = servers.sources_null_ls(),
     }
   end,
