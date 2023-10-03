@@ -1,7 +1,7 @@
 {
 "Profiles": [
 {
-  "Custom Directory" : "Recycle",
+  "Set Local Environment Vars" : true,
   "Working Directory" : "\/Users\/kk",
   "Prompt Before Closing 2" : false,
   "Selected Text Color" : {
@@ -28,7 +28,7 @@
     "Alpha Component" : 1,
     "Green Component" : 0.83921568627450982
   },
-  "Right Option Key Sends" : 1,
+  "Right Option Key Sends" : 2,
   "Character Encoding" : 4,
   "Selection Color" : {
     "Red Component" : 0.34509803921568627,
@@ -429,7 +429,7 @@
     "Alpha Component" : 1,
     "Green Component" : 0.70588235294117652
   },
-  "Window Type" : 0,
+  "Window Type" : 12,
   "Allow Title Reporting" : false,
   "Use Bright Bold" : false,
   "Has Hotkey" : false,
@@ -457,7 +457,7 @@
   },
   "Name" : "Vim",
   "Guid" : "36CBC9CA-F081-481A-ACE2-E87ADDE83204",
-  "Blinking Cursor" : true,
+  "Blinking Cursor" : false,
   "Ansi 8 Color" : {
     "Red Component" : 0.34509803921568627,
     "Color Space" : "sRGB",
@@ -502,9 +502,9 @@
     "Green Component" : 0.76078431372549016
   },
   "Command" : "",
-  "Terminal Type" : "xterm-256color",
+  "Terminal Type" : "screen-256color",
   "Horizontal Spacing" : 1,
-  "Option Key Sends" : 1,
+  "Option Key Sends" : 2,
   "Only The Default BG Color Uses Transparency" : true,
   "Blink Allowed" : false,
   "Minimum Contrast" : 0,
@@ -547,7 +547,7 @@
   },
   "Columns" : 132,
   "Visual Bell" : true,
-  "ASCII Ligatures" : false,
+  "Custom Directory" : "Recycle",
   "Ansi 5 Color" : {
     "Red Component" : 0.96078431372549022,
     "Color Space" : "sRGB",
@@ -555,10 +555,10 @@
     "Alpha Component" : 1,
     "Green Component" : 0.76078431372549016
   },
-  "Set Local Environment Vars" : true
+  "ASCII Ligatures" : false
 },
 {
-  "Custom Directory" : "Recycle",
+  "Set Local Environment Vars" : true,
   "Working Directory" : "\/Users\/kk",
   "Prompt Before Closing 2" : false,
   "Selected Text Color" : {
@@ -986,7 +986,7 @@
     "Alpha Component" : 1,
     "Green Component" : 0.40000000000000002
   },
-  "Window Type" : 0,
+  "Window Type" : 12,
   "Allow Title Reporting" : false,
   "Use Bright Bold" : false,
   "Has Hotkey" : false,
@@ -1014,7 +1014,7 @@
   },
   "Name" : "Vim Light",
   "Guid" : "19309829-1288-4419-9131-C80786EB619D",
-  "Blinking Cursor" : true,
+  "Blinking Cursor" : false,
   "Ansi 8 Color" : {
     "Red Component" : 0.42352941176470588,
     "Color Space" : "sRGB",
@@ -1038,7 +1038,7 @@
     "Green Component" : 0.14910027384757996
   },
   "Ambiguous Double Width" : false,
-  "Blur Radius" : 20.6329221684882,
+  "Blur Radius" : 0.10000000000000001,
   "Cursor Type" : 2,
   "Ansi 0 Color" : {
     "Red Component" : 0.36078431372549019,
@@ -1059,10 +1059,10 @@
     "Green Component" : 0.69019607843137254
   },
   "Command" : "",
-  "Terminal Type" : "xterm-256color",
+  "Terminal Type" : "screen-256color",
   "Horizontal Spacing" : 1,
   "Option Key Sends" : 1,
-  "Only The Default BG Color Uses Transparency" : false,
+  "Only The Default BG Color Uses Transparency" : true,
   "Blink Allowed" : false,
   "Minimum Contrast" : 0,
   "Ansi 15 Color" : {
@@ -1081,7 +1081,7 @@
     "Alpha Component" : 1,
     "Green Component" : 0.5725490196078431
   },
-  "Transparency" : 0,
+  "Transparency" : 0.050000000000000003,
   "Initial Text" : "",
   "Background Color" : {
     "Red Component" : 0.93725490196078431,
@@ -1091,7 +1091,7 @@
     "Green Component" : 0.94509803921568625
   },
   "Screen" : -1,
-  "Initial Use Transparency" : false,
+  "Initial Use Transparency" : true,
   "Bound Hosts" : [
 
   ],
@@ -1105,7 +1105,7 @@
   },
   "Columns" : 132,
   "Visual Bell" : true,
-  "ASCII Ligatures" : false,
+  "Custom Directory" : "Recycle",
   "Ansi 5 Color" : {
     "Red Component" : 0.91764705882352937,
     "Color Space" : "sRGB",
@@ -1113,7 +1113,7 @@
     "Alpha Component" : 1,
     "Green Component" : 0.46274509803921571
   },
-  "Set Local Environment Vars" : true
+  "ASCII Ligatures" : false
 }
 ]
 }
