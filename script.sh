@@ -25,6 +25,11 @@ brew install zsh fish fzf mas p7zip paragon-ntfs tmux rg mysql-client whois tree
 
 # install programming language
 brew install go # golang
+brew install nao1215/tap/gup
+
+# qmk
+brew install qmk/qmk/qmk
+brew install armmbed/formulae/arm-none-eabi-gcc # fix arm-none-eabi-gcc not found
 
 # install application on apple store
 mas install 497799835 \ # Xcode
@@ -36,7 +41,8 @@ mas install 497799835 \ # Xcode
 539883307 \ # LINE
 747648890 \ # Telegram
 1444383602 \ # Goodnotes 6
-409183694 # Keynote
+409183694 \ # Keynote
+1278508951 # Trello
 
 # install fonts
 brew install font-fira-code font-fira-code-nerd-font # fira-code
