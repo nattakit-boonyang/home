@@ -22,6 +22,7 @@ autocmd("FileType", {
     "qf",
     "checkhealth",
     "Trouble",
+    "toggleterm",
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false

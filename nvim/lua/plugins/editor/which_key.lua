@@ -19,6 +19,7 @@ return {
       ["<leader>s"] = { name = " Search" },
       ["<leader>x"] = { name = "󰍉 Trouble" },
       ["<leader>d"] = { name = " Dap" },
+      ["<leader>r"] = { name = "󰦛 Session" },
     })
   end,
 }

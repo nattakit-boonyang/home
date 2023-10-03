@@ -4,8 +4,11 @@ local _plugins = {
     dap_ui = "rcarriga/nvim-dap-ui",
     dap_virtual_text = "theHamsta/nvim-dap-virtual-text",
     mason_dap = "jay-babu/mason-nvim-dap.nvim",
+    dap_go = "leoluz/nvim-dap-go",
   },
   lsp = {
+    go = "ray-x/go.nvim",
+    markdown_preview = "iamcco/markdown-preview.nvim",
     neodev = "folke/neodev.nvim",
     schema_store = "b0o/SchemaStore.nvim",
     lspconfig = "neovim/nvim-lspconfig",
@@ -59,6 +62,10 @@ local _plugins = {
     gitsigns = "lewis6991/gitsigns.nvim",
     symbols_outline = "simrat39/symbols-outline.nvim",
     spider = "chrisgrieser/nvim-spider",
+    auto_session = "rmagatti/auto-session",
+    rainbow_delimiters = "HiPhish/rainbow-delimiters.nvim",
+    toggle_term = "akinsho/toggleterm.nvim",
+    hydra = "anuvyklack/hydra.nvim",
   },
   ui = {
     web_devicons = "nvim-tree/nvim-web-devicons",
@@ -68,9 +75,9 @@ local _plugins = {
     dressing = "stevearc/dressing.nvim",
     notify = "rcarriga/nvim-notify",
     noice = "folke/noice.nvim",
-    guihua = "ray-x/guihua.lua",
     navic = "SmiteshP/nvim-navic",
     alpha = "goolord/alpha-nvim",
+    guihua = "ray-x/guihua.lua",
   },
 }
 

@@ -17,7 +17,6 @@ require("lazy").setup({
     { import = "plugins.dap" },
     { import = "plugins.lsp" },
     { import = "plugins.coding" },
-    { import = "plugins.coding.completion" },
     { import = "plugins.editor" },
     { import = "plugins.editor.mini" },
     { import = "plugins.ui" },

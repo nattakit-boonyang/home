@@ -1,5 +1,7 @@
 _G.servers = {
   lsp = {
+    "clangd",
+    "bufls",
     "bashls",
     "jsonls",
     "lua_ls",
@@ -22,8 +24,12 @@ _G.servers = {
     "stylua",
     "markdownlint",
     "gofumpt",
+    "goimports",
+    "buf",
     "golines",
-    "goimports_reviser",
+    "gomodifytags",
+    "impl",
+    "prettier",
   },
   sources_null_ls = function()
     local builtins = require("null-ls").builtins
@@ -32,12 +38,22 @@ _G.servers = {
       builtins.diagnostics.hadolint,
       builtins.diagnostics.yamllint,
       builtins.diagnostics.revive,
+      builtins.diagnostics.buf,
+      builtins.code_actions.gomodifytags,
+      builtins.code_actions.impl,
       builtins.formatting.shfmt,
       builtins.formatting.stylua,
       builtins.formatting.markdownlint,
       builtins.formatting.gofumpt,
-      builtins.formatting.golines,
-      builtins.formatting.goimports_reviser,
+      builtins.formatting.goimports,
+      builtins.formatting.buf,
+      builtins.formatting.prettier,
+      builtins.formatting.golines.with({
+        extra_args = {
+          "--max-len=180",
+          "--base-formatter=gofumpt",
+        },
+      }),
     }
   end,
   dap = { "delve" },

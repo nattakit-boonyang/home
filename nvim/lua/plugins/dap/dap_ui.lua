@@ -6,7 +6,7 @@ return {
   config = function()
     local dap = require("dap")
     local dapui = require("dapui")
-    dap.setup({})
+    dapui.setup({})
     dap.listeners.after.event_initialized["dapui_config"] = function()
       dapui.open()
     end
@@ -19,7 +19,7 @@ return {
   end,
   -- stylua: ignore
   keys = {
-    { "<leader>du", function() require("dapui").toggle({ }) end, desc = "Dap UI" },
-    { "<leader>de", function() require("dapui").eval() end, desc = "Eval", mode = {"n", "v"} },
+    { "<leader>du", function() require("dapui").toggle({}) end, desc = "Dap UI" },
+    { "<leader>de", function() require("dapui").eval() end,     desc = "Eval",  mode = { "n", "v" } },
   },
 }

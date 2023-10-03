@@ -11,6 +11,9 @@ pcall(keymap.del, "n", "<c-j")
 pcall(keymap.del, "n", "<c-k>")
 pcall(keymap.del, "n", "<c-l>")
 
+keymap.set({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+keymap.set({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+
 opts.desc = "Delete single character"
 keymap.set("n", "x", '"_x', opts)
 
@@ -25,9 +28,8 @@ keymap.set("n", "<leader>qq", "<cmd>qa!<cr>", opts)
 opts.desc = " New file"
 keymap.set("n", "<leader>n", "<cmd>ene <cr>", opts)
 opts.desc = " Save file"
-keymap.set({ "i", "x", "n", "s" }, "<c-s>", function()
-  vim.cmd("w")
-end, opts)
+-- stylua: ignore
+keymap.set({ "i", "x", "n", "s" }, "<c-s>", function() vim.cmd("w") end, opts)
 
 opts.desc = " Lazy"
 keymap.set("n", "<leader>l", "<cmd>Lazy<cr>", opts)

@@ -40,16 +40,14 @@ return {
         end,
         settings = {
           yaml = {
-            schemaStore = {
-              enable = true,
-              url = "",
-            },
+            schemaStore = { enable = true },
           },
         },
       },
       lua_ls = {
         settings = {
           Lua = {
+            hint = { enable = true },
             completion = {
               callSnippet = "Replace",
             },
@@ -60,7 +58,8 @@ return {
   },
   config = function(_, opts)
     local config = require("lspconfig")
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    local cmp_lsp = require("cmp_nvim_lsp")
+    local capabilities = cmp_lsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
     local on_attach = function(_, bufnr)
       local buf_opts = { silent = true, noremap = true, buffer = bufnr }
       local tc = require("telescope.builtin")
@@ -70,12 +69,7 @@ return {
         util.map(buf_opts, ...)
       end
       local format = function()
-        vim.lsp.buf.format({
-          filter = function(client)
-            return client.name == "null-ls"
-          end,
-          bufnr = bufnr,
-        })
+        vim.lsp.buf.format({ aysnc = false, bufnr = bufnr })
       end
 
       map("formatting", "n", "<leader>cf", format, "Format")
@@ -112,6 +106,9 @@ return {
       if util.has(bufnr, "inlayHint") then
         local inlay_hint = vim.lsp.buf.inlay_hint or vim.lsp.inlay_hint
         inlay_hint(bufnr, true)
+
+        -- stylua: ignore
+        map("inlayHint", "n", "<leader>ci", function() inlay_hint(bufnr, nil) end, "Inlay Hint")
       end
     end
 
@@ -119,6 +116,10 @@ return {
       local settings = {}
       if opts.servers[server] then
         settings = opts.servers[server].settings or {}
+
+        -- override configure when load plugins
+        local on_new_config = opts.servers[server].on_new_config or function(_) end
+        on_new_config(opts.servers[server])
       end
 
       config[server].setup({

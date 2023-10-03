@@ -14,7 +14,7 @@ opt.autowrite = true
 opt.backup = false
 opt.clipboard = "unnamedplus"
 opt.completeopt = "menu,menuone,noselect"
-opt.conceallevel = 3
+opt.conceallevel = 0
 opt.confirm = true
 opt.cursorline = true
 opt.encoding = "utf-8"
@@ -70,4 +70,4 @@ opt.visualbell = true
 opt.wildmode = "longest:full,full"
 opt.winminwidth = 5
 opt.wrap = false
-
+opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"

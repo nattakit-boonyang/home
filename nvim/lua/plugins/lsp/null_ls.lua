@@ -6,6 +6,9 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   opts = function()
     return {
+      diagnostic_config = {
+        underline = false,
+      },
       sources = servers.sources_null_ls(),
     }
   end,
