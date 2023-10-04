@@ -2,6 +2,7 @@
 return {
   plugins.ui.repo_noice,
   name = plugins.ui.noice,
+  enabled = false,
   event = "VeryLazy",
   dependencies = {
     plugins.ui.nui,

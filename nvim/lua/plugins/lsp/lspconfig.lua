@@ -21,7 +21,6 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   opts = {
     diagnostics = { underline = false },
-    inlay_hints = { enabled = true },
     autoformat = true,
     servers = {
       jsonls = {
