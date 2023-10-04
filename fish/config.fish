@@ -16,8 +16,6 @@ set PATH $PATH /usr/local/opt/whois/bin
 set PATH $PATH /usr/local/sbin
 set PATH $PATH /usr/local/bin
 set PATH $PATH $HOME/.local/bin
-set PATH $PATH $HOME/.nvim-nightly/bin
-set MANPATH $HOME/.nvim-nightly/share/main
 
 # custom pure themes
 set --universal pure_symbol_prompt ""
