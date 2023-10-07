@@ -1,10 +1,10 @@
 -- Plugin: https://github.com/catppuccin/nvim
--- TODO:  https://github.com/catppuccin/nvim#integrations
 return {
   plugins.editor.repo_catppuccin,
   name = plugins.editor.catppuccin,
   priority = 1000,
   opts = {
+    transparent_background = true,
     integrations = {
       alpha = true,
       cmp = true,

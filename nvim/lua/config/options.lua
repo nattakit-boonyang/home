@@ -24,6 +24,7 @@ opt.fileencoding = "utf-8"
 opt.foldenable = true
 opt.foldexpr = "nvim_treesitter#foldexpr()"
 opt.foldlevel = 99
+opt.foldlevelstart = 99
 opt.foldmethod = "expr"
 opt.formatoptions = "jcroqlnt"
 opt.grepformat = "%f:%l:%c:%m"

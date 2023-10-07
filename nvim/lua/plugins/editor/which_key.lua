@@ -20,6 +20,8 @@ return {
       ["<leader>x"] = { name = "󰍉 Trouble" },
       ["<leader>d"] = { name = " Dap" },
       ["<leader>r"] = { name = "󰦛 Session" },
+      ["<leader>g"] = { name = " Git" },
+      ["<leader>q"] = { name = "󰗼 Exit" },
     })
   end,
 }

@@ -3,6 +3,9 @@ return {
   plugins.ui.repo_notify,
   name = plugins.ui.notify,
   config = true,
+  opts = {
+    background_colour = "#000000",
+  },
   keys = {
     {
       "<leader>on",

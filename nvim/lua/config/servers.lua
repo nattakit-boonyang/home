@@ -1,6 +1,5 @@
 _G.servers = {
   lsp = {
-    "clangd",
     "bufls",
     "bashls",
     "jsonls",

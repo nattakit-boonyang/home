@@ -8,9 +8,9 @@ return {
     float_opts = { border = "curved" },
   },
   keys = {
-    { "<leader>t", "<cmd>TermSelect<cr>", desc = " Toggle Term" },
+    { "<leader>t", "<cmd>ToggleTerm<cr>", desc = " Toggle Term" },
     {
-      "<leader>g",
+      "<leader>gl",
       function()
         local term = require("toggleterm.terminal").Terminal
         local lazygit = term:new({ cmd = "lazygit", hidden = true })

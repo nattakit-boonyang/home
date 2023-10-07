@@ -9,8 +9,8 @@ return {
   config = true,
   opts = {
     options = {
-      separator_style = "slope",
-      numbers = "both",
+      separator_style = { "", "" },
+      numbers = "buffer_id",
       offsets = {
         {
           filetype = "neo-tree",
