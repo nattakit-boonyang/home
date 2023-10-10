@@ -48,3 +48,8 @@ opts.desc = " Split Window Verically"
 keymap.set("n", "<c-w>\\", "<c-w>v", opts)
 opts.desc = " Split Window"
 keymap.set("n", "<c-w>-", "<c-w>s", opts)
+
+opts.desc = "Previous Buffer"
+keymap.set("n", "[b", "<cmd>bprev<cr>", opts)
+opts.desc = "Next Buffer"
+keymap.set("n", "]b", "<cmd>bnext<cr>", opts)

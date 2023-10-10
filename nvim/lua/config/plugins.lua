@@ -50,7 +50,6 @@ local _plugins = {
     catppuccin = "catppuccin/nvim",
     neo_tree = "nvim-neo-tree/neo-tree.nvim",
     lualine = "nvim-lualine/lualine.nvim",
-    bufferline = "akinsho/bufferline.nvim",
     illuminate = "RRethy/vim-illuminate",
     tmux_navigator = "aserowy/tmux.nvim",
     flash = "folke/flash.nvim",
@@ -65,7 +64,6 @@ local _plugins = {
     auto_session = "rmagatti/auto-session",
     rainbow_delimiters = "HiPhish/rainbow-delimiters.nvim",
     toggle_term = "akinsho/toggleterm.nvim",
-    ufo = "kevinhwang91/nvim-ufo",
   },
   ui = {
     web_devicons = "nvim-tree/nvim-web-devicons",

@@ -4,11 +4,6 @@ return {
   name = plugins.editor.telescope,
   dependencies = plugins.ui.plenary,
   cmd = "Telescope",
-  keys = {
-    { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Files" },
-    { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Live Grep" },
-    { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
-  },
   opts = {
     defaults = {
       mappings = {
@@ -19,5 +14,11 @@ return {
         },
       },
     },
+  },
+  keys = {
+    { "gb", "<cmd>Telescope buffers<cr>", desc = " Buffers" },
+    { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = " Files" },
+    { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = " Live Grep" },
+    { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = " Recent" },
   },
 }

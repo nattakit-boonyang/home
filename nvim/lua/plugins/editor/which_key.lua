@@ -22,6 +22,7 @@ return {
       ["<leader>r"] = { name = "󰦛 Session" },
       ["<leader>g"] = { name = " Git" },
       ["<leader>q"] = { name = "󰗼 Exit" },
+      ["<leader>k"] = { name = " Gopher" },
     })
   end,
 }
