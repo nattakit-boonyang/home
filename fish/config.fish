@@ -30,17 +30,15 @@ set -Ux fish_tmux_autostart false
 set -Ux fish_tmux_autostart_once false
 set -Ux fish_tmux_autoconnect false
 
+# custom done notification
+set -U __done_exclude ''
+
 # custom bindings for fzf
 fzf_configure_bindings --history=\cr --directory=\cf --variables= --processes= --git_log= --git_status=
 
 # alias ls/exa
 alias ls="exa --color=always"
 alias l="ls"
-
-# alias tmux
-alias td="tmux detach"
-alias ta="tmux attach"
-alias tsd="tmux new-session -d -t"
 
 # alias shell
 alias fish_reload="source $HOME/.config/fish/config.fish"
@@ -51,6 +49,11 @@ alias e="exit"
 alias c="clear"
 alias zz="zellij"
 
+# abbreviation tmux
+abbr --add td "tmux detach"
+abbr --add ta "tmux attach"
+abbr --add tsd "tmux new-session -d -t"
+
 # delete git abbr
 abbr --erase gup
 
@@ -59,8 +62,10 @@ function new_abbr
   abbr --add $argv[1] --position anywhere $argv[2]
 end
 
-new_abbr gozerolog "github.com/rs/zerolog"
-new_abbr gotestify "github.com/stretchr/testify"
-new_abbr gogin "github.com/gin-gonic/gin"
-new_abbr goecho "github.com/labstack/echo/v4"
-new_abbr gofiber "github.com/gofiber/fiber/v2"
+new_abbr go_zerolog "github.com/rs/zerolog"
+new_abbr go_testify "github.com/stretchr/testify"
+new_abbr go_gin "github.com/gin-gonic/gin"
+new_abbr go_echo "github.com/labstack/echo/v4"
+new_abbr go_fiber "github.com/gofiber/fiber/v2"
+new_abbr go_fasthttp "github.com/valyala/fasthttp"
+
