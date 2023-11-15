@@ -17,7 +17,7 @@ brew tap homebrew/cask-fonts
 
 # install applications
 brew install firefox 1password neovim visual-studio-code gh node yarn iterm2 php python3 postman \
-	dbeaver-community xquartz tor-browser vmware-fusion lazygit docker colima kubectl raspberry-pi-image \
+	dbeaver-community xquartz tor-browser vmware-fusion lazygit docker docker-compose colima kubectl raspberry-pi-image \
 	balenaEtcher ghidra vnc-viewer
 
 # install cli tools
