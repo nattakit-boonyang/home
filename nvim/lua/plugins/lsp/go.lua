@@ -21,6 +21,7 @@ return {
     run_in_floaterm = true,
     floaterm = {
       posititon = "center",
+      width = 0.95,
     },
     diagnostic = {
       underline = false,

@@ -67,15 +67,10 @@ return {
     require("luasnip.loaders.from_vscode").lazy_load()
 
     local opts = { silent = true, noremap = true }
-    vim.keymap.set({ "i" }, "<c-k>", function()
-      ls.expand()
-    end, opts)
-    vim.keymap.set({ "i", "s" }, "<c-l>", function()
-      ls.jump(1)
-    end, opts)
-    vim.keymap.set({ "i", "s" }, "<c-h>", function()
-      ls.jump(-1)
-    end, opts)
+    -- stylua: ignore start
+    vim.keymap.set({ "i" }, "<c-k>", function() ls.expand() end, opts)
+    vim.keymap.set({ "i", "s" }, "<c-l>", function() ls.jump(1) end, opts)
+    vim.keymap.set({ "i", "s" }, "<c-h>", function() ls.jump(-1) end, opts)
     vim.keymap.set({ "i", "s" }, "<c-e>", function()
       if ls.choice_active() then
         ls.change_choice(1)
@@ -98,10 +93,10 @@ return {
         ["<c-f>"] = cmp.mapping.scroll_docs(4),
         ["<c-space>"] = cmp.mapping.complete(),
         ["<c-e>"] = cmp.mapping.abort(),
-        ["<cr>"] = cmp.mapping.confirm({ select = true }),
+        ["<cr>"] = cmp.mapping.confirm({ select = false }),
         ["<s-cr>"] = cmp.mapping.confirm({
           behavior = cmp.ConfirmBehavior.Replace,
-          select = true,
+          select = false,
         }),
       }),
       completion = {
