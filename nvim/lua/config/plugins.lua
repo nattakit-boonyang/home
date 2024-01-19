@@ -64,6 +64,7 @@ local _plugins = {
     auto_session = "rmagatti/auto-session",
     rainbow_delimiters = "HiPhish/rainbow-delimiters.nvim",
     toggle_term = "akinsho/toggleterm.nvim",
+    spectre = "nvim-pack/nvim-spectre",
   },
   ui = {
     web_devicons = "nvim-tree/nvim-web-devicons",

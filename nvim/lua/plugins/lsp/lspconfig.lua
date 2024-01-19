@@ -71,7 +71,7 @@ return {
         util.map(buf_opts, ...)
       end
       local format = function()
-        vim.lsp.buf.format({ aysnc = false, bufnr = bufnr })
+        vim.lsp.buf.format({ timeout_ms = 10000, aysnc = false, bufnr = bufnr })
       end
 
       map("formatting", "n", "<leader>cf", format, "Format")
