@@ -48,8 +48,6 @@ alias vim="nvim"
 alias v="nvim"
 alias e="exit"
 alias c="clear"
-alias zz="zellij"
-
 
 # abbreviation last history
 function last_history_item
