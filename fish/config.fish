@@ -16,7 +16,8 @@ set PATH $PATH /usr/local/opt/whois/bin
 set PATH $PATH /usr/local/sbin
 set PATH $PATH /usr/local/bin
 set PATH $PATH $HOME/.local/bin
-set PATH $PATH $HOME/.nvim-macos/bin
+set PATH $PATH $HOME/.bin
+set PATH $HOME/.nvim-macos/bin $PATH
 set MANPATH $HOME/.nvim-macos/share/man
 
 # custom pure themes
@@ -49,6 +50,13 @@ alias e="exit"
 alias c="clear"
 alias zz="zellij"
 
+
+# abbreviation last history
+function last_history_item
+    echo $history[1]
+end
+abbr --add !! --position anywhere --function last_history_item
+
 # abbreviation tmux
 abbr --add td "tmux detach"
 abbr --add ta "tmux attach"
@@ -68,4 +76,5 @@ new_abbr go_gin "github.com/gin-gonic/gin"
 new_abbr go_echo "github.com/labstack/echo/v4"
 new_abbr go_fiber "github.com/gofiber/fiber/v2"
 new_abbr go_fasthttp "github.com/valyala/fasthttp"
+new_abbr go_kafka_v2 "github.com/confluentinc/confluent-kafka-go/v2"
 
