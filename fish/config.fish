@@ -17,6 +17,7 @@ set PATH $PATH /usr/local/sbin
 set PATH $PATH /usr/local/bin
 set PATH $PATH $HOME/.local/bin
 set PATH $PATH $HOME/.bin
+set PATH $PATH $HOME/.spicetify
 set PATH $HOME/.nvim-macos/bin $PATH
 set MANPATH $HOME/.nvim-macos/share/man
 
@@ -75,4 +76,3 @@ new_abbr go_echo "github.com/labstack/echo/v4"
 new_abbr go_fiber "github.com/gofiber/fiber/v2"
 new_abbr go_fasthttp "github.com/valyala/fasthttp"
 new_abbr go_kafka_v2 "github.com/confluentinc/confluent-kafka-go/v2"
-
