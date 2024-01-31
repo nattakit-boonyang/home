@@ -18,8 +18,6 @@ set PATH $PATH /usr/local/bin
 set PATH $PATH $HOME/.local/bin
 set PATH $PATH $HOME/.bin
 set PATH $PATH $HOME/.spicetify
-set PATH $HOME/.nvim-macos/bin $PATH
-set MANPATH $HOME/.nvim-macos/share/man
 
 # custom pure themes
 set --universal pure_symbol_prompt ""
@@ -44,7 +42,6 @@ alias l="ls"
 
 # alias shell
 alias fish_reload="source $HOME/.config/fish/config.fish"
-alias jl="jobs -l"
 alias vim="nvim"
 alias v="nvim"
 alias e="exit"
@@ -69,10 +66,19 @@ function new_abbr
   abbr --add $argv[1] --position anywhere $argv[2]
 end
 
-new_abbr go_zerolog "github.com/rs/zerolog"
-new_abbr go_testify "github.com/stretchr/testify"
-new_abbr go_gin "github.com/gin-gonic/gin"
-new_abbr go_echo "github.com/labstack/echo/v4"
-new_abbr go_fiber "github.com/gofiber/fiber/v2"
-new_abbr go_fasthttp "github.com/valyala/fasthttp"
-new_abbr go_kafka_v2 "github.com/confluentinc/confluent-kafka-go/v2"
+new_abbr go_zerolog   "github.com/rs/zerolog"
+new_abbr go_testify   "github.com/stretchr/testify"
+new_abbr go_gin       "github.com/gin-gonic/gin"
+new_abbr go_echo      "github.com/labstack/echo/v4"
+new_abbr go_fiber     "github.com/gofiber/fiber/v2"
+new_abbr go_fasthttp  "github.com/valyala/fasthttp"
+new_abbr go_kafka_v2  "github.com/confluentinc/confluent-kafka-go/v2"
+new_abbr go_dotenv    "github.com/joho/godotenv"
+new_abbr go_envconfig "github.com/kelseyhightower/envconfig"
+new_abbr go_mongo     "go.mongodb.org/mongo-driver"
+
+new_abbr "..." "../../.."
+new_abbr "...." "../../../.."
+new_abbr "....." "../../../../.."
+new_abbr "......" "../../../../../.."
+new_abbr "......." "../../../../../../.."
