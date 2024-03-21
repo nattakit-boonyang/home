@@ -77,6 +77,7 @@ local _plugins = {
     navic = "SmiteshP/nvim-navic",
     alpha = "goolord/alpha-nvim",
     guihua = "ray-x/guihua.lua",
+    nio = "nvim-neotest/nvim-nio",
   },
 }
 
