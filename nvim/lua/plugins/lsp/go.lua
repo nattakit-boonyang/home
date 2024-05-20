@@ -35,7 +35,7 @@ return {
     opt.desc = " GoTestFunc"
     vim.keymap.set("n", "<leader>kf", "<cmd>GoTestFunc<cr>", opt)
     opt.desc = " GoTestFile"
-    vim.keymap.set("n", "<leader>kF", "<cmd>GoTestFunc<cr>", opt)
+    vim.keymap.set("n", "<leader>kF", "<cmd>GoTestFile<cr>", opt)
     opt.desc = " GoFillStruct"
     vim.keymap.set("n", "<leader>ks", "<cmd>GoFillStruct<cr>", opt)
     opt.desc = " GoRun"

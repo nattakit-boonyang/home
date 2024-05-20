@@ -8,6 +8,7 @@ set -Ux EDITOR nvim
 set -U fish_greeting ""
 
 # append PATH
+set PATH $HOME/.bin $PATH
 set PATH $PATH /usr/local/bin
 set PATH $PATH $HOME/go/bin 
 set PATH $PATH /usr/local/opt/openjdk/bin
@@ -16,7 +17,6 @@ set PATH $PATH /usr/local/opt/whois/bin
 set PATH $PATH /usr/local/sbin
 set PATH $PATH /usr/local/bin
 set PATH $PATH $HOME/.local/bin
-set PATH $PATH $HOME/.bin
 set PATH $PATH $HOME/.spicetify
 
 # custom pure themes
@@ -44,8 +44,10 @@ alias l="ls"
 alias fish_reload="source $HOME/.config/fish/config.fish"
 alias vim="nvim"
 alias v="nvim"
+alias vv="nvim ."
 alias e="exit"
 alias c="clear"
+alias ff="open -a Firefox -n --args -p"
 
 # abbreviation last history
 function last_history_item
@@ -57,6 +59,12 @@ abbr --add !! --position anywhere --function last_history_item
 abbr --add td "tmux detach"
 abbr --add ta "tmux attach"
 abbr --add tsd "tmux new-session -d -t"
+
+# abbreviation docker
+abbr --add dcu "docker compose up -d"
+abbr --add dcd "docker compose down"
+abbr --add dcp "docker compose ps -a"
+abbr --add dcl "docker compose logs -f"
 
 # delete git abbr
 abbr --erase gup
@@ -75,10 +83,12 @@ new_abbr go_fasthttp  "github.com/valyala/fasthttp"
 new_abbr go_kafka_v2  "github.com/confluentinc/confluent-kafka-go/v2"
 new_abbr go_dotenv    "github.com/joho/godotenv"
 new_abbr go_envconfig "github.com/kelseyhightower/envconfig"
-new_abbr go_mongo     "go.mongodb.org/mongo-driver"
+new_abbr go_mongo     "go.mongodb.org/mongo-driver/mongo"
+new_abbr go_resty     "github.com/go-resty/resty/v2"
+new_abbr go_goquery   "github.com/PuerkitoBio/goquery"
 
-new_abbr "..." "../../.."
-new_abbr "...." "../../../.."
-new_abbr "....." "../../../../.."
-new_abbr "......" "../../../../../.."
-new_abbr "......." "../../../../../../.."
+new_abbr "..." "../.."
+new_abbr "...." "../../.."
+new_abbr "....." "../../../.."
+new_abbr "......" "../../../../.."
+new_abbr "......." "../../../../../.."

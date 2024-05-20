@@ -10,6 +10,8 @@ g.loaded_netrwPlugin = 1
 
 -- options
 opt.background = "dark"
+-- opt.background = "light"
+opt.rtp:append("/opt/homebrew/opt/fzf")
 opt.autowrite = true
 opt.backup = false
 opt.clipboard = "unnamedplus"
