@@ -37,7 +37,7 @@ set -U __done_exclude ''
 fzf_configure_bindings --history=\cr --directory=\cf --variables= --processes= --git_log= --git_status=
 
 # alias ls/exa
-alias ls="exa --color=always"
+alias ls="exa -g --color=always"
 alias l="ls"
 
 # alias shell
