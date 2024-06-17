@@ -23,9 +23,8 @@ return {
       posititon = "center",
       width = 0.95,
     },
-    diagnostic = {
-      underline = false,
-    },
+    diagnostic = { underline = false },
+    lsp_inlay_hints = { enable = true },
   },
   config = function(_, opts)
     local opt = { noremap = true, silent = true }

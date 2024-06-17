@@ -6,12 +6,6 @@ return {
     plugins.coding.completion.sources.lsp_cmp,
     plugins.lsp.mason_lspconfig,
     {
-      -- Plugin: https://github.com/folke/neodev.nvim
-      plugins.lsp.repo_neodev,
-      name = plugins.lsp.neodev,
-      config = true,
-    },
-    {
       -- Plugin: https://github.com/b0o/SchemaStore.nvim
       plugins.lsp.repo_schema_store,
       name = plugins.lsp.schema_store,
@@ -43,16 +37,6 @@ return {
         settings = {
           yaml = {
             schemaStore = { enable = true },
-          },
-        },
-      },
-      lua_ls = {
-        settings = {
-          Lua = {
-            hint = { enable = true },
-            completion = {
-              callSnippet = "Replace",
-            },
           },
         },
       },
@@ -102,15 +86,6 @@ return {
           buffer = bufnr,
           callback = format,
         })
-      end
-
-      -- inlay hint
-      if util.has(bufnr, "inlayHint") then
-        local inlay_hint = vim.lsp.buf.inlay_hint or vim.lsp.inlay_hint
-        inlay_hint(bufnr, true)
-
-        -- stylua: ignore
-        map("inlayHint", "n", "<leader>ci", function() inlay_hint(bufnr, nil) end, "Inlay Hint")
       end
     end
 
