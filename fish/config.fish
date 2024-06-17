@@ -22,16 +22,12 @@ set PATH $PATH $HOME/.spicetify
 # custom pure themes
 set --universal pure_symbol_prompt ""
 set --universal pure_show_system_time false
-set --universal pure_enable_k8s false
 set --universal pure_shorten_prompt_current_directory_length 1
 
 # custom tmux
 set -Ux fish_tmux_autostart false
 set -Ux fish_tmux_autostart_once false
 set -Ux fish_tmux_autoconnect false
-
-# custom done notification
-set -U __done_exclude ''
 
 # custom bindings for fzf
 fzf_configure_bindings --history=\cr --directory=\cf --variables= --processes= --git_log= --git_status=
