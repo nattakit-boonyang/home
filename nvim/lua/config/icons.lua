@@ -1,4 +1,10 @@
 _G.icons = {
+  diagnostic = {
+    [vim.diagnostic.severity.ERROR] = "",
+    [vim.diagnostic.severity.WARN] = "",
+    [vim.diagnostic.severity.INFO] = "",
+    [vim.diagnostic.severity.HINT] = "󰌵",
+  },
   lspkind = {
     Array = " ",
     Boolean = " ",
