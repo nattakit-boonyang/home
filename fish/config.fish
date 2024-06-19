@@ -2,11 +2,11 @@ set -Ux EDITOR nvim
 set -U fish_greeting ""
 
 # set default PATH
-set PATH $PATH /usr/local/bin
 set PATH $PATH $HOME/go/bin
+set PATH $PATH $HOME/.local/bin
+set PATH $PATH /usr/local/bin
 set PATH $PATH /usr/local/sbin
 set PATH $PATH /usr/local/bin
-set PATH $PATH $HOME/.local/bin
 
 # set default alias
 alias fish_reload="source $HOME/.config/fish/config.fish"
@@ -27,6 +27,7 @@ function otherwise
     if test -f /usr/bin/wslview
         alias ff="/mnt/c/Program\ Files/Mozilla\ Firefox/firefox.exe -p"
     end
+    set -U nvm_default_version v22.2.0
 end
 
 function only_darwin
