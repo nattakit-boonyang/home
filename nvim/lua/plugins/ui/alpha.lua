@@ -8,7 +8,6 @@ return {
     local alpha = require("alpha")
     local dashboard = require("alpha.themes.dashboard")
     dashboard.section.buttons.val = {
-      dashboard.button("<leader> r a", "󰦛  Restore Session", "<cmd>Autosession search<cr>"),
       dashboard.button("e", "  New file", "<cmd>ene <cr>"),
       dashboard.button("<leader> f f", "󰍉  Find file"),
       dashboard.button("<leader> f r", "󰘓  Recently opened files"),

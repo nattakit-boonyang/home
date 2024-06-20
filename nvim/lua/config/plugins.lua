@@ -61,7 +61,6 @@ local _plugins = {
     gitsigns = "lewis6991/gitsigns.nvim",
     symbols_outline = "simrat39/symbols-outline.nvim",
     spider = "chrisgrieser/nvim-spider",
-    auto_session = "rmagatti/auto-session",
     rainbow_delimiters = "HiPhish/rainbow-delimiters.nvim",
     toggle_term = "akinsho/toggleterm.nvim",
     spectre = "nvim-pack/nvim-spectre",

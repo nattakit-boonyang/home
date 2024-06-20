@@ -19,7 +19,6 @@ return {
       ["<leader>s"] = { name = " Search" },
       ["<leader>x"] = { name = "󰍉 Trouble" },
       ["<leader>d"] = { name = " Dap" },
-      ["<leader>r"] = { name = "󰦛 Session" },
       ["<leader>g"] = { name = " Git" },
       ["<leader>q"] = { name = "󰗼 Exit" },
       ["<leader>k"] = { name = " Gopher" },
