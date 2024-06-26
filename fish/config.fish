@@ -17,6 +17,7 @@ alias c="clear"
 alias vim="nvim"
 alias v="nvim"
 alias vv="nvim ."
+alias python="python3"
 
 function otherwise
     # set PATH
