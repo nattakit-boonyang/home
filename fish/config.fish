@@ -52,7 +52,7 @@ switch (uname)
 end
 
 # custom pure themes
-set -U pure_symbol_prompt ""
+set -U pure_symbol_prompt "󰄛"
 set -U pure_show_system_time false
 set -U pure_shorten_prompt_current_directory_length 1
 
