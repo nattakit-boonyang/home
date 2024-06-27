@@ -149,4 +149,7 @@ function fish_init
   go install github.com/kyoh86/richgo@latest
   go install honnef.co/go/tools/cmd/staticcheck@latest
   go install github.com/jesseduffield/lazygit@latest
+  go install github.com/vektra/mockery/v2@latest
+  go install github.com/bufbuild/buf/cmd/buf@latest
+  go install gitlab.com/gitlab-org/cli/cmd/glab@latest
 end
