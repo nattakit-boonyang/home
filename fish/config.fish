@@ -10,7 +10,7 @@ set PATH $PATH /usr/local/bin
 
 # set default alias
 alias fish_reload="source $HOME/.config/fish/config.fish"
-alias ls="exa -g --color=always"
+alias ls="eza -g --color=always"
 alias l="ls"
 alias e="exit"
 alias c="clear"
