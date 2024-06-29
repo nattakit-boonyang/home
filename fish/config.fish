@@ -57,11 +57,6 @@ set -U pure_symbol_prompt "󰄛"
 set -U pure_show_system_time false
 set -U pure_shorten_prompt_current_directory_length 1
 
-# custom tmux
-set -Ux fish_tmux_autostart false
-set -Ux fish_tmux_autostart_once false
-set -Ux fish_tmux_autoconnect false
-
 # custom bindings for fzf
 fzf_configure_bindings --history=\cr --directory=\cf --variables= --processes= --git_log= --git_status=
 
@@ -116,6 +111,14 @@ new_abbr "....." "../../../.."
 new_abbr "......" "../../../../.."
 new_abbr "......." "../../../../../.."
 
+function go_new_poc
+  set -l go_version 1.$(go env GOVERSION | awk -F'.' '{print $2}')
+  go mod init poc
+  go mod edit -go=$go_version
+  go get -u github.com/rs/zerolog
+  echo -e "package main\n\nfunc main() {\n\n}\n" > main.go
+end
+
 function fish_init
   # install fisher and plugins
   curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
@@ -161,3 +164,4 @@ function fish_init
   go install gitlab.com/gitlab-org/cli/cmd/glab@latest
   go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 end
+
