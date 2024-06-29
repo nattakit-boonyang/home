@@ -18,6 +18,7 @@ alias vim="nvim"
 alias v="nvim"
 alias vv="nvim ."
 alias python="python3"
+alias ggup="gup"
 
 function otherwise
     # set PATH
@@ -64,9 +65,6 @@ set -Ux fish_tmux_autoconnect false
 # custom bindings for fzf
 fzf_configure_bindings --history=\cr --directory=\cf --variables= --processes= --git_log= --git_status=
 
-# delete git abbr
-abbr --erase gup
-
 # abbreviation last history
 function last_history_item
     echo $history[1]
@@ -77,6 +75,9 @@ abbr --add !! --position anywhere --function last_history_item
 function new_abbr
     abbr --add $argv[1] --position anywhere $argv[2]
 end
+
+# abbreviation git
+abbr --add gds "git diff --staged"
 
 # abbreviation tmux
 new_abbr td "tmux detach"
@@ -118,6 +119,7 @@ function fish_init
   fisher install catppuccin/fish
   fisher install jorgebucaran/nvm.fish
   fisher install jethrokuan/z
+  fisher install jhillyerd/plugin-git
 
   # install go tools
   go install golang.org/x/tools/cmd/callgraph@latest
@@ -152,4 +154,5 @@ function fish_init
   go install github.com/vektra/mockery/v2@latest
   go install github.com/bufbuild/buf/cmd/buf@latest
   go install gitlab.com/gitlab-org/cli/cmd/glab@latest
+  go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 end
