@@ -76,8 +76,13 @@ function new_abbr
     abbr --add $argv[1] --position anywhere $argv[2]
 end
 
+# abbreviation github cli
+new_abbr ghv "gh repo view -w"
+new_abbr ghcp "gh repo create --source=. --remote=origin --private"
+new_abbr ghcu "gh repo create --source=. --remote=origin --public"
+
 # abbreviation git
-abbr --add gds "git diff --staged"
+new_abbr gds "git diff --staged"
 
 # abbreviation tmux
 new_abbr td "tmux detach"
