@@ -35,6 +35,7 @@ end
 function only_darwin
     # iterm2 shell integration
     source $HOME/.iterm2_shell_integration.fish
+    set -x BROWSER open
     # set PATH
     set PATH $PATH /usr/local/opt/openjdk/bin
     set PATH $PATH /usr/local/opt/mysql-client/bin
@@ -75,9 +76,14 @@ end
 new_abbr ghv "gh repo view -w"
 new_abbr ghcp "gh repo create --source=. --remote=origin --private"
 new_abbr ghcu "gh repo create --source=. --remote=origin --public"
+new_abbr glv "glab repo view -w"
+new_abbr glmc "glab mr create --remove-source-branch --squash-before-merge --target-branch="
+new_abbr glmcm "glab mr create --remove-source-branch --squash-before-merge --target-branch=main"
+new_abbr glmcd "glab mr create --remove-source-branch --squash-before-merge --target-branch=develop"
 
 # abbreviation git
 new_abbr gds "git diff --staged"
+new_abbr grsh "git reset --soft HEAD^"
 
 # abbreviation tmux
 new_abbr td "tmux detach"
