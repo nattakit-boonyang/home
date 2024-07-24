@@ -36,11 +36,9 @@ function only_darwin
     # iterm2 shell integration
     source $HOME/.iterm2_shell_integration.fish
     set -x BROWSER open
+    set -x HOMEBREW_NO_ANALYTICS 1
     # set PATH
-    set PATH $PATH /usr/local/opt/openjdk/bin
-    set PATH $PATH /usr/local/opt/mysql-client/bin
-    set PATH $PATH /usr/local/opt/whois/bin
-    set PATH $PATH $HOME/.spicetify
+    set PATH $PATH /opt/homebrew/bin
     # alias
     alias ff="open -a Firefox -n --args -p"
 end
@@ -88,7 +86,8 @@ new_abbr grsh "git reset --soft HEAD^"
 # abbreviation tmux
 new_abbr td "tmux detach"
 new_abbr ta "tmux attach"
-new_abbr tsd "tmux new-session -d -t"
+new_abbr tls "tmux list-sessions"
+new_abbr tn "tmux new-session"
 
 # abbreviation docker
 new_abbr dcu "docker compose up -d"
