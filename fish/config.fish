@@ -11,6 +11,7 @@ set PATH $PATH /usr/local/bin
 # set default alias
 alias fish_reload="source $HOME/.config/fish/config.fish"
 alias ls="eza -g --color=always"
+alias cat="bat"
 alias l="ls"
 alias e="exit"
 alias c="clear"
@@ -19,6 +20,7 @@ alias v="nvim"
 alias vv="nvim ."
 alias python="python3"
 alias ggup="gup"
+alias commit="go-git-commit-date"
 
 function otherwise
     # set PATH
@@ -37,8 +39,8 @@ function only_darwin
     source $HOME/.iterm2_shell_integration.fish
     set -x BROWSER open
     set -x HOMEBREW_NO_ANALYTICS 1
-    # set PATH
-    set PATH $PATH /opt/homebrew/bin
+    # path
+    set PATH /opt/homebrew/bin $PATH
     # alias
     alias ff="open -a Firefox -n --args -p"
 end
@@ -57,6 +59,7 @@ set -U pure_show_system_time false
 set -U pure_shorten_prompt_current_directory_length 1
 
 # custom bindings for fzf
+fzf --fish | source
 fzf_configure_bindings --history=\cr --directory=\cf --variables= --processes= --git_log= --git_status=
 
 # abbreviation last history
@@ -82,6 +85,7 @@ new_abbr glmcd "glab mr create --remove-source-branch --squash-before-merge --ta
 # abbreviation git
 new_abbr gds "git diff --staged"
 new_abbr grsh "git reset --soft HEAD^"
+new_abbr gcue "git config user.email nattakit.boonyang@gmail.com"
 
 # abbreviation tmux
 new_abbr td "tmux detach"
@@ -123,6 +127,9 @@ function go_new_poc
   go get -u github.com/rs/zerolog
   echo -e "package main\n\nfunc main() {\n\n}\n" > main.go
 end
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f "$HOME/.google-cloud-sdk/path.fish.inc" ]; . "$HOME/.google-cloud-sdk/path.fish.inc"; end
 
 function fish_init
   # install fisher and plugins
