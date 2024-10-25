@@ -6,22 +6,24 @@ return {
   config = function(_, opts)
     local wk = require("which-key")
     wk.setup(opts)
-    wk.register({
-      mode = { "n", "v" },
-      g = { name = "󰷕 Goto" },
-      gz = { name = "󰅪 Surround" },
-      ["["] = { name = " Prev" },
-      ["]"] = { name = " Next" },
-      ["<leader>f"] = { name = "󰮗 Find" },
-      ["<leader>b"] = { name = " Buffer" },
-      ["<leader>o"] = { name = " Dismiss" },
-      ["<leader>c"] = { name = "󰨽 Code" },
-      ["<leader>s"] = { name = " Search" },
-      ["<leader>x"] = { name = "󰍉 Trouble" },
-      ["<leader>d"] = { name = " Dap" },
-      ["<leader>g"] = { name = " Git" },
-      ["<leader>q"] = { name = "󰗼 Exit" },
-      ["<leader>k"] = { name = " Gopher" },
+    wk.add({
+      {
+        mode = { "n", "v" },
+        { "<leader>b", group = " Buffer" },
+        { "<leader>c", group = "󰨽 Code" },
+        { "<leader>d", group = " Dap" },
+        { "<leader>f", group = "󰮗 Find" },
+        { "<leader>g", group = " Git" },
+        { "<leader>k", group = " Gopher" },
+        { "<leader>o", group = " Dismiss" },
+        { "<leader>q", group = "󰗼 Exit" },
+        { "<leader>s", group = " Search" },
+        { "<leader>x", group = "󰍉 Trouble" },
+        { "[", group = " Prev" },
+        { "]", group = " Next" },
+        { "g", group = "󰷕 Goto" },
+        { "gz", group = "󰅪 Surround" },
+      },
     })
   end,
 }

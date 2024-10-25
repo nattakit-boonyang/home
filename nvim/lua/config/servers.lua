@@ -9,7 +9,7 @@ _G.servers = {
     "gopls",
     "emmet_ls",
     "html",
-    "tsserver",
+    "ts_ls",
     "cssls",
     "dockerls",
     "docker_compose_language_service",

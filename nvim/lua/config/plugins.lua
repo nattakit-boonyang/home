@@ -20,7 +20,6 @@ local _plugins = {
   coding = {
     completion = {
       sources = {
-        copilot_cmp = "zbirenbaum/copilot-cmp",
         lsp_cmp = "hrsh7th/cmp-nvim-lsp",
         luasnip_cmp = "saadparwaiz1/cmp_luasnip",
         path_cmp = "hrsh7th/cmp-path",
@@ -29,7 +28,6 @@ local _plugins = {
         buffer_cmp = "hrsh7th/cmp-buffer",
       },
       cmp = "hrsh7th/nvim-cmp",
-      copilot = "zbirenbaum/copilot.lua",
       lspkind = "onsails/lspkind.nvim",
       luasnip = "L3MON4D3/LuaSnip",
       friendly_snippets = "rafamadriz/friendly-snippets",
