@@ -5,7 +5,7 @@ return {
   dependencies = plugins.lsp.mason,
   config = true,
   opts = {
-    ensure_installed = servers.lsp,
+    ensure_installed = servers.mason_lsp,
     automatic_installation = true,
   },
 }

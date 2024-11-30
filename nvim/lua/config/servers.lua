@@ -1,5 +1,20 @@
 _G.servers = {
   lsp = {
+    "buf_ls",
+    "bashls",
+    "jsonls",
+    "lua_ls",
+    "yamlls",
+    "marksman",
+    "gopls",
+    "emmet_ls",
+    "html",
+    "ts_ls",
+    "cssls",
+    "dockerls",
+    "docker_compose_language_service",
+  },
+  mason_lsp = {
     "bufls",
     "bashls",
     "jsonls",
