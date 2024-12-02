@@ -58,8 +58,6 @@ return {
     },
   },
   config = function()
-    vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
-
     local cmp = require("cmp")
     local ls = require("luasnip")
     local lspkind = require("lspkind")
@@ -79,7 +77,7 @@ return {
 
     cmp.setup({
       sources = cmp.config.sources({
-        -- { name = "copilot" },
+        { name = "copilot" },
         { name = "nvim_lsp" },
         { name = "luasnip" },
         { name = "path" },
@@ -117,11 +115,6 @@ return {
           ellipsis_char = "...",
           symbol_map = icons.lspkind,
         }),
-      },
-      experimental = {
-        ghost_text = {
-          hl_group = "CmpGhostText",
-        },
       },
     })
   end,

@@ -4,7 +4,6 @@ return {
   name = plugins.coding.completion.copilot,
   cmd = "Copilot",
   event = "InsertEnter",
-  build = ":Copilot auth",
   config = true,
   opts = {
     suggestion = { enabled = false },
