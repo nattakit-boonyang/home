@@ -126,6 +126,9 @@ function go_new_poc
   go mod edit -go=$go_version
   go get -u github.com/rs/zerolog
   echo -e "package main\n\nfunc main() {\n\n}\n" > main.go
+
+  git init
+  git config user.email nattakit.boonyang@gmail.com
 end
 
 # The next line updates PATH for the Google Cloud SDK.
@@ -140,40 +143,5 @@ function fish_init
   fisher install jorgebucaran/nvm.fish
   fisher install jethrokuan/z
   fisher install jhillyerd/plugin-git
-
-  # install go tools
-  go install golang.org/x/tools/cmd/callgraph@latest
-  go install github.com/go-delve/delve/cmd/dlv@latest
-  go install github.com/davidrjenni/reftools/cmd/fillstruct@latest
-  go install github.com/davidrjenni/reftools/cmd/fillswitch@latest
-  go install github.com/onsi/ginkgo/v2/ginkgo@latest
-  go install github.com/abice/go-enum@latest
-  go install mvdan.cc/gofumpt@latest
-  go install golang.org/x/tools/cmd/goimports@latest
-  go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
-  go install github.com/segmentio/golines@latest
-  go install github.com/fatih/gomodifytags@latest
-  go install github.com/abenz1267/gomvp@latest
-  go install golang.org/x/tools/cmd/gonew@latest
-  go install github.com/haya14busa/goplay/cmd/goplay@latest
-  go install golang.org/x/tools/gopls@latest
-  go install golang.org/x/tools/cmd/gorename@latest
-  go install github.com/cweill/gotests/gotests@latest
-  go install gotest.tools/gotestsum@latest
-  go install golang.org/x/vuln/cmd/govulncheck@latest
-  go install github.com/nao1215/gup@latest
-  go install golang.org/x/tools/cmd/guru@latest
-  go install github.com/koron/iferr@latest
-  go install github.com/josharian/impl@latest
-  go install github.com/tmc/json-to-struct@latest
-  go install github.com/jesseduffield/lazygit@latest
-  go install go.uber.org/mock/mockgen@latest
-  go install github.com/kyoh86/richgo@latest
-  go install honnef.co/go/tools/cmd/staticcheck@latest
-  go install github.com/jesseduffield/lazygit@latest
-  go install github.com/vektra/mockery/v2@latest
-  go install github.com/bufbuild/buf/cmd/buf@latest
-  go install gitlab.com/gitlab-org/cli/cmd/glab@latest
-  go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 end
 
