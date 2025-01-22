@@ -73,6 +73,10 @@ function new_abbr
     abbr --add $argv[1] --position anywhere $argv[2]
 end
 
+function glab_mr_url
+  glab mr view $argv[1] -F json | jq .web_url | tr -d '"'
+end
+
 # abbreviation github cli
 new_abbr ghv "gh repo view -w"
 new_abbr ghcp "gh repo create --source=. --remote=origin --private"
@@ -81,11 +85,14 @@ new_abbr glv "glab repo view -w"
 new_abbr glmc "glab mr create --remove-source-branch --squash-before-merge --target-branch="
 new_abbr glmcm "glab mr create --remove-source-branch --squash-before-merge --target-branch=main"
 new_abbr glmcd "glab mr create --remove-source-branch --squash-before-merge --target-branch=develop"
+new_abbr glmru glab_mr_url
 
 # abbreviation git
 new_abbr gds "git diff --staged"
 new_abbr grsh "git reset --soft HEAD^"
 new_abbr gcue "git config user.email nattakit.boonyang@gmail.com"
+new_abbr glrd "git pull --rebase origin develop"
+new_abbr glrm "git pull --rebase origin main"
 
 # abbreviation tmux
 new_abbr td "tmux detach"
@@ -98,20 +105,27 @@ new_abbr dcu "docker compose up -d"
 new_abbr dcd "docker compose down"
 new_abbr dcp "docker compose ps -a"
 new_abbr dcl "docker compose logs -f"
+new_abbr dkcl "docker container ls -a"
+new_abbr dkl "docker logs -f"
 
 # abbreviation go package frequency used
-new_abbr go_zerolog "github.com/rs/zerolog"
-new_abbr go_testify "github.com/stretchr/testify"
-new_abbr go_gin "github.com/gin-gonic/gin"
-new_abbr go_echo "github.com/labstack/echo/v4"
-new_abbr go_fiber "github.com/gofiber/fiber/v2"
-new_abbr go_fasthttp "github.com/valyala/fasthttp"
-new_abbr go_kafka_v2 "github.com/confluentinc/confluent-kafka-go/v2"
-new_abbr go_dotenv "github.com/joho/godotenv"
-new_abbr go_envconfig "github.com/kelseyhightower/envconfig"
-new_abbr go_mongo "go.mongodb.org/mongo-driver/mongo"
-new_abbr go_resty "github.com/go-resty/resty/v2"
-new_abbr go_goquery "github.com/PuerkitoBio/goquery"
+function new_abbr_go
+  new_abbr go$argv[1] "go get -u $argv[2]"
+end
+new_abbr_go zerolog "github.com/rs/zerolog"
+new_abbr_go testify "github.com/stretchr/testify"
+new_abbr_go gin "github.com/gin-gonic/gin"
+new_abbr_go echo "github.com/labstack/echo/v4"
+new_abbr_go fiber "github.com/gofiber/fiber/v2"
+new_abbr_go fasthttp "github.com/valyala/fasthttp"
+new_abbr_go kafka "github.com/confluentinc/confluent-kafka-go/v2"
+new_abbr_go dotenv "github.com/joho/godotenv"
+new_abbr_go envconfig "github.com/kelseyhightower/envconfig"
+new_abbr_go mongo "go.mongodb.org/mongo-driver/mongo"
+new_abbr_go resty "github.com/go-resty/resty/v2"
+new_abbr_go goquery "github.com/PuerkitoBio/goquery"
+new_abbr_go websocket "github.com/gorilla/websocket"
+new_abbr_go redis "github.com/redis/rueidis"
 
 # abbreviation path
 new_abbr "..." "../.."
