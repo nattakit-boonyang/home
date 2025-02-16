@@ -64,6 +64,7 @@ local _plugins = {
     rainbow_delimiters = "HiPhish/rainbow-delimiters.nvim",
     toggle_term = "akinsho/toggleterm.nvim",
     spectre = "nvim-pack/nvim-spectre",
+    presence = "andweeb/presence.nvim",
   },
   ui = {
     web_devicons = "nvim-tree/nvim-web-devicons",
