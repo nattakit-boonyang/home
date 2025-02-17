@@ -14,7 +14,7 @@ local base_lsp = {
 }
 
 local lsp = { "buf_ls" }
-local mason_lsp = { "bufls" }
+local mason_lsp = { "buf_ls" }
 
 table.move(base_lsp, 1, #base_lsp, 2, lsp)
 table.move(base_lsp, 1, #base_lsp, 2, mason_lsp)
@@ -39,6 +39,8 @@ _G.servers = {
     "gomodifytags",
     "impl",
     "prettier",
+    "codespell",
+    "spell",
   },
   sources_null_ls = function()
     local builtins = require("null-ls").builtins
@@ -59,6 +61,8 @@ _G.servers = {
       builtins.formatting.goimports,
       builtins.formatting.buf,
       builtins.formatting.prettier,
+      builtins.diagnostics.codespell,
+      builtins.completion.spell,
       builtins.formatting.golines.with({
         extra_args = {
           "--max-len=180",
